@@ -8,14 +8,14 @@
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-
+#
 # * Redistributions of source code must retain the above copyright notice, this
 #   list of conditions and the following disclaimer.
-
+#
 # * Redistributions in binary form must reproduce the above copyright notice,
 #   this list of conditions and the following disclaimer in the documentation
 #   and/or other materials provided with the distribution.
-
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -137,7 +137,6 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'metasoundex_es': lambda name: metasoundex(name, language='es'),
               'bmpm': bmpm,
               'bmpm_german': lambda name: bmpm(name, language_arg='german'),
-              'bmpm_cyrillic': lambda name: bmpm(name, language_arg='cyrillic'),
               'bmpm_french': lambda name: bmpm(name, language_arg='french'),
               'bmpm_gen_exact': lambda name: bmpm(name, match_mode='exact'),
               'bmpm_ash_approx': lambda name: bmpm(name, name_mode='ash'),
@@ -160,18 +159,19 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
 }
 
 overall_start = time()
-for algo in algorithms:
-    start = time()
-    sys.stdout.write(algo)
-    sys.stdout.flush()
-    with open(algo+'.csv', 'w') as output:
-        output.write(algo+'\n')
-        with open('regtest_names.csv') as names_file:
-            for name in names_file:
-                name = name.strip()
-                output.write(algorithms[algo](name)+'\n')
-        dur = '{:0.3f}s'.format(time()-start)
-        output.write(dur+'\n')
-        sys.stdout.write(dur)
+with open('timings.csv', 'w') as timings:
+    timings.write('algorithm_name,time\n')
+    for algo in algorithms:
+        start = time()
+        sys.stdout.write(algo)
+        sys.stdout.flush()
+        with open(algo+'.csv', 'w') as output:
+            with open('regtest_names.csv') as names_file:
+                for name in names_file:
+                    name = name.strip()
+                    output.write(algorithms[algo](name)+'\n')
+            dur = '{:0.4f}'.format(time()-start)
+            timings.write(algo+','+dur+'\n')
+            sys.stdout.write(' '*(38-len(algo)-len(dur))+dur+'\n')
 
-sys.stdout.write('Total:\t{:0.3f}s'.format(time()-overall_start))
+sys.stdout.write('Total:\t{:0.4f}'.format(time()-overall_start))
