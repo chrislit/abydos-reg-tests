@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright 2014-2018 by Christopher C. Little.
+# Copyright 2018 by Christopher C. Little.
 # This file is part of Abydos.
 #
 # Abydos is free software: you can redistribute it and/or modify
@@ -21,6 +21,8 @@
 This module contains regression tests for abydos.fingerprint
 """
 
+import os
+import random
 import unittest
 
 from abydos.fingerprint import count_fingerprint, occurrence_fingerprint, \
@@ -49,8 +51,39 @@ algorithms = {'str_fingerprint': str_fingerprint,
               'synoname_toolcode_2name':
                   lambda name: str(synoname_toolcode(name, name))}
 
-originals = open('corpora/regtest_names.csv').readlines()
+TESTDIR = os.path.dirname(__file__)
+
+EXTREME_TEST = False  # Set to True to test EVERY single case
+ALLOW_RANDOM = True  # Set to False to skip all random tests
+
+if not EXTREME_TEST and os.path.isfile(TESTDIR + '/EXTREME_TEST'):
+    # EXTREME_TEST file detected -- switching to EXTREME_TEST mode...
+    EXTREME_TEST = True
+if not EXTREME_TEST and os.path.isfile(TESTDIR + '/../EXTREME_TEST'):
+    # EXTREME_TEST file detected -- switching to EXTREME_TEST mode...
+    EXTREME_TEST = True
+
+originals = open(TESTDIR+'/corpora/regtest_names.csv').readlines()
 originals = [_.strip() for _ in originals[1:]]
+
+
+def one_in(inverse_probability):
+    """Return whether to run a test.
+
+    Return True if:
+        EXTREME_TEST is True
+        OR
+        (ALLOW_RANDOM is False
+        AND
+        random.random() * inverse_probability < 1
+    Otherwise return False
+    """
+    if EXTREME_TEST:
+        return True
+    elif ALLOW_RANDOM and random.random() * inverse_probability < 1:
+        return True
+    else:
+        return False
 
 
 class RegTestFingerprint(unittest.TestCase):
@@ -60,132 +93,145 @@ class RegTestFingerprint(unittest.TestCase):
     def test_str_fingerprint_phonetic(self):
         """Regression test str_fingerprint.
         """
-        with open('corpora/str_fingerprint.csv') as transformed:
+        with open(TESTDIR+'/corpora/str_fingerprint.csv') as transformed:
             transformed.readline()
             algo = algorithms['str_fingerprint']
             for i, trans in enumerate(transformed):
-                self.assertEqual(trans.strip(),
-                                 algo(originals[i]))
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
 
     def test_qgram_fingerprint_phonetic(self):
         """Regression test qgram_fingerprint.
         """
-        with open('corpora/qgram_fingerprint.csv') as transformed:
+        with open(TESTDIR+'/corpora/qgram_fingerprint.csv') as transformed:
             transformed.readline()
             algo = algorithms['qgram_fingerprint']
             for i, trans in enumerate(transformed):
-                self.assertEqual(trans.strip(),
-                                 algo(originals[i]))
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
 
     def test_qgram_fingerprint_3_phonetic(self):
         """Regression test qgram_fingerprint_3.
         """
-        with open('corpora/qgram_fingerprint_3.csv') as transformed:
+        with open(TESTDIR+'/corpora/qgram_fingerprint_3.csv') as transformed:
             transformed.readline()
             algo = algorithms['qgram_fingerprint_3']
             for i, trans in enumerate(transformed):
-                self.assertEqual(trans.strip(),
-                                 algo(originals[i]))
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
 
     def test_qgram_fingerprint_ssj_phonetic(self):
         """Regression test qgram_fingerprint_ssj.
         """
-        with open('corpora/qgram_fingerprint_ssj.csv') as transformed:
+        with open(TESTDIR+'/corpora/qgram_fingerprint_ssj.csv') as transformed:
             transformed.readline()
             algo = algorithms['qgram_fingerprint_ssj']
             for i, trans in enumerate(transformed):
-                self.assertEqual(trans.strip(),
-                                 algo(originals[i]))
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
 
     def test_phonetic_fingerprint_phonetic(self):
         """Regression test phonetic_fingerprint.
         """
-        with open('corpora/phonetic_fingerprint.csv') as transformed:
+        with open(TESTDIR+'/corpora/phonetic_fingerprint.csv') as transformed:
             transformed.readline()
             algo = algorithms['phonetic_fingerprint']
             for i, trans in enumerate(transformed):
-                self.assertEqual(trans.strip(),
-                                 algo(originals[i]))
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
 
     def test_skeleton_key_phonetic(self):
         """Regression test skeleton_key.
         """
-        with open('corpora/skeleton_key.csv') as transformed:
+        with open(TESTDIR+'/corpora/skeleton_key.csv') as transformed:
             transformed.readline()
             algo = algorithms['skeleton_key']
             for i, trans in enumerate(transformed):
-                self.assertEqual(trans.strip(),
-                                 algo(originals[i]))
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
 
     def test_omission_key_phonetic(self):
         """Regression test omission_key.
         """
-        with open('corpora/omission_key.csv') as transformed:
+        with open(TESTDIR+'/corpora/omission_key.csv') as transformed:
             transformed.readline()
             algo = algorithms['omission_key']
             for i, trans in enumerate(transformed):
-                self.assertEqual(trans.strip(),
-                                 algo(originals[i]))
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
 
     def test_occurrence_fingerprint_phonetic(self):
         """Regression test occurrence_fingerprint.
         """
-        with open('corpora/occurrence_fingerprint.csv') as transformed:
+        with open(TESTDIR+'/corpora/occurrence_fingerprint.csv') as transformed:
             transformed.readline()
             algo = algorithms['occurrence_fingerprint']
             for i, trans in enumerate(transformed):
-                self.assertEqual(trans.strip(),
-                                 algo(originals[i]))
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
 
     def test_occurrence_halved_fingerprint_phonetic(self):
         """Regression test occurrence_halved_fingerprint.
         """
-        with open('corpora/occurrence_halved_fingerprint.csv') as transformed:
+        with open(TESTDIR+'/corpora/occurrence_halved_fingerprint.csv') as transformed:
             transformed.readline()
             algo = algorithms['occurrence_halved_fingerprint']
             for i, trans in enumerate(transformed):
-                self.assertEqual(trans.strip(),
-                                 algo(originals[i]))
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
 
     def test_count_fingerprint_phonetic(self):
         """Regression test count_fingerprint.
         """
-        with open('corpora/count_fingerprint.csv') as transformed:
+        with open(TESTDIR+'/corpora/count_fingerprint.csv') as transformed:
             transformed.readline()
             algo = algorithms['count_fingerprint']
             for i, trans in enumerate(transformed):
-                self.assertEqual(trans.strip(),
-                                 algo(originals[i]))
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
 
     def test_position_fingerprint_phonetic(self):
         """Regression test position_fingerprint.
         """
-        with open('corpora/position_fingerprint.csv') as transformed:
+        with open(TESTDIR+'/corpora/position_fingerprint.csv') as transformed:
             transformed.readline()
             algo = algorithms['position_fingerprint']
             for i, trans in enumerate(transformed):
-                self.assertEqual(trans.strip(),
-                                 algo(originals[i]))
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
 
     def test_synoname_toolcode_phonetic(self):
         """Regression test synoname_toolcode.
         """
-        with open('corpora/synoname_toolcode.csv') as transformed:
+        with open(TESTDIR+'/corpora/synoname_toolcode.csv') as transformed:
             transformed.readline()
             algo = algorithms['synoname_toolcode']
             for i, trans in enumerate(transformed):
-                self.assertEqual(trans.strip(),
-                                 algo(originals[i]))
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
 
     def test_synoname_toolcode_2name_phonetic(self):
         """Regression test synoname_toolcode_2name.
         """
-        with open('corpora/synoname_toolcode_2name.csv') as transformed:
+        with open(TESTDIR+'/corpora/synoname_toolcode_2name.csv') as transformed:
             transformed.readline()
             algo = algorithms['synoname_toolcode_2name']
             for i, trans in enumerate(transformed):
-                self.assertEqual(trans.strip(),
-                                 algo(originals[i]))
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
 
 
 if __name__ == '__main__':
