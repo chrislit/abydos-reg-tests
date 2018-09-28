@@ -21,8 +21,7 @@
 This module contains regression tests for abydos.phonetic
 """
 
-from __future__ import unicode_literals
-
+import codecs
 import os
 import random
 import unittest
@@ -37,9 +36,7 @@ from abydos.phonetic import alpha_sis, bmpm, caverphone, davidson, \
     russell_index_alpha, russell_index_num_to_alpha, sfinxbis, sound_d, \
     soundex, spanish_metaphone, spfc, statistics_canada
 
-from six import text_type
-
-algorithms = {'russell_index': lambda name: text_type(russell_index(name)),
+algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'russell_index_num_to_alpha':
                   lambda name: russell_index_num_to_alpha(russell_index(name)),
               'russell_index_alpha': russell_index_alpha,
@@ -49,14 +46,14 @@ algorithms = {'russell_index': lambda name: text_type(russell_index(name)),
                   lambda name: soundex(name, zero_pad=True, maxlength=6),
               'soundex_special': lambda name: soundex(name, var='special'),
               'soundex_census':
-                  lambda name: text_type(soundex(name, var='Census')),
+                  lambda name: ', '.join(soundex(name, var='Census')),
               'refined_soundex': refined_soundex,
               'refined_soundex_vowels':
                   lambda name: refined_soundex(name, retain_vowels=True),
               'refined_soundex_0pad_ml6':
                   lambda name:
                   refined_soundex(name, zero_pad=True, maxlength=6),
-              'dm_soundex': lambda name: text_type(sorted(dm_soundex(name))),
+              'dm_soundex': lambda name: ', '.join(sorted(dm_soundex(name))),
               'koelner_phonetik': koelner_phonetik,
               'koelner_phonetik_num_to_alpha':
                   lambda name:
@@ -69,10 +66,10 @@ algorithms = {'russell_index': lambda name: text_type(russell_index(name)),
               'mra': mra,
               'metaphone': metaphone,
               'double_metaphone':
-                  lambda name: text_type(double_metaphone(name)),
+                  lambda name: ', '.join(double_metaphone(name)),
               'caverphone_1': lambda name: caverphone(name, version=1),
               'caverphone_2': caverphone,
-              'alpha_sis': lambda name: text_type(alpha_sis(name)),
+              'alpha_sis': lambda name: ', '.join(alpha_sis(name)),
               'fuzzy_soundex': fuzzy_soundex,
               'fuzzy_soundex_0pad_ml8':
                   lambda name: fuzzy_soundex(name, maxlength=8, zero_pad=True),
@@ -83,9 +80,9 @@ algorithms = {'russell_index': lambda name: text_type(russell_index(name)),
               'phonix': phonix,
               'phonix_0pad_ml6':
                   lambda name: phonix(name, maxlength=6, zero_pad=True),
-              'sfinxbis': lambda name: text_type(sfinxbis(name)),
+              'sfinxbis': lambda name: ', '.join(sfinxbis(name)),
               'sfinxbis_ml6':
-                  lambda name: text_type(sfinxbis(name, maxlength=6)),
+                  lambda name: ', '.join(sfinxbis(name, maxlength=6)),
               'phonet_1': phonet,
               'phonet_2': lambda name: phonet(name, mode=2),
               'phonet_1_none': lambda name: phonet(name, lang='none'),
@@ -103,8 +100,8 @@ algorithms = {'russell_index': lambda name: text_type(russell_index(name)),
               'onca': onca,
               'onca_nopad_ml8':
                   lambda name: onca(name, maxlength=8, zero_pad=False),
-              'eudex': lambda name: text_type(eudex(name)),
-              'haase_phonetik': lambda name: text_type(haase_phonetik(name)),
+              'eudex': lambda name: str(eudex(name)),
+              'haase_phonetik': lambda name: ', '.join(haase_phonetik(name)),
               'haase_phonetik_primary':
                   lambda name: haase_phonetik(name, primary_only=True)[0],
               'reth_schek_phonetik': reth_schek_phonetik,
@@ -476,7 +473,8 @@ class RegTestPhonetic(unittest.TestCase):
 
     def test_phonem_phonetic(self):
         """Regression test phonem."""
-        with open(TESTDIR+'/corpora/phonem.csv') as transformed:
+        with codecs.open(TESTDIR+'/corpora/phonem.csv',
+                         encoding='UTF-8') as transformed:
             transformed.readline()
             algo = algorithms['phonem']
             for i, trans in enumerate(transformed):
@@ -526,7 +524,8 @@ class RegTestPhonetic(unittest.TestCase):
 
     def test_phonet_1_phonetic(self):
         """Regression test phonet_1."""
-        with open(TESTDIR+'/corpora/phonet_1.csv') as transformed:
+        with codecs.open(TESTDIR+'/corpora/phonet_1.csv',
+                         encoding='UTF-8') as transformed:
             transformed.readline()
             algo = algorithms['phonet_1']
             for i, trans in enumerate(transformed):
@@ -536,7 +535,8 @@ class RegTestPhonetic(unittest.TestCase):
 
     def test_phonet_2_phonetic(self):
         """Regression test phonet_2."""
-        with open(TESTDIR+'/corpora/phonet_2.csv') as transformed:
+        with codecs.open(TESTDIR+'/corpora/phonet_2.csv',
+                         encoding='UTF-8') as transformed:
             transformed.readline()
             algo = algorithms['phonet_2']
             for i, trans in enumerate(transformed):
@@ -830,7 +830,8 @@ class RegTestPhonetic(unittest.TestCase):
 
     def test_norphone_phonetic(self):
         """Regression test norphone."""
-        with open(TESTDIR+'/corpora/norphone.csv') as transformed:
+        with codecs.open(TESTDIR+'/corpora/norphone.csv',
+                         encoding='UTF-8') as transformed:
             transformed.readline()
             algo = algorithms['norphone']
             for i, trans in enumerate(transformed):

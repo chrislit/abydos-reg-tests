@@ -21,8 +21,6 @@
 This module contains regression tests for abydos.fingerprint
 """
 
-from __future__ import unicode_literals
-
 import os
 import random
 import unittest
@@ -31,8 +29,6 @@ from abydos.fingerprint import count_fingerprint, occurrence_fingerprint, \
     occurrence_halved_fingerprint, omission_key, phonetic_fingerprint, \
     position_fingerprint, qgram_fingerprint, skeleton_key, str_fingerprint, \
     synoname_toolcode
-
-from six import text_type
 
 algorithms = {'str_fingerprint': str_fingerprint,
               'qgram_fingerprint': qgram_fingerprint,
@@ -45,17 +41,16 @@ algorithms = {'str_fingerprint': str_fingerprint,
               'skeleton_key': skeleton_key,
               'omission_key': omission_key,
               'occurrence_fingerprint':
-                  lambda name: text_type(occurrence_fingerprint(name)),
+                  lambda name: str(occurrence_fingerprint(name)),
               'occurrence_halved_fingerprint':
-                  lambda name: text_type(occurrence_halved_fingerprint(name)),
-              'count_fingerprint':
-                  lambda name: text_type(count_fingerprint(name)),
+                  lambda name: str(occurrence_halved_fingerprint(name)),
+              'count_fingerprint': lambda name: str(count_fingerprint(name)),
               'position_fingerprint':
-                  lambda name: text_type(position_fingerprint(name)),
+                  lambda name: str(position_fingerprint(name)),
               'synoname_toolcode':
-                  lambda name: text_type(synoname_toolcode(name)),
+                  lambda name: ', '.join(synoname_toolcode(name)),
               'synoname_toolcode_2name':
-                  lambda name: text_type(synoname_toolcode(name, name))}
+                  lambda name: ', '.join(synoname_toolcode(name, name))}
 
 TESTDIR = os.path.dirname(__file__)
 

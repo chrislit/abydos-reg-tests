@@ -65,14 +65,15 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'soundex_0pad_ml6':
                   lambda name: soundex(name, zero_pad=True, maxlength=6),
               'soundex_special': lambda name: soundex(name, var='special'),
-              'soundex_census': lambda name: str(soundex(name, var='Census')),
+              'soundex_census':
+                  lambda name: ', '.join(soundex(name, var='Census')),
               'refined_soundex': refined_soundex,
               'refined_soundex_vowels':
                   lambda name: refined_soundex(name, retain_vowels=True),
               'refined_soundex_0pad_ml6':
                   lambda name:
                   refined_soundex(name, zero_pad=True, maxlength=6),
-              'dm_soundex': lambda name: str(sorted(dm_soundex(name))),
+              'dm_soundex': lambda name: ', '.join(sorted(dm_soundex(name))),
               'koelner_phonetik': koelner_phonetik,
               'koelner_phonetik_num_to_alpha':
                   lambda name:
@@ -84,10 +85,11 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
                   lambda name: nysiis(name, maxlength=float('inf')),
               'mra': mra,
               'metaphone': metaphone,
-              'double_metaphone': lambda name: str(double_metaphone(name)),
+              'double_metaphone':
+                  lambda name: ', '.join(double_metaphone(name)),
               'caverphone_1': lambda name: caverphone(name, version=1),
               'caverphone_2': caverphone,
-              'alpha_sis': lambda name: str(alpha_sis(name)),
+              'alpha_sis': lambda name: ', '.join(alpha_sis(name)),
               'fuzzy_soundex': fuzzy_soundex,
               'fuzzy_soundex_0pad_ml8':
                   lambda name: fuzzy_soundex(name, maxlength=8, zero_pad=True),
@@ -98,8 +100,9 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'phonix': phonix,
               'phonix_0pad_ml6':
                   lambda name: phonix(name, maxlength=6, zero_pad=True),
-              'sfinxbis': lambda name: str(sfinxbis(name)),
-              'sfinxbis_ml6': lambda name: str(sfinxbis(name, maxlength=6)),
+              'sfinxbis': lambda name: ', '.join(sfinxbis(name)),
+              'sfinxbis_ml6':
+                  lambda name: ', '.join(sfinxbis(name, maxlength=6)),
               'phonet_1': phonet,
               'phonet_2': lambda name: phonet(name, mode=2),
               'phonet_1_none': lambda name: phonet(name, lang='none'),
@@ -118,7 +121,7 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'onca_nopad_ml8':
                   lambda name: onca(name, maxlength=8, zero_pad=False),
               'eudex': lambda name: str(eudex(name)),
-              'haase_phonetik': lambda name: str(haase_phonetik(name)),
+              'haase_phonetik': lambda name: ', '.join(haase_phonetik(name)),
               'haase_phonetik_primary':
                   lambda name: haase_phonetik(name, primary_only=True)[0],
               'reth_schek_phonetik': reth_schek_phonetik,
@@ -180,9 +183,10 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'count_fingerprint': lambda name: str(count_fingerprint(name)),
               'position_fingerprint':
                   lambda name: str(position_fingerprint(name)),
-              'synoname_toolcode': lambda name: str(synoname_toolcode(name)),
+              'synoname_toolcode':
+                  lambda name: ', '.join(synoname_toolcode(name)),
               'synoname_toolcode_2name':
-                  lambda name: str(synoname_toolcode(name, name))}
+                  lambda name: ', '.join(synoname_toolcode(name, name))}
 
 overall_start = time()
 
@@ -202,8 +206,8 @@ with open(os.path.join(corpora_dir, 'timings.csv'), 'w') as timings:
                 for name in names_file:
                     name = name.strip()
                     output.write(algorithms[algo](name)+'\n')
-            dur = '{:0.4f}'.format(time()-start)
+            dur = '{:0.2f}'.format(time()-start)
             timings.write(algo+','+dur+'\n')
             sys.stdout.write(' '*(38-len(algo)-len(dur))+dur+'\n')
 
-sys.stdout.write('Total:\t{:0.4f}'.format(time()-overall_start))
+sys.stdout.write('Total:\t{:0.2f}'.format(time()-overall_start))
