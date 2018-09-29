@@ -90,7 +90,7 @@ def one_in(inverse_probability):
 class RegTestFingerprint(unittest.TestCase):
     """Perform fingerprint regression tests."""
 
-    def test_str_fingerprint_phonetic(self):
+    def reg_test_str_fingerprint_phonetic(self):
         """Regression test str_fingerprint."""
         with open(TESTDIR+'/corpora/str_fingerprint.csv') as transformed:
             transformed.readline()
@@ -100,7 +100,7 @@ class RegTestFingerprint(unittest.TestCase):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
-    def test_qgram_fingerprint_phonetic(self):
+    def reg_test_qgram_fingerprint_phonetic(self):
         """Regression test qgram_fingerprint."""
         with open(TESTDIR+'/corpora/qgram_fingerprint.csv') as transformed:
             transformed.readline()
@@ -110,7 +110,7 @@ class RegTestFingerprint(unittest.TestCase):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
-    def test_qgram_fingerprint_3_phonetic(self):
+    def reg_test_qgram_fingerprint_3_phonetic(self):
         """Regression test qgram_fingerprint_3."""
         with open(TESTDIR+'/corpora/qgram_fingerprint_3.csv') as transformed:
             transformed.readline()
@@ -120,7 +120,7 @@ class RegTestFingerprint(unittest.TestCase):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
-    def test_qgram_fingerprint_ssj_phonetic(self):
+    def reg_test_qgram_fingerprint_ssj_phonetic(self):
         """Regression test qgram_fingerprint_ssj."""
         with open(TESTDIR+'/corpora/qgram_fingerprint_ssj.csv') as transformed:
             transformed.readline()
@@ -130,7 +130,7 @@ class RegTestFingerprint(unittest.TestCase):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
-    def test_phonetic_fingerprint_phonetic(self):
+    def reg_test_phonetic_fingerprint_phonetic(self):
         """Regression test phonetic_fingerprint."""
         with open(TESTDIR+'/corpora/phonetic_fingerprint.csv') as transformed:
             transformed.readline()
@@ -140,7 +140,7 @@ class RegTestFingerprint(unittest.TestCase):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
-    def test_skeleton_key_phonetic(self):
+    def reg_test_skeleton_key_phonetic(self):
         """Regression test skeleton_key."""
         with open(TESTDIR+'/corpora/skeleton_key.csv') as transformed:
             transformed.readline()
@@ -150,7 +150,7 @@ class RegTestFingerprint(unittest.TestCase):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
-    def test_omission_key_phonetic(self):
+    def reg_test_omission_key_phonetic(self):
         """Regression test omission_key."""
         with open(TESTDIR+'/corpora/omission_key.csv') as transformed:
             transformed.readline()
@@ -160,7 +160,7 @@ class RegTestFingerprint(unittest.TestCase):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
-    def test_occurrence_fingerprint_phonetic(self):
+    def reg_test_occurrence_fingerprint_phonetic(self):
         """Regression test occurrence_fingerprint."""
         with open(TESTDIR+
                   '/corpora/occurrence_fingerprint.csv') as transformed:
@@ -171,7 +171,7 @@ class RegTestFingerprint(unittest.TestCase):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
-    def test_occurrence_halved_fingerprint_phonetic(self):
+    def reg_test_occurrence_halved_fingerprint_phonetic(self):
         """Regression test occurrence_halved_fingerprint."""
         with open(TESTDIR+
                   '/corpora/occurrence_halved_fingerprint.csv') as transformed:
@@ -182,7 +182,7 @@ class RegTestFingerprint(unittest.TestCase):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
-    def test_count_fingerprint_phonetic(self):
+    def reg_test_count_fingerprint_phonetic(self):
         """Regression test count_fingerprint."""
         with open(TESTDIR+'/corpora/count_fingerprint.csv') as transformed:
             transformed.readline()
@@ -192,7 +192,7 @@ class RegTestFingerprint(unittest.TestCase):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
-    def test_position_fingerprint_phonetic(self):
+    def reg_test_position_fingerprint_phonetic(self):
         """Regression test position_fingerprint."""
         with open(TESTDIR+'/corpora/position_fingerprint.csv') as transformed:
             transformed.readline()
@@ -202,7 +202,7 @@ class RegTestFingerprint(unittest.TestCase):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
-    def test_synoname_toolcode_phonetic(self):
+    def reg_test_synoname_toolcode_phonetic(self):
         """Regression test synoname_toolcode."""
         with open(TESTDIR+'/corpora/synoname_toolcode.csv') as transformed:
             transformed.readline()
@@ -212,7 +212,7 @@ class RegTestFingerprint(unittest.TestCase):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
-    def test_synoname_toolcode_2name_phonetic(self):
+    def reg_test_synoname_toolcode_2name_phonetic(self):
         """Regression test synoname_toolcode_2name."""
         with open(TESTDIR+
                   '/corpora/synoname_toolcode_2name.csv') as transformed:
