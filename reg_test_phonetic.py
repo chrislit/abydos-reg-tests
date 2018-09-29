@@ -57,7 +57,7 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'koelner_phonetik': koelner_phonetik,
               'koelner_phonetik_num_to_alpha':
                   lambda name:
-                  koelner_phonetik_num_to_alpha(int(koelner_phonetik(name))),
+                  koelner_phonetik_num_to_alpha(koelner_phonetik(name)),
               'koelner_phonetik_alpha': koelner_phonetik_alpha,
               'nysiis': nysiis,
               'nysiis_modified': lambda name: nysiis(name, modified=True),
