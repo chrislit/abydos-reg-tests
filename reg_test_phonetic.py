@@ -34,7 +34,7 @@ from abydos.phonetic import alpha_sis, bmpm, caverphone, davidson, \
     phonetic_spanish, phonex, phonix, pshp_soundex_first, pshp_soundex_last, \
     refined_soundex, reth_schek_phonetik, roger_root, russell_index, \
     russell_index_alpha, russell_index_num_to_alpha, sfinxbis, sound_d, \
-    soundex, spanish_metaphone, spfc, statistics_canada
+    soundex, soundex_br, spanish_metaphone, spfc, statistics_canada
 
 algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'russell_index_num_to_alpha':
@@ -136,6 +136,7 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
                   lambda name: spanish_metaphone(name, maxlength=4),
               'metasoundex': metasoundex,
               'metasoundex_es': lambda name: metasoundex(name, language='es'),
+              'soundex_br': soundex_br,
               'bmpm': bmpm,
               'bmpm_german': lambda name: bmpm(name, language_arg='german'),
               'bmpm_french': lambda name: bmpm(name, language_arg='french'),
@@ -940,6 +941,16 @@ class RegTestPhonetic(unittest.TestCase):
         with open(TESTDIR + '/corpora/metasoundex_es.csv') as transformed:
             transformed.readline()
             algo = algorithms['metasoundex_es']
+            for i, trans in enumerate(transformed):
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
+
+    def reg_test_soundex_br_phonetic(self):
+        """Regression test soundex_br."""
+        with open(TESTDIR + '/corpora/soundex_br.csv') as transformed:
+            transformed.readline()
+            algo = algorithms['soundex_br']
             for i, trans in enumerate(transformed):
                 if one_in(1000):
                     self.assertEqual(trans[:-1],

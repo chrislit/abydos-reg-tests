@@ -54,7 +54,7 @@ from abydos.phonetic import alpha_sis, bmpm, caverphone, davidson, \
     phonetic_spanish, phonex, phonix, pshp_soundex_first, pshp_soundex_last, \
     refined_soundex, reth_schek_phonetik, roger_root, russell_index, \
     russell_index_alpha, russell_index_num_to_alpha, sfinxbis, sound_d, \
-    soundex, spanish_metaphone, spfc, statistics_canada
+    soundex, soundex_br, spanish_metaphone, spfc, statistics_canada
 
 algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'russell_index_num_to_alpha':
@@ -156,6 +156,7 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
                   lambda name: spanish_metaphone(name, maxlength=4),
               'metasoundex': metasoundex,
               'metasoundex_es': lambda name: metasoundex(name, language='es'),
+              'soundex_br': soundex_br,
               'bmpm': bmpm,
               'bmpm_german': lambda name: bmpm(name, language_arg='german'),
               'bmpm_french': lambda name: bmpm(name, language_arg='french'),
@@ -201,8 +202,10 @@ with open(os.path.join(corpora_dir, 'timings.csv'), 'w') as timings:
         sys.stdout.write(algo)
         sys.stdout.flush()
         with open(os.path.join(corpora_dir, algo+'.csv'), 'w') as output:
+            output.write(algo+'\n')
             with open(os.path.join(corpora_dir,
                                    'regtest_names.csv')) as names_file:
+                next(names_file)
                 for name in names_file:
                     name = name.strip()
                     output.write(algorithms[algo](name)+'\n')
