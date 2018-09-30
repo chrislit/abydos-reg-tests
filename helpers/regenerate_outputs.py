@@ -195,6 +195,11 @@ corpora_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)),
                            '..',
                            'corpora')
 
+with open(os.path.join(corpora_dir, 'regtest_names.csv')) as names_file:
+    next(names_file)
+    names = names_file.readlines()
+    names = [name.strip() for name in names]
+
 with open(os.path.join(corpora_dir, 'timings.csv'), 'w') as timings:
     timings.write('algorithm_name,time\n')
     for algo in algorithms:
@@ -203,12 +208,8 @@ with open(os.path.join(corpora_dir, 'timings.csv'), 'w') as timings:
         sys.stdout.flush()
         with open(os.path.join(corpora_dir, algo+'.csv'), 'w') as output:
             output.write(algo+'\n')
-            with open(os.path.join(corpora_dir,
-                                   'regtest_names.csv')) as names_file:
-                next(names_file)
-                for name in names_file:
-                    name = name.strip()
-                    output.write(algorithms[algo](name)+'\n')
+            for name in names:
+                output.write(algorithms[algo](name)+'\n')
             dur = '{:0.2f}'.format(time()-start)
             timings.write(algo+','+dur+'\n')
             sys.stdout.write(' '*(38-len(algo)-len(dur))+dur+'\n')
