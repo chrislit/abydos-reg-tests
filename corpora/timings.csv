@@ -73,6 +73,7 @@ spanish_metaphone_modified,0.95
 spanish_metaphone_ml4,0.91
 metasoundex,3.19
 metasoundex_es,2.37
+soundex_br,1.28
 bmpm,518.23
 bmpm_german,137.79
 bmpm_french,165.67
