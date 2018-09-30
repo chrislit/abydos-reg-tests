@@ -164,7 +164,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_occurrence_fingerprint_phonetic(self):
         """Regression test occurrence_fingerprint."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/occurrence_fingerprint.csv') as transformed:
             transformed.readline()
             algo = algorithms['occurrence_fingerprint']
@@ -175,7 +175,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_occurrence_halved_fingerprint_phonetic(self):
         """Regression test occurrence_halved_fingerprint."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/occurrence_halved_fingerprint.csv') as transformed:
             transformed.readline()
             algo = algorithms['occurrence_halved_fingerprint']
@@ -217,7 +217,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_synoname_toolcode_2name_phonetic(self):
         """Regression test synoname_toolcode_2name."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/synoname_toolcode_2name.csv') as transformed:
             transformed.readline()
             algo = algorithms['synoname_toolcode_2name']

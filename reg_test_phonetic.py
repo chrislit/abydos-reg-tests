@@ -197,7 +197,7 @@ class RegTestPhonetic(unittest.TestCase):
 
     def reg_test_russell_index_num_to_alpha_phonetic(self):
         """Regression test russell_index_num_to_alpha."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/russell_index_num_to_alpha.csv') as transformed:
             transformed.readline()
             algo = algorithms['russell_index_num_to_alpha']
@@ -278,7 +278,7 @@ class RegTestPhonetic(unittest.TestCase):
 
     def reg_test_refined_soundex_vowels_phonetic(self):
         """Regression test refined_soundex_vowels."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/refined_soundex_vowels.csv') as transformed:
             transformed.readline()
             algo = algorithms['refined_soundex_vowels']
@@ -289,7 +289,7 @@ class RegTestPhonetic(unittest.TestCase):
 
     def reg_test_refined_soundex_0pad_ml6_phonetic(self):
         """Regression test refined_soundex_0pad_ml6."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/refined_soundex_0pad_ml6.csv') as transformed:
             transformed.readline()
             algo = algorithms['refined_soundex_0pad_ml6']
@@ -320,7 +320,7 @@ class RegTestPhonetic(unittest.TestCase):
 
     def reg_test_koelner_phonetik_num_to_alpha_phonetic(self):
         """Regression test koelner_phonetik_num_to_alpha."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/koelner_phonetik_num_to_alpha.csv') as transformed:
             transformed.readline()
             algo = algorithms['koelner_phonetik_num_to_alpha']
@@ -331,7 +331,7 @@ class RegTestPhonetic(unittest.TestCase):
 
     def reg_test_koelner_phonetik_alpha_phonetic(self):
         """Regression test koelner_phonetik_alpha."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/koelner_phonetik_alpha.csv') as transformed:
             transformed.readline()
             algo = algorithms['koelner_phonetik_alpha']
@@ -442,7 +442,7 @@ class RegTestPhonetic(unittest.TestCase):
 
     def reg_test_fuzzy_soundex_0pad_ml8_phonetic(self):
         """Regression test fuzzy_soundex_0pad_ml8."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/fuzzy_soundex_0pad_ml8.csv') as transformed:
             transformed.readline()
             algo = algorithms['fuzzy_soundex_0pad_ml8']
@@ -678,7 +678,7 @@ class RegTestPhonetic(unittest.TestCase):
 
     def reg_test_haase_phonetik_primary_phonetic(self):
         """Regression test haase_phonetik_primary."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/haase_phonetik_primary.csv') as transformed:
             transformed.readline()
             algo = algorithms['haase_phonetik_primary']
@@ -759,7 +759,7 @@ class RegTestPhonetic(unittest.TestCase):
 
     def reg_test_pshp_soundex_last_german_phonetic(self):
         """Regression test pshp_soundex_last_german."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/pshp_soundex_last_german.csv') as transformed:
             transformed.readline()
             algo = algorithms['pshp_soundex_last_german']
@@ -791,7 +791,7 @@ class RegTestPhonetic(unittest.TestCase):
 
     def reg_test_pshp_soundex_first_german_phonetic(self):
         """Regression test pshp_soundex_first_german."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/pshp_soundex_first_german.csv') as transformed:
             transformed.readline()
             algo = algorithms['pshp_soundex_first_german']
@@ -802,7 +802,7 @@ class RegTestPhonetic(unittest.TestCase):
 
     def reg_test_pshp_soundex_first_ml8_phonetic(self):
         """Regression test pshp_soundex_first_ml8."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/pshp_soundex_first_ml8.csv') as transformed:
             transformed.readline()
             algo = algorithms['pshp_soundex_first_ml8']
@@ -905,7 +905,7 @@ class RegTestPhonetic(unittest.TestCase):
 
     def reg_test_spanish_metaphone_modified_phonetic(self):
         """Regression test spanish_metaphone_modified."""
-        with open(TESTDIR+
+        with open(TESTDIR +
                   '/corpora/spanish_metaphone_modified.csv') as transformed:
             transformed.readline()
             algo = algorithms['spanish_metaphone_modified']
