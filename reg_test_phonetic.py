@@ -30,7 +30,7 @@ from abydos.phonetic import alpha_sis, bmpm, caverphone, davidson, \
     dm_soundex, dolby, double_metaphone, eudex, fonem, fuzzy_soundex, \
     haase_phonetik, henry_early, koelner_phonetik, koelner_phonetik_alpha, \
     koelner_phonetik_num_to_alpha, lein, metaphone, metasoundex, mra, \
-    norphone, nysiis, onca, parmar_kumbharana, phonem, phonet, \
+    norphone, nrl, nysiis, onca, parmar_kumbharana, phonem, phonet, \
     phonetic_spanish, phonex, phonix, pshp_soundex_first, pshp_soundex_last, \
     refined_soundex, reth_schek_phonetik, roger_root, russell_index, \
     russell_index_alpha, russell_index_num_to_alpha, sfinxbis, sound_d, \
@@ -137,6 +137,7 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'metasoundex': metasoundex,
               'metasoundex_es': lambda name: metasoundex(name, language='es'),
               'soundex_br': soundex_br,
+              'nrl': nrl,
               'bmpm': bmpm,
               'bmpm_german': lambda name: bmpm(name, language_arg='german'),
               'bmpm_french': lambda name: bmpm(name, language_arg='french'),
@@ -951,6 +952,16 @@ class RegTestPhonetic(unittest.TestCase):
         with open(TESTDIR + '/corpora/soundex_br.csv') as transformed:
             transformed.readline()
             algo = algorithms['soundex_br']
+            for i, trans in enumerate(transformed):
+                if one_in(1000):
+                    self.assertEqual(trans[:-1],
+                                     algo(originals[i]))
+
+    def reg_test_nrl_phonetic(self):
+        """Regression test nrl."""
+        with open(TESTDIR + '/corpora/nrl.csv') as transformed:
+            transformed.readline()
+            algo = algorithms['nrl']
             for i, trans in enumerate(transformed):
                 if one_in(1000):
                     self.assertEqual(trans[:-1],
