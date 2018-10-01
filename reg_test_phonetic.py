@@ -22,8 +22,6 @@ This module contains regression tests for abydos.phonetic
 """
 
 import codecs
-import os
-import random
 import unittest
 
 from abydos.phonetic import alpha_sis, bmpm, caverphone, davidson, \
@@ -35,6 +33,8 @@ from abydos.phonetic import alpha_sis, bmpm, caverphone, davidson, \
     refined_soundex, reth_schek_phonetik, roger_root, russell_index, \
     russell_index_alpha, russell_index_num_to_alpha, sfinxbis, sound_d, \
     soundex, soundex_br, spanish_metaphone, spfc, statistics_canada
+
+from . import TESTDIR, one_in, originals
 
 algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'russell_index_num_to_alpha':
@@ -148,40 +148,6 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'bmpm_sep_approx': lambda name: bmpm(name, name_mode='sep'),
               'bmpm_sep_exact':
                   lambda name: bmpm(name, name_mode='sep', match_mode='exact')}
-
-TESTDIR = os.path.dirname(__file__)
-
-EXTREME_TEST = False  # Set to True to test EVERY single case (NB: takes hours)
-ALLOW_RANDOM = True  # Set to False to skip all random tests
-
-if not EXTREME_TEST and os.path.isfile(TESTDIR + '/EXTREME_TEST'):
-    # EXTREME_TEST file detected -- switching to EXTREME_TEST mode...
-    EXTREME_TEST = True
-if not EXTREME_TEST and os.path.isfile(TESTDIR + '/../EXTREME_TEST'):
-    # EXTREME_TEST file detected -- switching to EXTREME_TEST mode...
-    EXTREME_TEST = True
-
-originals = open(TESTDIR + '/corpora/regtest_names.csv').readlines()
-originals = [_.strip() for _ in originals[1:]]
-
-
-def one_in(inverse_probability):
-    """Return whether to run a test.
-
-    Return True if:
-        EXTREME_TEST is True
-        OR
-        (ALLOW_RANDOM is False
-        AND
-        random.random() * inverse_probability < 1
-    Otherwise return False
-    """
-    if EXTREME_TEST:
-        return True
-    elif ALLOW_RANDOM and random.random() * inverse_probability < 1:
-        return True
-    else:
-        return False
 
 
 class RegTestPhonetic(unittest.TestCase):

@@ -31,3 +31,39 @@
 
 This module contains regression tests for Abydos
 """
+import os
+from random import random
+
+TESTDIR = os.path.dirname(__file__)
+
+EXTREME_TEST = False  # Set to True to test EVERY single case (NB: takes hours)
+ALLOW_RANDOM = True  # Set to False to skip all random tests
+
+if not EXTREME_TEST and os.path.isfile(TESTDIR + '/EXTREME_TEST'):
+    # EXTREME_TEST file detected -- switching to EXTREME_TEST mode...
+    EXTREME_TEST = True
+if not EXTREME_TEST and os.path.isfile(TESTDIR + '/../EXTREME_TEST'):
+    # EXTREME_TEST file detected -- switching to EXTREME_TEST mode...
+    EXTREME_TEST = True
+
+originals = open(TESTDIR + '/corpora/regtest_names.csv').readlines()
+originals = [_.strip() for _ in originals[1:]]
+
+
+def one_in(inverse_probability):
+    """Return whether to run a test.
+
+    Return True if:
+        EXTREME_TEST is True
+        OR
+        (ALLOW_RANDOM is False
+        AND
+        random.random() * inverse_probability < 1
+    Otherwise return False
+    """
+    if EXTREME_TEST:
+        return True
+    elif ALLOW_RANDOM and random() * inverse_probability < 1:  # noqa: S311
+        return True
+    else:
+        return False

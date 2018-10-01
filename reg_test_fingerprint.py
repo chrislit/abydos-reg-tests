@@ -21,14 +21,14 @@
 This module contains regression tests for abydos.fingerprint
 """
 
-import os
-import random
 import unittest
 
 from abydos.fingerprint import count_fingerprint, occurrence_fingerprint, \
     occurrence_halved_fingerprint, omission_key, phonetic_fingerprint, \
     position_fingerprint, qgram_fingerprint, skeleton_key, str_fingerprint, \
     synoname_toolcode
+
+from . import TESTDIR, one_in, originals
 
 algorithms = {'str_fingerprint': str_fingerprint,
               'qgram_fingerprint': qgram_fingerprint,
@@ -51,40 +51,6 @@ algorithms = {'str_fingerprint': str_fingerprint,
                   lambda name: ', '.join(synoname_toolcode(name)),
               'synoname_toolcode_2name':
                   lambda name: ', '.join(synoname_toolcode(name, name))}
-
-TESTDIR = os.path.dirname(__file__)
-
-EXTREME_TEST = False  # Set to True to test EVERY single case
-ALLOW_RANDOM = True  # Set to False to skip all random tests
-
-if not EXTREME_TEST and os.path.isfile(TESTDIR + '/EXTREME_TEST'):
-    # EXTREME_TEST file detected -- switching to EXTREME_TEST mode...
-    EXTREME_TEST = True
-if not EXTREME_TEST and os.path.isfile(TESTDIR + '/../EXTREME_TEST'):
-    # EXTREME_TEST file detected -- switching to EXTREME_TEST mode...
-    EXTREME_TEST = True
-
-originals = open(TESTDIR + '/corpora/regtest_names.csv').readlines()
-originals = [_.strip() for _ in originals[1:]]
-
-
-def one_in(inverse_probability):
-    """Return whether to run a test.
-
-    Return True if:
-        EXTREME_TEST is True
-        OR
-        (ALLOW_RANDOM is False
-        AND
-        random.random() * inverse_probability < 1
-    Otherwise return False
-    """
-    if EXTREME_TEST:
-        return True
-    elif ALLOW_RANDOM and random.random() * inverse_probability < 1:
-        return True
-    else:
-        return False
 
 
 class RegTestFingerprint(unittest.TestCase):
