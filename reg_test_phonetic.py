@@ -62,7 +62,7 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'nysiis': nysiis,
               'nysiis_modified': lambda name: nysiis(name, modified=True),
               'nysiis_ml_inf':
-                  lambda name: nysiis(name, max_length=float('inf')),
+                  lambda name: nysiis(name, max_length=-1),
               'mra': mra,
               'metaphone': metaphone,
               'double_metaphone':
@@ -88,7 +88,7 @@ algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'phonet_2': lambda name: phonet(name, mode=2),
               'phonet_1_none': lambda name: phonet(name, lang='none'),
               'phonet_2_none': lambda name: phonet(name, mode=2, lang='none'),
-              'spfc': lambda name: spfc((name, name)),
+              'spfc': lambda name: spfc(name+' '+name),
               'statistics_canada': statistics_canada,
               'statistics_canada_ml8':
                   lambda name: statistics_canada(name, max_length=8),
