@@ -28,7 +28,7 @@ from abydos.fingerprint import count_fingerprint, occurrence_fingerprint, \
     position_fingerprint, qgram_fingerprint, skeleton_key, str_fingerprint, \
     synoname_toolcode
 
-from . import TESTDIR, one_in, originals
+from . import TESTDIR, _one_in, originals
 
 algorithms = {'str_fingerprint': str_fingerprint,
               'qgram_fingerprint': qgram_fingerprint,
@@ -62,7 +62,7 @@ class RegTestFingerprint(unittest.TestCase):
             transformed.readline()
             algo = algorithms['str_fingerprint']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -72,7 +72,7 @@ class RegTestFingerprint(unittest.TestCase):
             transformed.readline()
             algo = algorithms['qgram_fingerprint']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -82,7 +82,7 @@ class RegTestFingerprint(unittest.TestCase):
             transformed.readline()
             algo = algorithms['qgram_fingerprint_3']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -93,7 +93,7 @@ class RegTestFingerprint(unittest.TestCase):
             transformed.readline()
             algo = algorithms['qgram_fingerprint_ssj']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -104,7 +104,7 @@ class RegTestFingerprint(unittest.TestCase):
             transformed.readline()
             algo = algorithms['phonetic_fingerprint']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -114,7 +114,7 @@ class RegTestFingerprint(unittest.TestCase):
             transformed.readline()
             algo = algorithms['skeleton_key']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -124,7 +124,7 @@ class RegTestFingerprint(unittest.TestCase):
             transformed.readline()
             algo = algorithms['omission_key']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -135,7 +135,7 @@ class RegTestFingerprint(unittest.TestCase):
             transformed.readline()
             algo = algorithms['occurrence_fingerprint']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -146,7 +146,7 @@ class RegTestFingerprint(unittest.TestCase):
             transformed.readline()
             algo = algorithms['occurrence_halved_fingerprint']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -156,7 +156,7 @@ class RegTestFingerprint(unittest.TestCase):
             transformed.readline()
             algo = algorithms['count_fingerprint']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -167,7 +167,7 @@ class RegTestFingerprint(unittest.TestCase):
             transformed.readline()
             algo = algorithms['position_fingerprint']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -177,7 +177,7 @@ class RegTestFingerprint(unittest.TestCase):
             transformed.readline()
             algo = algorithms['synoname_toolcode']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -188,7 +188,7 @@ class RegTestFingerprint(unittest.TestCase):
             transformed.readline()
             algo = algorithms['synoname_toolcode_2name']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 

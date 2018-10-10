@@ -34,7 +34,7 @@ from abydos.phonetic import alpha_sis, bmpm, caverphone, davidson, \
     russell_index_alpha, russell_index_num_to_alpha, sfinxbis, sound_d, \
     soundex, soundex_br, spanish_metaphone, spfc, statistics_canada
 
-from . import TESTDIR, one_in, originals
+from . import TESTDIR, _one_in, originals
 
 algorithms = {'russell_index': lambda name: str(russell_index(name)),
               'russell_index_num_to_alpha':
@@ -160,7 +160,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['russell_index']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -171,7 +171,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['russell_index_num_to_alpha']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -181,7 +181,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['russell_index_alpha']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -191,7 +191,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['soundex']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -201,7 +201,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['reverse_soundex']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -211,7 +211,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['soundex_0pad_ml6']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -221,7 +221,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['soundex_special']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -231,7 +231,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['soundex_census']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -241,7 +241,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['refined_soundex']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -252,7 +252,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['refined_soundex_vowels']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -263,7 +263,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['refined_soundex_0pad_ml6']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -273,7 +273,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['dm_soundex']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -283,7 +283,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['koelner_phonetik']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -294,7 +294,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['koelner_phonetik_num_to_alpha']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -305,7 +305,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['koelner_phonetik_alpha']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -315,7 +315,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['nysiis']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -325,7 +325,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['nysiis_modified']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -335,7 +335,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['nysiis_ml_inf']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -345,7 +345,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['mra']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -355,7 +355,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['metaphone']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -365,7 +365,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['double_metaphone']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -375,7 +375,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['caverphone_1']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -385,7 +385,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['caverphone_2']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -395,7 +395,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['alpha_sis']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -405,7 +405,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['fuzzy_soundex']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -416,7 +416,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['fuzzy_soundex_0pad_ml8']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -426,7 +426,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['phonex']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -436,7 +436,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['phonex_0pad_ml6']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -447,7 +447,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['phonem']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -457,7 +457,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['phonix']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -467,7 +467,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['phonix_0pad_ml6']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -477,7 +477,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['sfinxbis']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -487,7 +487,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['sfinxbis_ml6']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -498,7 +498,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['phonet_1']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -509,7 +509,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['phonet_2']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -519,7 +519,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['phonet_1_none']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -529,7 +529,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['phonet_2_none']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -539,7 +539,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['spfc']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -549,7 +549,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['statistics_canada']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -560,7 +560,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['statistics_canada_ml8']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -570,7 +570,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['lein']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -580,7 +580,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['lein_nopad_ml8']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -590,7 +590,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['roger_root']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -601,7 +601,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['roger_root_nopad_ml8']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -611,7 +611,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['onca']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -621,7 +621,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['onca_nopad_ml8']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -631,7 +631,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['eudex']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -641,7 +641,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['haase_phonetik']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -652,7 +652,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['haase_phonetik_primary']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -662,7 +662,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['reth_schek_phonetik']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -672,7 +672,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['fonem']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -682,7 +682,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['parmar_kumbharana']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -692,7 +692,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['davidson']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -702,7 +702,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['sound_d']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -712,7 +712,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['sound_d_ml8']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -722,7 +722,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['pshp_soundex_last']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -733,7 +733,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['pshp_soundex_last_german']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -744,7 +744,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['pshp_soundex_last_ml8']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -754,7 +754,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['pshp_soundex_first']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -765,7 +765,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['pshp_soundex_first_german']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -776,7 +776,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['pshp_soundex_first_ml8']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -786,7 +786,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['henry_early']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -796,7 +796,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['henry_early_ml8']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -807,7 +807,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['norphone']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -817,7 +817,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['dolby']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -827,7 +827,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['dolby_ml4']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -837,7 +837,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['dolby_vowels']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -847,7 +847,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['phonetic_spanish']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -858,7 +858,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['phonetic_spanish_ml4']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -868,7 +868,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['spanish_metaphone']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -879,7 +879,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['spanish_metaphone_modified']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -890,7 +890,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['spanish_metaphone_ml4']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -900,7 +900,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['metasoundex']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -910,7 +910,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['metasoundex_es']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -920,7 +920,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['soundex_br']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -930,7 +930,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['nrl']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -940,7 +940,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['bmpm']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -950,7 +950,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['bmpm_german']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -960,7 +960,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['bmpm_french']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -970,7 +970,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['bmpm_gen_exact']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -980,7 +980,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['bmpm_ash_approx']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -990,7 +990,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['bmpm_ash_exact']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -1000,7 +1000,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['bmpm_sep_approx']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 
@@ -1010,7 +1010,7 @@ class RegTestPhonetic(unittest.TestCase):
             transformed.readline()
             algo = algorithms['bmpm_sep_exact']
             for i, trans in enumerate(transformed):
-                if one_in(1000):
+                if _one_in(1000):
                     self.assertEqual(trans[:-1],
                                      algo(originals[i]))
 

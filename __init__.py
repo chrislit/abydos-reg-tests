@@ -50,16 +50,20 @@ originals = open(TESTDIR + '/corpora/regtest_names.csv').readlines()
 originals = [_.strip() for _ in originals[1:]]
 
 
-def one_in(inverse_probability):
+def _one_in(inverse_probability):
     """Return whether to run a test.
 
     Return True if:
         EXTREME_TEST is True
         OR
-        (ALLOW_RANDOM is False
+        (ALLOW_RANDOM is True
         AND
-        random.random() * inverse_probability < 1
+        random.random() * inverse_probability < 1)
     Otherwise return False
+
+    :param int inverse_probability: the inverse of the probability
+    :returns: whether to run a test
+    :rtype: bool
     """
     if EXTREME_TEST:
         return True
