@@ -23,10 +23,12 @@ This module contains regression tests for abydos.fingerprint
 
 import unittest
 
-from abydos.fingerprint import count_fingerprint, occurrence_fingerprint, \
-    occurrence_halved_fingerprint, omission_key, phonetic_fingerprint, \
-    position_fingerprint, qgram_fingerprint, skeleton_key, str_fingerprint, \
-    synoname_toolcode
+from abydos.fingerprint.basic import phonetic_fingerprint, qgram_fingerprint, \
+    str_fingerprint
+from abydos.fingerprint.lightweight import count_fingerprint, \
+    occurrence_fingerprint, occurrence_halved_fingerprint, position_fingerprint
+from abydos.fingerprint.speedcop import omission_key, skeleton_key
+from abydos.fingerprint.synoname import synoname_toolcode
 
 from . import TESTDIR, _one_in, originals
 
