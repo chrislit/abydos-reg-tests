@@ -30,7 +30,7 @@ from abydos.fingerprint.lightweight import count_fingerprint, \
 from abydos.fingerprint.speedcop import omission_key, skeleton_key
 from abydos.fingerprint.synoname import synoname_toolcode
 
-from . import ORIGINALS, TESTDIR, _one_in
+from . import ORIGINALS, _corpus_file, _one_in
 
 algorithms = {'str_fingerprint': str_fingerprint,
               'qgram_fingerprint': qgram_fingerprint,
@@ -60,7 +60,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_str_fingerprint_phonetic(self):
         """Regression test str_fingerprint."""
-        with open(TESTDIR + '/corpora/str_fingerprint.csv') as transformed:
+        with open(_corpus_file('str_fingerprint.csv')) as transformed:
             transformed.readline()
             algo = algorithms['str_fingerprint']
             for i, trans in enumerate(transformed):
@@ -70,7 +70,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_qgram_fingerprint_phonetic(self):
         """Regression test qgram_fingerprint."""
-        with open(TESTDIR + '/corpora/qgram_fingerprint.csv') as transformed:
+        with open(_corpus_file('qgram_fingerprint.csv')) as transformed:
             transformed.readline()
             algo = algorithms['qgram_fingerprint']
             for i, trans in enumerate(transformed):
@@ -80,7 +80,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_qgram_fingerprint_3_phonetic(self):
         """Regression test qgram_fingerprint_3."""
-        with open(TESTDIR + '/corpora/qgram_fingerprint_3.csv') as transformed:
+        with open(_corpus_file('qgram_fingerprint_3.csv')) as transformed:
             transformed.readline()
             algo = algorithms['qgram_fingerprint_3']
             for i, trans in enumerate(transformed):
@@ -90,8 +90,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_qgram_fingerprint_ssj_phonetic(self):
         """Regression test qgram_fingerprint_ssj."""
-        with open(TESTDIR +
-                  '/corpora/qgram_fingerprint_ssj.csv') as transformed:
+        with open(_corpus_file('qgram_fingerprint_ssj.csv')) as transformed:
             transformed.readline()
             algo = algorithms['qgram_fingerprint_ssj']
             for i, trans in enumerate(transformed):
@@ -101,8 +100,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_phonetic_fingerprint_phonetic(self):
         """Regression test phonetic_fingerprint."""
-        with open(TESTDIR +
-                  '/corpora/phonetic_fingerprint.csv') as transformed:
+        with open(_corpus_file('phonetic_fingerprint.csv')) as transformed:
             transformed.readline()
             algo = algorithms['phonetic_fingerprint']
             for i, trans in enumerate(transformed):
@@ -112,7 +110,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_skeleton_key_phonetic(self):
         """Regression test skeleton_key."""
-        with open(TESTDIR + '/corpora/skeleton_key.csv') as transformed:
+        with open(_corpus_file('skeleton_key.csv')) as transformed:
             transformed.readline()
             algo = algorithms['skeleton_key']
             for i, trans in enumerate(transformed):
@@ -122,7 +120,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_omission_key_phonetic(self):
         """Regression test omission_key."""
-        with open(TESTDIR + '/corpora/omission_key.csv') as transformed:
+        with open(_corpus_file('omission_key.csv')) as transformed:
             transformed.readline()
             algo = algorithms['omission_key']
             for i, trans in enumerate(transformed):
@@ -132,8 +130,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_occurrence_fingerprint_phonetic(self):
         """Regression test occurrence_fingerprint."""
-        with open(TESTDIR +
-                  '/corpora/occurrence_fingerprint.csv') as transformed:
+        with open(_corpus_file('occurrence_fingerprint.csv')) as transformed:
             transformed.readline()
             algo = algorithms['occurrence_fingerprint']
             for i, trans in enumerate(transformed):
@@ -143,8 +140,8 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_occurrence_halved_fingerprint_phonetic(self):
         """Regression test occurrence_halved_fingerprint."""
-        with open(TESTDIR +
-                  '/corpora/occurrence_halved_fingerprint.csv') as transformed:
+        with open(_corpus_file('occurrence_halved_fingerprint.csv')) \
+                as transformed:
             transformed.readline()
             algo = algorithms['occurrence_halved_fingerprint']
             for i, trans in enumerate(transformed):
@@ -154,7 +151,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_count_fingerprint_phonetic(self):
         """Regression test count_fingerprint."""
-        with open(TESTDIR + '/corpora/count_fingerprint.csv') as transformed:
+        with open(_corpus_file('count_fingerprint.csv')) as transformed:
             transformed.readline()
             algo = algorithms['count_fingerprint']
             for i, trans in enumerate(transformed):
@@ -164,8 +161,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_position_fingerprint_phonetic(self):
         """Regression test position_fingerprint."""
-        with open(TESTDIR +
-                  '/corpora/position_fingerprint.csv') as transformed:
+        with open(_corpus_file('position_fingerprint.csv')) as transformed:
             transformed.readline()
             algo = algorithms['position_fingerprint']
             for i, trans in enumerate(transformed):
@@ -175,7 +171,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_synoname_toolcode_phonetic(self):
         """Regression test synoname_toolcode."""
-        with open(TESTDIR + '/corpora/synoname_toolcode.csv') as transformed:
+        with open(_corpus_file('synoname_toolcode.csv')) as transformed:
             transformed.readline()
             algo = algorithms['synoname_toolcode']
             for i, trans in enumerate(transformed):
@@ -185,8 +181,7 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_synoname_toolcode_2name_phonetic(self):
         """Regression test synoname_toolcode_2name."""
-        with open(TESTDIR +
-                  '/corpora/synoname_toolcode_2name.csv') as transformed:
+        with open(_corpus_file('synoname_toolcode_2name.csv')) as transformed:
             transformed.readline()
             algo = algorithms['synoname_toolcode_2name']
             for i, trans in enumerate(transformed):
