@@ -46,8 +46,8 @@ if not EXTREME_TEST and os.path.isfile(TESTDIR + '/../EXTREME_TEST'):
     # EXTREME_TEST file detected -- switching to EXTREME_TEST mode...
     EXTREME_TEST = True
 
-originals = open(TESTDIR + '/corpora/regtest_names.csv').readlines()
-originals = [_.strip() for _ in originals[1:]]
+ORIGINALS = open(TESTDIR + '/corpora/regtest_names.csv').readlines()
+ORIGINALS = [_.strip() for _ in ORIGINALS[1:]]
 
 
 def _one_in(inverse_probability):
