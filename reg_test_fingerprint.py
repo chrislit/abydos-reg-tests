@@ -35,24 +35,24 @@ from . import ORIGINALS, _corpus_file, _one_in
 algorithms = {'str_fingerprint': str_fingerprint,
               'qgram_fingerprint': qgram_fingerprint,
               'qgram_fingerprint_3':
-                  lambda name: qgram_fingerprint(name, qval=3),
+                  lambda _: qgram_fingerprint(_, qval=3),
               'qgram_fingerprint_ssj':
-                  lambda name:
-                  qgram_fingerprint(name, start_stop='$#', joiner=' '),
+                  lambda _:
+                  qgram_fingerprint(_, start_stop='$#', joiner=' '),
               'phonetic_fingerprint': phonetic_fingerprint,
               'skeleton_key': skeleton_key,
               'omission_key': omission_key,
               'occurrence_fingerprint':
-                  lambda name: str(occurrence_fingerprint(name)),
+                  lambda _: str(occurrence_fingerprint(_)),
               'occurrence_halved_fingerprint':
-                  lambda name: str(occurrence_halved_fingerprint(name)),
-              'count_fingerprint': lambda name: str(count_fingerprint(name)),
+                  lambda _: str(occurrence_halved_fingerprint(_)),
+              'count_fingerprint': lambda _: str(count_fingerprint(_)),
               'position_fingerprint':
-                  lambda name: str(position_fingerprint(name)),
+                  lambda _: str(position_fingerprint(_)),
               'synoname_toolcode':
-                  lambda name: ', '.join(synoname_toolcode(name)),
+                  lambda _: ', '.join(synoname_toolcode(_)),
               'synoname_toolcode_2name':
-                  lambda name: ', '.join(synoname_toolcode(name, name))}
+                  lambda _: ', '.join(synoname_toolcode(_, _))}
 
 
 class RegTestFingerprint(unittest.TestCase):
