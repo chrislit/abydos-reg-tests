@@ -28,9 +28,14 @@ from abydos.phonetic.alpha_sis import alpha_sis
 from abydos.phonetic.bmpm import bmpm
 from abydos.phonetic.caverphone import caverphone
 from abydos.phonetic.davidson import davidson
-from abydos.phonetic.de import haase_phonetik, koelner_phonetik, \
-    koelner_phonetik_alpha, koelner_phonetik_num_to_alpha, phonem, \
-    reth_schek_phonetik
+from abydos.phonetic.de import (
+    haase_phonetik,
+    koelner_phonetik,
+    koelner_phonetik_alpha,
+    koelner_phonetik_num_to_alpha,
+    phonem,
+    reth_schek_phonetik,
+)
 from abydos.phonetic.dm import dm_soundex
 from abydos.phonetic.dolby import dolby
 from abydos.phonetic.es import phonetic_spanish, spanish_metaphone
@@ -45,11 +50,22 @@ from abydos.phonetic.parmar_kumbharana import parmar_kumbharana
 from abydos.phonetic.phonet import phonet
 from abydos.phonetic.pt import soundex_br
 from abydos.phonetic.roger_root import roger_root
-from abydos.phonetic.russell import russell_index, russell_index_alpha, \
-    russell_index_num_to_alpha
+from abydos.phonetic.russell import (
+    russell_index,
+    russell_index_alpha,
+    russell_index_num_to_alpha,
+)
 from abydos.phonetic.sound_d import sound_d
-from abydos.phonetic.soundex import fuzzy_soundex, lein, phonex, phonix, \
-    pshp_soundex_first, pshp_soundex_last, refined_soundex, soundex
+from abydos.phonetic.soundex import (
+    fuzzy_soundex,
+    lein,
+    phonex,
+    phonix,
+    pshp_soundex_first,
+    pshp_soundex_last,
+    refined_soundex,
+    soundex,
+)
 from abydos.phonetic.spfc import spfc
 from abydos.phonetic.statistics_canada import statistics_canada
 from abydos.phonetic.sv import norphone, sfinxbis
@@ -57,119 +73,106 @@ from abydos.phonetic.sv import norphone, sfinxbis
 from . import ORIGINALS, _corpus_file, _one_in
 
 
-algorithms = {'russell_index': lambda _: str(russell_index(_)),
-              'russell_index_num_to_alpha':
-                  lambda _: russell_index_num_to_alpha(russell_index(_)),
-              'russell_index_alpha': russell_index_alpha,
-              'soundex': soundex,
-              'reverse_soundex': lambda _: soundex(_, reverse=True),
-              'soundex_0pad_ml6':
-                  lambda _: soundex(_, zero_pad=True, max_length=6),
-              'soundex_special': lambda _: soundex(_, var='special'),
-              'soundex_census':
-                  lambda _: ', '.join(soundex(_, var='Census')),
-              'refined_soundex': refined_soundex,
-              'refined_soundex_vowels':
-                  lambda _: refined_soundex(_, retain_vowels=True),
-              'refined_soundex_0pad_ml6':
-                  lambda _:
-                  refined_soundex(_, zero_pad=True, max_length=6),
-              'dm_soundex': lambda _: ', '.join(sorted(dm_soundex(_))),
-              'koelner_phonetik': koelner_phonetik,
-              'koelner_phonetik_num_to_alpha':
-                  lambda _:
-                  koelner_phonetik_num_to_alpha(koelner_phonetik(_)),
-              'koelner_phonetik_alpha': koelner_phonetik_alpha,
-              'nysiis': nysiis,
-              'nysiis_modified': lambda _: nysiis(_, modified=True),
-              'nysiis_ml_inf':
-                  lambda _: nysiis(_, max_length=-1),
-              'mra': mra,
-              'metaphone': metaphone,
-              'double_metaphone':
-                  lambda _: ', '.join(double_metaphone(_)),
-              'caverphone_1': lambda _: caverphone(_, version=1),
-              'caverphone_2': caverphone,
-              'alpha_sis': lambda _: ', '.join(alpha_sis(_)),
-              'fuzzy_soundex': fuzzy_soundex,
-              'fuzzy_soundex_0pad_ml8':
-                  lambda _:
-                  fuzzy_soundex(_, max_length=8, zero_pad=True),
-              'phonex': phonex,
-              'phonex_0pad_ml6':
-                  lambda _: phonex(_, max_length=6, zero_pad=True),
-              'phonem': phonem,
-              'phonix': phonix,
-              'phonix_0pad_ml6':
-                  lambda _: phonix(_, max_length=6, zero_pad=True),
-              'sfinxbis': lambda _: ', '.join(sfinxbis(_)),
-              'sfinxbis_ml6':
-                  lambda _: ', '.join(sfinxbis(_, max_length=6)),
-              'phonet_1': phonet,
-              'phonet_2': lambda _: phonet(_, mode=2),
-              'phonet_1_none': lambda _: phonet(_, lang='none'),
-              'phonet_2_none': lambda _: phonet(_, mode=2, lang='none'),
-              'spfc': lambda _: spfc(_+' '+_),
-              'statistics_canada': statistics_canada,
-              'statistics_canada_ml8':
-                  lambda _: statistics_canada(_, max_length=8),
-              'lein': lein,
-              'lein_nopad_ml8':
-                  lambda _: lein(_, max_length=8, zero_pad=False),
-              'roger_root': roger_root,
-              'roger_root_nopad_ml8':
-                  lambda _: roger_root(_, max_length=8, zero_pad=False),
-              'onca': onca,
-              'onca_nopad_ml8':
-                  lambda _: onca(_, max_length=8, zero_pad=False),
-              'eudex': lambda _: str(eudex(_)),
-              'haase_phonetik': lambda _: ', '.join(haase_phonetik(_)),
-              'haase_phonetik_primary':
-                  lambda _: haase_phonetik(_, primary_only=True)[0],
-              'reth_schek_phonetik': reth_schek_phonetik,
-              'fonem': fonem,
-              'parmar_kumbharana': parmar_kumbharana,
-              'davidson': davidson,
-              'sound_d': sound_d,
-              'sound_d_ml8': lambda _: sound_d(_, max_length=8),
-              'pshp_soundex_last': pshp_soundex_last,
-              'pshp_soundex_last_german':
-                  lambda _: pshp_soundex_last(_, german=True),
-              'pshp_soundex_last_ml8':
-                  lambda _: pshp_soundex_last(_, max_length=8),
-              'pshp_soundex_first': pshp_soundex_first,
-              'pshp_soundex_first_german':
-                  lambda _: pshp_soundex_first(_, german=True),
-              'pshp_soundex_first_ml8':
-                  lambda _: pshp_soundex_first(_, max_length=8),
-              'henry_early': henry_early,
-              'henry_early_ml8': lambda _: henry_early(_, max_length=8),
-              'norphone': norphone,
-              'dolby': dolby,
-              'dolby_ml4': lambda _: dolby(_, max_length=4),
-              'dolby_vowels': lambda _: dolby(_, keep_vowels=True),
-              'phonetic_spanish': phonetic_spanish,
-              'phonetic_spanish_ml4':
-                  lambda _: phonetic_spanish(_, max_length=4),
-              'spanish_metaphone': spanish_metaphone,
-              'spanish_metaphone_modified':
-                  lambda _: spanish_metaphone(_, modified=True),
-              'spanish_metaphone_ml4':
-                  lambda _: spanish_metaphone(_, max_length=4),
-              'metasoundex': metasoundex,
-              'metasoundex_es': lambda _: metasoundex(_, lang='es'),
-              'soundex_br': soundex_br,
-              'nrl': nrl,
-              'bmpm': bmpm,
-              'bmpm_german': lambda _: bmpm(_, language_arg='german'),
-              'bmpm_french': lambda _: bmpm(_, language_arg='french'),
-              'bmpm_gen_exact': lambda _: bmpm(_, match_mode='exact'),
-              'bmpm_ash_approx': lambda _: bmpm(_, name_mode='ash'),
-              'bmpm_ash_exact':
-                  lambda _: bmpm(_, name_mode='ash', match_mode='exact'),
-              'bmpm_sep_approx': lambda _: bmpm(_, name_mode='sep'),
-              'bmpm_sep_exact':
-                  lambda _: bmpm(_, name_mode='sep', match_mode='exact')}
+algorithms = {
+    'russell_index': lambda _: str(russell_index(_)),
+    'russell_index_num_to_alpha': lambda _: russell_index_num_to_alpha(
+        russell_index(_)
+    ),
+    'russell_index_alpha': russell_index_alpha,
+    'soundex': soundex,
+    'reverse_soundex': lambda _: soundex(_, reverse=True),
+    'soundex_0pad_ml6': lambda _: soundex(_, zero_pad=True, max_length=6),
+    'soundex_special': lambda _: soundex(_, var='special'),
+    'soundex_census': lambda _: ', '.join(soundex(_, var='Census')),
+    'refined_soundex': refined_soundex,
+    'refined_soundex_vowels': lambda _: refined_soundex(_, retain_vowels=True),
+    'refined_soundex_0pad_ml6': lambda _: refined_soundex(
+        _, zero_pad=True, max_length=6
+    ),
+    'dm_soundex': lambda _: ', '.join(sorted(dm_soundex(_))),
+    'koelner_phonetik': koelner_phonetik,
+    'koelner_phonetik_num_to_alpha': lambda _: koelner_phonetik_num_to_alpha(
+        koelner_phonetik(_)
+    ),
+    'koelner_phonetik_alpha': koelner_phonetik_alpha,
+    'nysiis': nysiis,
+    'nysiis_modified': lambda _: nysiis(_, modified=True),
+    'nysiis_ml_inf': lambda _: nysiis(_, max_length=-1),
+    'mra': mra,
+    'metaphone': metaphone,
+    'double_metaphone': lambda _: ', '.join(double_metaphone(_)),
+    'caverphone_1': lambda _: caverphone(_, version=1),
+    'caverphone_2': caverphone,
+    'alpha_sis': lambda _: ', '.join(alpha_sis(_)),
+    'fuzzy_soundex': fuzzy_soundex,
+    'fuzzy_soundex_0pad_ml8': lambda _: fuzzy_soundex(
+        _, max_length=8, zero_pad=True
+    ),
+    'phonex': phonex,
+    'phonex_0pad_ml6': lambda _: phonex(_, max_length=6, zero_pad=True),
+    'phonem': phonem,
+    'phonix': phonix,
+    'phonix_0pad_ml6': lambda _: phonix(_, max_length=6, zero_pad=True),
+    'sfinxbis': lambda _: ', '.join(sfinxbis(_)),
+    'sfinxbis_ml6': lambda _: ', '.join(sfinxbis(_, max_length=6)),
+    'phonet_1': phonet,
+    'phonet_2': lambda _: phonet(_, mode=2),
+    'phonet_1_none': lambda _: phonet(_, lang='none'),
+    'phonet_2_none': lambda _: phonet(_, mode=2, lang='none'),
+    'spfc': lambda _: spfc(_ + ' ' + _),
+    'statistics_canada': statistics_canada,
+    'statistics_canada_ml8': lambda _: statistics_canada(_, max_length=8),
+    'lein': lein,
+    'lein_nopad_ml8': lambda _: lein(_, max_length=8, zero_pad=False),
+    'roger_root': roger_root,
+    'roger_root_nopad_ml8': lambda _: roger_root(
+        _, max_length=8, zero_pad=False
+    ),
+    'onca': onca,
+    'onca_nopad_ml8': lambda _: onca(_, max_length=8, zero_pad=False),
+    'eudex': lambda _: str(eudex(_)),
+    'haase_phonetik': lambda _: ', '.join(haase_phonetik(_)),
+    'haase_phonetik_primary': lambda _: haase_phonetik(_, primary_only=True)[
+        0
+    ],
+    'reth_schek_phonetik': reth_schek_phonetik,
+    'fonem': fonem,
+    'parmar_kumbharana': parmar_kumbharana,
+    'davidson': davidson,
+    'sound_d': sound_d,
+    'sound_d_ml8': lambda _: sound_d(_, max_length=8),
+    'pshp_soundex_last': pshp_soundex_last,
+    'pshp_soundex_last_german': lambda _: pshp_soundex_last(_, german=True),
+    'pshp_soundex_last_ml8': lambda _: pshp_soundex_last(_, max_length=8),
+    'pshp_soundex_first': pshp_soundex_first,
+    'pshp_soundex_first_german': lambda _: pshp_soundex_first(_, german=True),
+    'pshp_soundex_first_ml8': lambda _: pshp_soundex_first(_, max_length=8),
+    'henry_early': henry_early,
+    'henry_early_ml8': lambda _: henry_early(_, max_length=8),
+    'norphone': norphone,
+    'dolby': dolby,
+    'dolby_ml4': lambda _: dolby(_, max_length=4),
+    'dolby_vowels': lambda _: dolby(_, keep_vowels=True),
+    'phonetic_spanish': phonetic_spanish,
+    'phonetic_spanish_ml4': lambda _: phonetic_spanish(_, max_length=4),
+    'spanish_metaphone': spanish_metaphone,
+    'spanish_metaphone_modified': lambda _: spanish_metaphone(
+        _, modified=True
+    ),
+    'spanish_metaphone_ml4': lambda _: spanish_metaphone(_, max_length=4),
+    'metasoundex': metasoundex,
+    'metasoundex_es': lambda _: metasoundex(_, lang='es'),
+    'soundex_br': soundex_br,
+    'nrl': nrl,
+    'bmpm': bmpm,
+    'bmpm_german': lambda _: bmpm(_, language_arg='german'),
+    'bmpm_french': lambda _: bmpm(_, language_arg='french'),
+    'bmpm_gen_exact': lambda _: bmpm(_, match_mode='exact'),
+    'bmpm_ash_approx': lambda _: bmpm(_, name_mode='ash'),
+    'bmpm_ash_exact': lambda _: bmpm(_, name_mode='ash', match_mode='exact'),
+    'bmpm_sep_approx': lambda _: bmpm(_, name_mode='sep'),
+    'bmpm_sep_exact': lambda _: bmpm(_, name_mode='sep', match_mode='exact'),
+}
 
 
 class RegTestPhonetic(unittest.TestCase):
@@ -182,19 +185,18 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['russell_index']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_russell_index_num_to_alpha_phonetic(self):
         """Regression test russell_index_num_to_alpha."""
-        with open(_corpus_file('russell_index_num_to_alpha.csv')) \
-                as transformed:
+        with open(
+            _corpus_file('russell_index_num_to_alpha.csv')
+        ) as transformed:
             transformed.readline()
             algo = algorithms['russell_index_num_to_alpha']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_russell_index_alpha_phonetic(self):
         """Regression test russell_index_alpha."""
@@ -203,8 +205,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['russell_index_alpha']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_soundex_phonetic(self):
         """Regression test soundex."""
@@ -213,8 +214,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['soundex']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_reverse_soundex_phonetic(self):
         """Regression test reverse_soundex."""
@@ -223,8 +223,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['reverse_soundex']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_soundex_0pad_ml6_phonetic(self):
         """Regression test soundex_0pad_ml6."""
@@ -233,8 +232,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['soundex_0pad_ml6']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_soundex_special_phonetic(self):
         """Regression test soundex_special."""
@@ -243,8 +241,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['soundex_special']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_soundex_census_phonetic(self):
         """Regression test soundex_census."""
@@ -253,8 +250,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['soundex_census']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_refined_soundex_phonetic(self):
         """Regression test refined_soundex."""
@@ -263,8 +259,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['refined_soundex']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_refined_soundex_vowels_phonetic(self):
         """Regression test refined_soundex_vowels."""
@@ -273,8 +268,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['refined_soundex_vowels']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_refined_soundex_0pad_ml6_phonetic(self):
         """Regression test refined_soundex_0pad_ml6."""
@@ -283,8 +277,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['refined_soundex_0pad_ml6']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_dm_soundex_phonetic(self):
         """Regression test dm_soundex."""
@@ -293,8 +286,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['dm_soundex']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_koelner_phonetik_phonetic(self):
         """Regression test koelner_phonetik."""
@@ -303,19 +295,18 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['koelner_phonetik']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_koelner_phonetik_num_to_alpha_phonetic(self):
         """Regression test koelner_phonetik_num_to_alpha."""
-        with open(_corpus_file('koelner_phonetik_num_to_alpha.csv')) \
-                as transformed:
+        with open(
+            _corpus_file('koelner_phonetik_num_to_alpha.csv')
+        ) as transformed:
             transformed.readline()
             algo = algorithms['koelner_phonetik_num_to_alpha']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_koelner_phonetik_alpha_phonetic(self):
         """Regression test koelner_phonetik_alpha."""
@@ -324,8 +315,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['koelner_phonetik_alpha']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_nysiis_phonetic(self):
         """Regression test nysiis."""
@@ -334,8 +324,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['nysiis']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_nysiis_modified_phonetic(self):
         """Regression test nysiis_modified."""
@@ -344,8 +333,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['nysiis_modified']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_nysiis_ml_inf_phonetic(self):
         """Regression test nysiis_ml_inf."""
@@ -354,8 +342,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['nysiis_ml_inf']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_mra_phonetic(self):
         """Regression test mra."""
@@ -364,8 +351,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['mra']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_metaphone_phonetic(self):
         """Regression test metaphone."""
@@ -374,8 +360,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['metaphone']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_double_metaphone_phonetic(self):
         """Regression test double_metaphone."""
@@ -384,8 +369,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['double_metaphone']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_caverphone_1_phonetic(self):
         """Regression test caverphone_1."""
@@ -394,8 +378,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['caverphone_1']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_caverphone_2_phonetic(self):
         """Regression test caverphone_2."""
@@ -404,8 +387,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['caverphone_2']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_alpha_sis_phonetic(self):
         """Regression test alpha_sis."""
@@ -414,8 +396,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['alpha_sis']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_fuzzy_soundex_phonetic(self):
         """Regression test fuzzy_soundex."""
@@ -424,8 +405,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['fuzzy_soundex']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_fuzzy_soundex_0pad_ml8_phonetic(self):
         """Regression test fuzzy_soundex_0pad_ml8."""
@@ -434,8 +414,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['fuzzy_soundex_0pad_ml8']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_phonex_phonetic(self):
         """Regression test phonex."""
@@ -444,8 +423,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['phonex']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_phonex_0pad_ml6_phonetic(self):
         """Regression test phonex_0pad_ml6."""
@@ -454,19 +432,18 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['phonex_0pad_ml6']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_phonem_phonetic(self):
         """Regression test phonem."""
-        with codecs.open(_corpus_file('phonem.csv'),
-                         encoding='UTF-8') as transformed:
+        with codecs.open(
+            _corpus_file('phonem.csv'), encoding='UTF-8'
+        ) as transformed:
             transformed.readline()
             algo = algorithms['phonem']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_phonix_phonetic(self):
         """Regression test phonix."""
@@ -475,8 +452,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['phonix']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_phonix_0pad_ml6_phonetic(self):
         """Regression test phonix_0pad_ml6."""
@@ -485,8 +461,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['phonix_0pad_ml6']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_sfinxbis_phonetic(self):
         """Regression test sfinxbis."""
@@ -495,8 +470,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['sfinxbis']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_sfinxbis_ml6_phonetic(self):
         """Regression test sfinxbis_ml6."""
@@ -505,30 +479,29 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['sfinxbis_ml6']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_phonet_1_phonetic(self):
         """Regression test phonet_1."""
-        with codecs.open(_corpus_file('phonet_1.csv'),
-                         encoding='UTF-8') as transformed:
+        with codecs.open(
+            _corpus_file('phonet_1.csv'), encoding='UTF-8'
+        ) as transformed:
             transformed.readline()
             algo = algorithms['phonet_1']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_phonet_2_phonetic(self):
         """Regression test phonet_2."""
-        with codecs.open(_corpus_file('phonet_2.csv'),
-                         encoding='UTF-8') as transformed:
+        with codecs.open(
+            _corpus_file('phonet_2.csv'), encoding='UTF-8'
+        ) as transformed:
             transformed.readline()
             algo = algorithms['phonet_2']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_phonet_1_none_phonetic(self):
         """Regression test phonet_1_none."""
@@ -537,8 +510,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['phonet_1_none']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_phonet_2_none_phonetic(self):
         """Regression test phonet_2_none."""
@@ -547,8 +519,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['phonet_2_none']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_spfc_phonetic(self):
         """Regression test spfc."""
@@ -557,8 +528,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['spfc']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_statistics_canada_phonetic(self):
         """Regression test statistics_canada."""
@@ -567,8 +537,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['statistics_canada']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_statistics_canada_ml8_phonetic(self):
         """Regression test statistics_canada_ml8."""
@@ -577,8 +546,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['statistics_canada_ml8']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_lein_phonetic(self):
         """Regression test lein."""
@@ -587,8 +555,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['lein']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_lein_nopad_ml8_phonetic(self):
         """Regression test lein_nopad_ml8."""
@@ -597,8 +564,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['lein_nopad_ml8']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_roger_root_phonetic(self):
         """Regression test roger_root."""
@@ -607,8 +573,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['roger_root']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_roger_root_nopad_ml8_phonetic(self):
         """Regression test roger_root_nopad_ml8."""
@@ -617,8 +582,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['roger_root_nopad_ml8']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_onca_phonetic(self):
         """Regression test onca."""
@@ -627,8 +591,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['onca']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_onca_nopad_ml8_phonetic(self):
         """Regression test onca_nopad_ml8."""
@@ -637,8 +600,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['onca_nopad_ml8']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_eudex_phonetic(self):
         """Regression test eudex."""
@@ -647,8 +609,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['eudex']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_haase_phonetik_phonetic(self):
         """Regression test haase_phonetik."""
@@ -657,8 +618,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['haase_phonetik']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_haase_phonetik_primary_phonetic(self):
         """Regression test haase_phonetik_primary."""
@@ -667,8 +627,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['haase_phonetik_primary']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_reth_schek_phonetik_phonetic(self):
         """Regression test reth_schek_phonetik."""
@@ -677,8 +636,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['reth_schek_phonetik']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_fonem_phonetic(self):
         """Regression test fonem."""
@@ -687,8 +645,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['fonem']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_parmar_kumbharana_phonetic(self):
         """Regression test parmar_kumbharana."""
@@ -697,8 +654,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['parmar_kumbharana']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_davidson_phonetic(self):
         """Regression test davidson."""
@@ -707,8 +663,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['davidson']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_sound_d_phonetic(self):
         """Regression test sound_d."""
@@ -717,8 +672,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['sound_d']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_sound_d_ml8_phonetic(self):
         """Regression test sound_d_ml8."""
@@ -727,8 +681,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['sound_d_ml8']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_pshp_soundex_last_phonetic(self):
         """Regression test pshp_soundex_last."""
@@ -737,8 +690,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['pshp_soundex_last']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_pshp_soundex_last_german_phonetic(self):
         """Regression test pshp_soundex_last_german."""
@@ -747,8 +699,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['pshp_soundex_last_german']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_pshp_soundex_last_ml8_phonetic(self):
         """Regression test pshp_soundex_last_ml8."""
@@ -757,8 +708,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['pshp_soundex_last_ml8']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_pshp_soundex_first_phonetic(self):
         """Regression test pshp_soundex_first."""
@@ -767,19 +717,18 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['pshp_soundex_first']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_pshp_soundex_first_german_phonetic(self):
         """Regression test pshp_soundex_first_german."""
-        with open(_corpus_file('pshp_soundex_first_german.csv')) \
-                as transformed:
+        with open(
+            _corpus_file('pshp_soundex_first_german.csv')
+        ) as transformed:
             transformed.readline()
             algo = algorithms['pshp_soundex_first_german']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_pshp_soundex_first_ml8_phonetic(self):
         """Regression test pshp_soundex_first_ml8."""
@@ -788,8 +737,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['pshp_soundex_first_ml8']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_henry_early_phonetic(self):
         """Regression test henry_early."""
@@ -798,8 +746,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['henry_early']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_henry_early_ml8_phonetic(self):
         """Regression test henry_early_ml8."""
@@ -808,19 +755,18 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['henry_early_ml8']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_norphone_phonetic(self):
         """Regression test norphone."""
-        with codecs.open(_corpus_file('norphone.csv'),
-                         encoding='UTF-8') as transformed:
+        with codecs.open(
+            _corpus_file('norphone.csv'), encoding='UTF-8'
+        ) as transformed:
             transformed.readline()
             algo = algorithms['norphone']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_dolby_phonetic(self):
         """Regression test dolby."""
@@ -829,8 +775,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['dolby']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_dolby_ml4_phonetic(self):
         """Regression test dolby_ml4."""
@@ -839,8 +784,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['dolby_ml4']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_dolby_vowels_phonetic(self):
         """Regression test dolby_vowels."""
@@ -849,8 +793,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['dolby_vowels']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_phonetic_spanish_phonetic(self):
         """Regression test phonetic_spanish."""
@@ -859,8 +802,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['phonetic_spanish']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_phonetic_spanish_ml4_phonetic(self):
         """Regression test phonetic_spanish_ml4."""
@@ -869,8 +811,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['phonetic_spanish_ml4']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_spanish_metaphone_phonetic(self):
         """Regression test spanish_metaphone."""
@@ -879,19 +820,18 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['spanish_metaphone']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_spanish_metaphone_modified_phonetic(self):
         """Regression test spanish_metaphone_modified."""
-        with open(_corpus_file('spanish_metaphone_modified.csv')) \
-                as transformed:
+        with open(
+            _corpus_file('spanish_metaphone_modified.csv')
+        ) as transformed:
             transformed.readline()
             algo = algorithms['spanish_metaphone_modified']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_spanish_metaphone_ml4_phonetic(self):
         """Regression test spanish_metaphone_ml4."""
@@ -900,8 +840,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['spanish_metaphone_ml4']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_metasoundex_phonetic(self):
         """Regression test metasoundex."""
@@ -910,8 +849,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['metasoundex']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_metasoundex_es_phonetic(self):
         """Regression test metasoundex_es."""
@@ -920,8 +858,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['metasoundex_es']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_soundex_br_phonetic(self):
         """Regression test soundex_br."""
@@ -930,8 +867,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['soundex_br']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_nrl_phonetic(self):
         """Regression test nrl."""
@@ -940,8 +876,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['nrl']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_bmpm_phonetic(self):
         """Regression test bmpm."""
@@ -950,8 +885,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['bmpm']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_bmpm_german_phonetic(self):
         """Regression test bmpm_german."""
@@ -960,8 +894,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['bmpm_german']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_bmpm_french_phonetic(self):
         """Regression test bmpm_french."""
@@ -970,8 +903,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['bmpm_french']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_bmpm_gen_exact_phonetic(self):
         """Regression test bmpm_gen_exact."""
@@ -980,8 +912,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['bmpm_gen_exact']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_bmpm_ash_approx_phonetic(self):
         """Regression test bmpm_ash_approx."""
@@ -990,8 +921,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['bmpm_ash_approx']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_bmpm_ash_exact_phonetic(self):
         """Regression test bmpm_ash_exact."""
@@ -1000,8 +930,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['bmpm_ash_exact']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_bmpm_sep_approx_phonetic(self):
         """Regression test bmpm_sep_approx."""
@@ -1010,8 +939,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['bmpm_sep_approx']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_bmpm_sep_exact_phonetic(self):
         """Regression test bmpm_sep_exact."""
@@ -1020,8 +948,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms['bmpm_sep_exact']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1],
-                                     algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
 
 if __name__ == '__main__':

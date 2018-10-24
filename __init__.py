@@ -44,12 +44,14 @@ EXTREME_TEST = SUPER_EXTREME_TEST  # inherit setting from base tests
 EXTREME_TEST = False  # Set to True to test EVERY single case (NB: takes hours)
 
 
-if not EXTREME_TEST and os.path.isfile(os.path.join(os.path.dirname(__file__),
-                                                    'EXTREME_TEST')):
+if not EXTREME_TEST and os.path.isfile(
+    os.path.join(os.path.dirname(__file__), 'EXTREME_TEST')
+):
     # EXTREME_TEST file detected -- switching to EXTREME_TEST mode...
     EXTREME_TEST = True
-if not EXTREME_TEST and os.path.isfile(os.path.join(os.path.dirname(__file__),
-                                                    '..', 'EXTREME_TEST')):
+if not EXTREME_TEST and os.path.isfile(
+    os.path.join(os.path.dirname(__file__), '..', 'EXTREME_TEST')
+):
     # EXTREME_TEST file detected -- switching to EXTREME_TEST mode...
     EXTREME_TEST = True
 
