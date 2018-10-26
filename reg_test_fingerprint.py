@@ -23,19 +23,18 @@ This module contains regression tests for abydos.fingerprint
 
 import unittest
 
-from abydos.fingerprint.basic import (
+from abydos.fingerprint import (
     phonetic_fingerprint,
     qgram_fingerprint,
     str_fingerprint,
-)
-from abydos.fingerprint.lightweight import (
     count_fingerprint,
     occurrence_fingerprint,
     occurrence_halved_fingerprint,
     position_fingerprint,
+    omission_key,
+    skeleton_key,
+    synoname_toolcode
 )
-from abydos.fingerprint.speedcop import omission_key, skeleton_key
-from abydos.fingerprint.synoname import synoname_toolcode
 
 from . import ORIGINALS, _corpus_file, _one_in
 
