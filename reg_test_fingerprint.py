@@ -33,7 +33,7 @@ from abydos.fingerprint import (
     position_fingerprint,
     omission_key,
     skeleton_key,
-    synoname_toolcode
+    synoname_toolcode,
 )
 
 from . import ORIGINALS, _corpus_file, _one_in

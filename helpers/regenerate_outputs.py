@@ -52,7 +52,7 @@ from abydos.fingerprint import (
     position_fingerprint,
     omission_key,
     skeleton_key,
-    synoname_toolcode
+    synoname_toolcode,
 )
 from abydos.phonetic import (
     alpha_sis,
@@ -98,7 +98,7 @@ from abydos.phonetic import (
     spfc,
     statistics_canada,
     norphone,
-    sfinxbis
+    sfinxbis,
 )
 
 algorithms = {

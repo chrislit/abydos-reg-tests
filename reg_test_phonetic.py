@@ -68,7 +68,7 @@ from abydos.phonetic import (
     spfc,
     statistics_canada,
     norphone,
-    sfinxbis
+    sfinxbis,
 )
 
 from . import ORIGINALS, _corpus_file, _one_in
