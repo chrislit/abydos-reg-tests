@@ -68,7 +68,9 @@ algorithms = {
     'skeleton_key': skeleton.fingerprint,
     'omission_key': omission.fingerprint,
     'occurrence_fingerprint': lambda _: str(occurrence.fingerprint(_)),
-    'occurrence_halved_fingerprint': lambda _: str(occurrence_halved.fingerprint(_)),
+    'occurrence_halved_fingerprint': lambda _: str(
+        occurrence_halved.fingerprint(_)
+    ),
     'count_fingerprint': lambda _: str(count.fingerprint(_)),
     'position_fingerprint': lambda _: str(position.fingerprint(_)),
     'synoname_toolcode': lambda _: ', '.join(synoname.fingerprint(_)),
