@@ -67,12 +67,17 @@ if not EXTREME_TEST and os.path.isfile(
 def _corpus_file(name, corpora_dir=CORPORA):
     """Return the path to a corpus file.
 
-    Args:
-        name (str): Corpus file
-        corpora_dir (str): The directory containing the corpora
+    Parameters
+    ----------
+    name : str
+        Corpus file
+    corpora_dir : str
+        The directory containing the corpora
 
-    Returns:
-        str: The path to the corpus file
+    Returns
+    -------
+    str
+        The path to the corpus file
 
     """
     return _super_corpus_file(name, corpora_dir)
@@ -93,11 +98,15 @@ def _one_in(inverse_probability):
         random.random() * inverse_probability < 1)
     Otherwise return False
 
-    Args:
-        inverse_probability (int): The inverse of the probability
+    Parameters
+    ----------
+    inverse_probability : int
+        The inverse of the probability
 
-    Returns:
-        bool: Whether to run a test
+    Returns
+    -------
+    bool
+        Whether to run a test
 
     """
     if EXTREME_TEST:

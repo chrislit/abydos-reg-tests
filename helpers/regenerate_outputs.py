@@ -54,11 +54,11 @@ from abydos.fingerprint import (
     Occurrence,
     OccurrenceHalved,
     OmissionKey,
-    PhoneticFingerprint,
+    Phonetic,
     Position,
-    QGramFingerprint,
+    QGram,
     SkeletonKey,
-    StringFingerprint,
+    String,
     SynonameToolcode,
 )
 
@@ -145,9 +145,9 @@ soundex_br = SoundexBR()
 spanish_metaphone = SpanishMetaphone()
 spfc = SPFC()
 statistics_canada = StatisticsCanada()
-string = StringFingerprint()
-qgram = QGramFingerprint()
-phonetic = PhoneticFingerprint()
+string = String()
+qgram = QGram()
+phonetic = Phonetic()
 skeleton = SkeletonKey()
 omission = OmissionKey()
 occurrence = Occurrence()

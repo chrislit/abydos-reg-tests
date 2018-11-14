@@ -35,20 +35,20 @@ from abydos.fingerprint import (
     Occurrence,
     OccurrenceHalved,
     OmissionKey,
-    PhoneticFingerprint,
+    Phonetic,
     Position,
-    QGramFingerprint,
+    QGram,
     SkeletonKey,
-    StringFingerprint,
+    String,
     SynonameToolcode,
 )
 
 
 from . import ORIGINALS, _corpus_file, _one_in
 
-string = StringFingerprint()
-qgram = QGramFingerprint()
-phonetic = PhoneticFingerprint()
+string = String()
+qgram = QGram()
+phonetic = Phonetic()
 skeleton = SkeletonKey()
 omission = OmissionKey()
 occurrence = Occurrence()
