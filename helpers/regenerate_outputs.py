@@ -160,8 +160,8 @@ def _run_script():
 
     algorithms = {
         'russell_index': lambda _: str(russell.encode(_)),
-        'russell_index_num_to_alpha': lambda _: russell._to_alpha(  # noqa: SF01
-            russell.encode(_)
+        'russell_index_num_to_alpha': (
+            lambda _: russell._to_alpha(russell.encode(_))  # noqa: SF01
         ),
         'russell_index_alpha': russell.encode_alpha,
         'soundex': soundex.encode,
@@ -180,8 +180,8 @@ def _run_script():
         ),
         'dm_soundex': lambda _: ', '.join(sorted(dm.encode(_))),
         'koelner_phonetik': koelner.encode,
-        'koelner_phonetik_num_to_alpha': lambda _: koelner._to_alpha(  # noqa: SF01
-            koelner.encode(_)
+        'koelner_phonetik_num_to_alpha': (
+            lambda _: koelner._to_alpha(koelner.encode(_))  # noqa: SF01
         ),
         'koelner_phonetik_alpha': koelner.encode_alpha,
         'nysiis': nysiis.encode,
