@@ -338,5 +338,5 @@ def _run_script():
     sys.stdout.write('Total:\t{:0.2f}\n'.format(time() - overall_start))
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     _run_script()
