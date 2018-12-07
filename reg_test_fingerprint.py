@@ -46,35 +46,22 @@ from abydos.fingerprint import (
 
 from . import ORIGINALS, _corpus_file, _one_in
 
-string = String()
-qgram = QGram()
-qgram3 = QGram(qval=3)
-qgram_ssj = QGram(start_stop='$#', joiner=' ')
-phonetic = Phonetic()
-skeleton = SkeletonKey()
-omission = OmissionKey()
-occurrence = Occurrence()
-occurrence_halved = OccurrenceHalved()
-count = Count()
-position = Position()
 synoname = SynonameToolcode()
 
 algorithms = {
-    'str_fingerprint': string.fingerprint,
-    'qgram_fingerprint': qgram.fingerprint,
-    'qgram_fingerprint_3': qgram3.fingerprint,
-    'qgram_fingerprint_ssj': qgram_ssj.fingerprint,
-    'phonetic_fingerprint': phonetic.fingerprint,
-    'skeleton_key': skeleton.fingerprint,
-    'omission_key': omission.fingerprint,
-    'occurrence_fingerprint': lambda _: str(occurrence.fingerprint(_)),
-    'occurrence_halved_fingerprint': lambda _: str(
-        occurrence_halved.fingerprint(_)
-    ),
-    'count_fingerprint': lambda _: str(count.fingerprint(_)),
-    'position_fingerprint': lambda _: str(position.fingerprint(_)),
-    'synoname_toolcode': lambda _: ', '.join(synoname.fingerprint(_)),
-    'synoname_toolcode_2name': lambda _: ', '.join(synoname.fingerprint(_, _)),
+    'str_fingerprint': String().fingerprint,
+    'qgram_fingerprint': QGram().fingerprint,
+    'qgram_fingerprint_3': QGram(qval=3).fingerprint,
+    'qgram_fingerprint_ssj': QGram(start_stop='$#', joiner=' ').fingerprint,
+    'phonetic_fingerprint': Phonetic().fingerprint,
+    'skeleton_key': SkeletonKey().fingerprint,
+    'omission_key': OmissionKey().fingerprint,
+    'occurrence_fingerprint': Occurrence().fingerprint,
+    'occurrence_halved_fingerprint': OccurrenceHalved().fingerprint,
+    'count_fingerprint': Count().fingerprint,
+    'position_fingerprint': Position().fingerprint,
+    'synoname_toolcode': synoname.fingerprint,
+    'synoname_toolcode_2name': lambda _: synoname.fingerprint(_, _),
 }
 
 
@@ -151,7 +138,7 @@ class RegTestFingerprint(unittest.TestCase):
             algo = algorithms['occurrence_fingerprint']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
     def reg_test_occurrence_halved_fingerprint_phonetic(self):
         """Regression test occurrence_halved_fingerprint."""
@@ -162,7 +149,7 @@ class RegTestFingerprint(unittest.TestCase):
             algo = algorithms['occurrence_halved_fingerprint']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
     def reg_test_count_fingerprint_phonetic(self):
         """Regression test count_fingerprint."""
@@ -171,7 +158,7 @@ class RegTestFingerprint(unittest.TestCase):
             algo = algorithms['count_fingerprint']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
     def reg_test_position_fingerprint_phonetic(self):
         """Regression test position_fingerprint."""
@@ -180,7 +167,7 @@ class RegTestFingerprint(unittest.TestCase):
             algo = algorithms['position_fingerprint']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
     def reg_test_synoname_toolcode_phonetic(self):
         """Regression test synoname_toolcode."""
@@ -189,7 +176,7 @@ class RegTestFingerprint(unittest.TestCase):
             algo = algorithms['synoname_toolcode']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], ', '.join(algo(ORIGINALS[i])))
 
     def reg_test_synoname_toolcode_2name_phonetic(self):
         """Regression test synoname_toolcode_2name."""
@@ -198,7 +185,7 @@ class RegTestFingerprint(unittest.TestCase):
             algo = algorithms['synoname_toolcode_2name']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+                    self.assertEqual(trans[:-1], ', '.join(algo(ORIGINALS[i])))
 
 
 if __name__ == '__main__':
