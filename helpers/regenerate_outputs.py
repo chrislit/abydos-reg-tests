@@ -116,13 +116,12 @@ def _run_script():
     sfinxbis = SfinxBis()
     sfinxbis_6 = SfinxBis(max_length=6)
     spfc = SPFC()
-    eudex = Eudex()
     haase = Haase()
     haase_primary = Haase(primary_only=True)
     synoname = SynonameToolcode()
 
     algorithms = {
-        'russell_index': lambda _: str(russell.encode(_)),
+        'russell_index': russell.encode,
         'russell_index_num_to_alpha': (
             lambda _: russell._to_alpha(russell.encode(_))  # noqa: SF01
         ),
@@ -176,7 +175,7 @@ def _run_script():
         'roger_root_nopad_ml8': RogerRoot(max_length=8, zero_pad=False).encode,
         'onca': ONCA().encode,
         'onca_nopad_ml8': ONCA(max_length=8, zero_pad=False).encode,
-        'eudex': lambda _: str(eudex.encode(_)),
+        'eudex': Eudex().encode,
         'haase_phonetik': lambda _: ', '.join(haase.encode(_)),
         'haase_phonetik_primary': lambda _: haase_primary.encode(_)[0],
         'reth_schek_phonetik': RethSchek().encode,

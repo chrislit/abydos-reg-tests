@@ -176,7 +176,7 @@ class RegTestFingerprint(unittest.TestCase):
             algo = algorithms['synoname_toolcode']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1], ', '.join(algo(ORIGINALS[i])))
+                    self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
     def reg_test_synoname_toolcode_2name_phonetic(self):
         """Regression test synoname_toolcode_2name."""
@@ -185,7 +185,7 @@ class RegTestFingerprint(unittest.TestCase):
             algo = algorithms['synoname_toolcode_2name']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1], ', '.join(algo(ORIGINALS[i])))
+                    self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
 
 if __name__ == '__main__':
