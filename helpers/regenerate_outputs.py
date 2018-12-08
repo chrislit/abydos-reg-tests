@@ -136,7 +136,9 @@ def _run_script():
         'refined_soundex_0pad_ml6': RefinedSoundex(
             zero_pad=True, max_length=6
         ).encode,
-        'daitch_mokotoff_soundex': lambda _: ', '.join(sorted(daitch_mokotoff.encode(_))),
+        'daitch_mokotoff_soundex': lambda _: ', '.join(
+            sorted(daitch_mokotoff.encode(_))
+        ),
         'koelner_phonetik': koelner.encode,
         'koelner_phonetik_num_to_alpha': (
             lambda _: koelner._to_alpha(koelner.encode(_))  # noqa: SF01
@@ -230,8 +232,10 @@ def _run_script():
         'occurrence_halved_fingerprint': OccurrenceHalved().fingerprint,
         'count_fingerprint': Count().fingerprint,
         'position_fingerprint': Position().fingerprint,
-        'synoname_toolcode': synoname.fingerprint,
-        'synoname_toolcode_2name': lambda _: synoname.fingerprint(_, _),
+        'synoname_toolcode': lambda _: ', '.join(synoname.fingerprint(_)),
+        'synoname_toolcode_2name': lambda _: ', '.join(
+            synoname.fingerprint(_, _)
+        ),
     }
 
     overall_start = time()
