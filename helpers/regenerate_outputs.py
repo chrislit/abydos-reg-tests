@@ -255,7 +255,7 @@ def _run_script():
             with open(os.path.join(corpora_dir, algo + '.csv'), 'w') as output:
                 output.write(algo + '\n')
                 for name in names:
-                    output.write(algorithms[algo](name) + '\n')
+                    output.write(str(algorithms[algo](name)) + '\n')
                 dur = '{:0.2f}'.format(time() - start)
                 timings.write(algo + ',' + dur + '\n')
                 sys.stdout.write(
