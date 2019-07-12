@@ -31,6 +31,8 @@ from __future__ import (
 import codecs
 import unittest
 
+from six import text_type
+
 from abydos.phonetic import (
     Ainsworth,
     AlphaSIS,
@@ -204,7 +206,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms[algo_name]
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
+                    self.assertEqual(trans[:-1], text_type(algo(ORIGINALS[i])))
 
     def reg_test_ainsworth(self):
         """Regression test ainsworth."""
