@@ -86,109 +86,121 @@ algorithms = {
     'synoname_toolcode_2name': lambda _: synoname.fingerprint(_, _),
 }
 
+
 class RegTestFingerprint(unittest.TestCase):
     """Perform fingerprint regression tests."""
 
-    def reg_test_string(self):
-        """Regression test string."""
-        with open(_corpus_file('string.csv')) as transformed:
+    def _do_test(self, algo_name):
+        with open(_corpus_file(algo_name + '.csv')) as transformed:
             transformed.readline()
-            algo = algorithms['string']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_qgram(self):
-        """Regression test qgram."""
-        with open(_corpus_file('qgram.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['qgram']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_qgram_q3(self):
-        """Regression test qgram_q3."""
-        with open(_corpus_file('qgram_q3.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['qgram_q3']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_qgram_ssj(self):
-        """Regression test qgram_ssj."""
-        with open(_corpus_file('qgram_ssj.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['qgram_ssj']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_phonetic(self):
-        """Regression test phonetic."""
-        with open(_corpus_file('phonetic.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['phonetic']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_skeleton_key(self):
-        """Regression test skeleton_key."""
-        with open(_corpus_file('skeleton_key.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['skeleton_key']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_omission_key(self):
-        """Regression test omission_key."""
-        with open(_corpus_file('omission_key.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['omission_key']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_occurrence(self):
-        """Regression test occurrence."""
-        with open(_corpus_file('occurrence.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['occurrence']
+            algo = algorithms[algo_name]
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
-    def reg_test_occurrence_halved(self):
-        """Regression test occurrence_halved."""
-        with open(
-            _corpus_file('occurrence_halved.csv')
-        ) as transformed:
-            transformed.readline()
-            algo = algorithms['occurrence_halved']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
+    def reg_test_bwtf(self):
+        """Regression test bwtf."""
+        self._do_test('bwtf')
+
+    def reg_test_bwtrlef(self):
+        """Regression test bwtrlef."""
+        self._do_test('bwtrlef')
+
+    def reg_test_consonant(self):
+        """Regression test consonant."""
+        self._do_test('consonant')
+
+    def reg_test_consonant_2(self):
+        """Regression test consonant_2."""
+        self._do_test('consonant_2')
+
+    def reg_test_consonant_3(self):
+        """Regression test consonant_3."""
+        self._do_test('consonant_3')
+
+    def reg_test_consonant_nd(self):
+        """Regression test consonant_nd."""
+        self._do_test('consonant_nd')
 
     def reg_test_count(self):
         """Regression test count."""
-        with open(_corpus_file('count.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['count']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
+        self._do_test('count')
+
+    def reg_test_count_32(self):
+        """Regression test count_32."""
+        self._do_test('count_32')
+
+    def reg_test_extract(self):
+        """Regression test extract."""
+        self._do_test('extract')
+
+    def reg_test_extract_2(self):
+        """Regression test extract_2."""
+        self._do_test('extract_2')
+
+    def reg_test_extract_3(self):
+        """Regression test extract_3."""
+        self._do_test('extract_3')
+
+    def reg_test_extract_4(self):
+        """Regression test extract_4."""
+        self._do_test('extract_4')
+
+    def reg_test_extract_position_frequency(self):
+        """Regression test extract_position_frequency."""
+        self._do_test('extract_position_frequency')
+
+    def reg_test_lacss(self):
+        """Regression test lacss."""
+        self._do_test('lacss')
+
+    def reg_test_lc_cutter(self):
+        """Regression test lc_cutter."""
+        self._do_test('lc_cutter')
+
+    def reg_test_occurrence(self):
+        """Regression test occurrence."""
+        self._do_test('occurrence')
+
+    def reg_test_occurrence_halved(self):
+        """Regression test occurrence_halved."""
+        self._do_test('occurrence_halved')
+
+    def reg_test_omission_key(self):
+        """Regression test omission_key."""
+        self._do_test('omission_key')
+
+    def reg_test_phonetic(self):
+        """Regression test phonetic."""
+        self._do_test('phonetic')
 
     def reg_test_position(self):
         """Regression test position."""
-        with open(_corpus_file('position.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['position']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
+        self._do_test('position')
+
+    def reg_test_position_32_2(self):
+        """Regression test position_32_2."""
+        self._do_test('position_32_2')
+
+    def reg_test_qgram(self):
+        """Regression test qgram."""
+        self._do_test('qgram')
+
+    def reg_test_qgram_q3(self):
+        """Regression test qgram_q3."""
+        self._do_test('qgram_q3')
+
+    def reg_test_qgram_ssj(self):
+        """Regression test qgram_ssj."""
+        self._do_test('qgram_ssj')
+
+    def reg_test_skeleton_key(self):
+        """Regression test skeleton_key."""
+        self._do_test('skeleton_key')
+
+    def reg_test_string(self):
+        """Regression test string."""
+        self._do_test('string')
 
     def reg_test_synoname_toolcode(self):
         """Regression test synoname_toolcode."""

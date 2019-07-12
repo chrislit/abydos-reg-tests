@@ -196,777 +196,375 @@ algorithms = {
 class RegTestPhonetic(unittest.TestCase):
     """Perform phonetic algorithm regression tests."""
 
-    def reg_test_russell_index(self):
-        """Regression test russell_index."""
-        with open(_corpus_file('russell_index.csv')) as transformed:
+    def _do_test(self, algo_name):
+        with codecs.open(
+            _corpus_file(algo_name + '.csv'), encoding='UTF-8'
+        ) as transformed:
             transformed.readline()
-            algo = algorithms['russell_index']
+            algo = algorithms[algo_name]
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
-    def reg_test_russell_index_num_to_alpha(self):
-        """Regression test russell_index_num_to_alpha."""
-        with open(
-            _corpus_file('russell_index_num_to_alpha.csv')
-        ) as transformed:
-            transformed.readline()
-            algo = algorithms['russell_index_num_to_alpha']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_russell_index_alpha(self):
-        """Regression test russell_index_alpha."""
-        with open(_corpus_file('russell_index_alpha.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['russell_index_alpha']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_soundex(self):
-        """Regression test soundex."""
-        with open(_corpus_file('soundex.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['soundex']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_soundex_reverse(self):
-        """Regression test soundex_reverse."""
-        with open(_corpus_file('soundex_reverse.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['soundex_reverse']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_soundex_0pad_ml6(self):
-        """Regression test soundex_0pad_ml6."""
-        with open(_corpus_file('soundex_0pad_ml6.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['soundex_0pad_ml6']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_soundex_special(self):
-        """Regression test soundex_special."""
-        with open(_corpus_file('soundex_special.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['soundex_special']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_soundex_census(self):
-        """Regression test soundex_census."""
-        with open(_corpus_file('soundex_census.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['soundex_census']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_refined_soundex(self):
-        """Regression test refined_soundex."""
-        with open(_corpus_file('refined_soundex.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['refined_soundex']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_refined_soundex_vowels(self):
-        """Regression test refined_soundex_vowels."""
-        with open(_corpus_file('refined_soundex_vowels.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['refined_soundex_vowels']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_refined_soundex_0pad_ml6(self):
-        """Regression test refined_soundex_0pad_ml6."""
-        with open(_corpus_file('refined_soundex_0pad_ml6.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['refined_soundex_0pad_ml6']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_dm_soundex(self):
-        """Regression test daitch_mokotoff_soundex."""
-        with open(_corpus_file('daitch_mokotoff_soundex.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['daitch_mokotoff_soundex']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_koelner_phonetik(self):
-        """Regression test koelner_phonetik."""
-        with open(_corpus_file('koelner_phonetik.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['koelner_phonetik']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_koelner_phonetik_num_to_alpha(self):
-        """Regression test koelner_phonetik_num_to_alpha."""
-        with open(
-            _corpus_file('koelner_phonetik_num_to_alpha.csv')
-        ) as transformed:
-            transformed.readline()
-            algo = algorithms['koelner_phonetik_num_to_alpha']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_koelner_phonetik_alpha(self):
-        """Regression test koelner_phonetik_alpha."""
-        with open(_corpus_file('koelner_phonetik_alpha.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['koelner_phonetik_alpha']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_nysiis(self):
-        """Regression test nysiis."""
-        with open(_corpus_file('nysiis.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['nysiis']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_nysiis_modified(self):
-        """Regression test nysiis_modified."""
-        with open(_corpus_file('nysiis_modified.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['nysiis_modified']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_nysiis_ml_inf(self):
-        """Regression test nysiis_ml_inf."""
-        with open(_corpus_file('nysiis_ml_inf.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['nysiis_ml_inf']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_mra(self):
-        """Regression test mra."""
-        with open(_corpus_file('mra.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['mra']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_metaphone(self):
-        """Regression test metaphone."""
-        with open(_corpus_file('metaphone.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['metaphone']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_double_metaphone(self):
-        """Regression test double_metaphone."""
-        with open(_corpus_file('double_metaphone.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['double_metaphone']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_caverphone_1(self):
-        """Regression test caverphone_1."""
-        with open(_corpus_file('caverphone_1.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['caverphone_1']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_caverphone_2(self):
-        """Regression test caverphone_2."""
-        with open(_corpus_file('caverphone_2.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['caverphone_2']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+    def reg_test_ainsworth(self):
+        """Regression test ainsworth."""
+        self._do_test('ainsworth')
 
     def reg_test_alpha_sis(self):
         """Regression test alpha_sis."""
-        with open(_corpus_file('alpha_sis.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['alpha_sis']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_fuzzy_soundex(self):
-        """Regression test fuzzy_soundex."""
-        with open(_corpus_file('fuzzy_soundex.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['fuzzy_soundex']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_fuzzy_soundex_0pad_ml8(self):
-        """Regression test fuzzy_soundex_0pad_ml8."""
-        with open(_corpus_file('fuzzy_soundex_0pad_ml8.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['fuzzy_soundex_0pad_ml8']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_phonex(self):
-        """Regression test phonex."""
-        with open(_corpus_file('phonex.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['phonex']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_phonex_0pad_ml6(self):
-        """Regression test phonex_0pad_ml6."""
-        with open(_corpus_file('phonex_0pad_ml6.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['phonex_0pad_ml6']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_phonem(self):
-        """Regression test phonem."""
-        with codecs.open(
-            _corpus_file('phonem.csv'), encoding='UTF-8'
-        ) as transformed:
-            transformed.readline()
-            algo = algorithms['phonem']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_phonix(self):
-        """Regression test phonix."""
-        with open(_corpus_file('phonix.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['phonix']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_phonix_0pad_ml6(self):
-        """Regression test phonix_0pad_ml6."""
-        with open(_corpus_file('phonix_0pad_ml6.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['phonix_0pad_ml6']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_sfinxbis(self):
-        """Regression test sfinxbis."""
-        with open(_corpus_file('sfinxbis.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['sfinxbis']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_sfinxbis_ml6(self):
-        """Regression test sfinxbis_ml6."""
-        with open(_corpus_file('sfinxbis_ml6.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['sfinxbis_ml6']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_phonet_1(self):
-        """Regression test phonet_1."""
-        with codecs.open(
-            _corpus_file('phonet_1.csv'), encoding='UTF-8'
-        ) as transformed:
-            transformed.readline()
-            algo = algorithms['phonet_1']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_phonet_2(self):
-        """Regression test phonet_2."""
-        with codecs.open(
-            _corpus_file('phonet_2.csv'), encoding='UTF-8'
-        ) as transformed:
-            transformed.readline()
-            algo = algorithms['phonet_2']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_phonet_1_none(self):
-        """Regression test phonet_1_none."""
-        with open(_corpus_file('phonet_1_none.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['phonet_1_none']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_phonet_2_none(self):
-        """Regression test phonet_2_none."""
-        with open(_corpus_file('phonet_2_none.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['phonet_2_none']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_spfc(self):
-        """Regression test spfc."""
-        with open(_corpus_file('spfc.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['spfc']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_statistics_canada(self):
-        """Regression test statistics_canada."""
-        with open(_corpus_file('statistics_canada.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['statistics_canada']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_statistics_canada_ml8(self):
-        """Regression test statistics_canada_ml8."""
-        with open(_corpus_file('statistics_canada_ml8.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['statistics_canada_ml8']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_lein(self):
-        """Regression test lein."""
-        with open(_corpus_file('lein.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['lein']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_lein_nopad_ml8(self):
-        """Regression test lein_nopad_ml8."""
-        with open(_corpus_file('lein_nopad_ml8.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['lein_nopad_ml8']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_roger_root(self):
-        """Regression test roger_root."""
-        with open(_corpus_file('roger_root.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['roger_root']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_roger_root_nopad_ml8(self):
-        """Regression test roger_root_nopad_ml8."""
-        with open(_corpus_file('roger_root_nopad_ml8.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['roger_root_nopad_ml8']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_onca(self):
-        """Regression test onca."""
-        with open(_corpus_file('onca.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['onca']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_onca_nopad_ml8(self):
-        """Regression test onca_nopad_ml8."""
-        with open(_corpus_file('onca_nopad_ml8.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['onca_nopad_ml8']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_eudex(self):
-        """Regression test eudex."""
-        with open(_corpus_file('eudex.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['eudex']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
-
-    def reg_test_haase_phonetik(self):
-        """Regression test haase_phonetik."""
-        with open(_corpus_file('haase_phonetik.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['haase_phonetik']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_haase_phonetik_primary(self):
-        """Regression test haase_phonetik_primary."""
-        with open(_corpus_file('haase_phonetik_primary.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['haase_phonetik_primary']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_reth_schek_phonetik(self):
-        """Regression test reth_schek_phonetik."""
-        with open(_corpus_file('reth_schek_phonetik.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['reth_schek_phonetik']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_fonem(self):
-        """Regression test fonem."""
-        with open(_corpus_file('fonem.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['fonem']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_parmar_kumbharana(self):
-        """Regression test parmar_kumbharana."""
-        with open(_corpus_file('parmar_kumbharana.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['parmar_kumbharana']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_davidson(self):
-        """Regression test davidson."""
-        with open(_corpus_file('davidson.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['davidson']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_sound_d(self):
-        """Regression test sound_d."""
-        with open(_corpus_file('sound_d.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['sound_d']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_sound_d_ml8(self):
-        """Regression test sound_d_ml8."""
-        with open(_corpus_file('sound_d_ml8.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['sound_d_ml8']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_pshp_soundex_last(self):
-        """Regression test pshp_soundex_last."""
-        with open(_corpus_file('pshp_soundex_last.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['pshp_soundex_last']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_pshp_soundex_last_german(self):
-        """Regression test pshp_soundex_last_german."""
-        with open(_corpus_file('pshp_soundex_last_german.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['pshp_soundex_last_german']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_pshp_soundex_last_ml8(self):
-        """Regression test pshp_soundex_last_ml8."""
-        with open(_corpus_file('pshp_soundex_last_ml8.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['pshp_soundex_last_ml8']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_pshp_soundex_first(self):
-        """Regression test pshp_soundex_first."""
-        with open(_corpus_file('pshp_soundex_first.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['pshp_soundex_first']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_pshp_soundex_first_german(self):
-        """Regression test pshp_soundex_first_german."""
-        with open(
-            _corpus_file('pshp_soundex_first_german.csv')
-        ) as transformed:
-            transformed.readline()
-            algo = algorithms['pshp_soundex_first_german']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_pshp_soundex_first_ml8(self):
-        """Regression test pshp_soundex_first_ml8."""
-        with open(_corpus_file('pshp_soundex_first_ml8.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['pshp_soundex_first_ml8']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_henry_early(self):
-        """Regression test henry_early."""
-        with open(_corpus_file('henry_early.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['henry_early']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_henry_early_ml8(self):
-        """Regression test henry_early_ml8."""
-        with open(_corpus_file('henry_early_ml8.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['henry_early_ml8']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_norphone(self):
-        """Regression test norphone."""
-        with codecs.open(
-            _corpus_file('norphone.csv'), encoding='UTF-8'
-        ) as transformed:
-            transformed.readline()
-            algo = algorithms['norphone']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_dolby(self):
-        """Regression test dolby."""
-        with open(_corpus_file('dolby.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['dolby']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_dolby_ml4(self):
-        """Regression test dolby_ml4."""
-        with open(_corpus_file('dolby_ml4.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['dolby_ml4']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_dolby_vowels(self):
-        """Regression test dolby_vowels."""
-        with open(_corpus_file('dolby_vowels.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['dolby_vowels']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_phonetic_spanish(self):
-        """Regression test phonetic_spanish."""
-        with open(_corpus_file('phonetic_spanish.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['phonetic_spanish']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_phonetic_spanish_ml4(self):
-        """Regression test phonetic_spanish_ml4."""
-        with open(_corpus_file('phonetic_spanish_ml4.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['phonetic_spanish_ml4']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_spanish_metaphone(self):
-        """Regression test spanish_metaphone."""
-        with open(_corpus_file('spanish_metaphone.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['spanish_metaphone']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_spanish_metaphone_modified(self):
-        """Regression test spanish_metaphone_modified."""
-        with open(
-            _corpus_file('spanish_metaphone_modified.csv')
-        ) as transformed:
-            transformed.readline()
-            algo = algorithms['spanish_metaphone_modified']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_spanish_metaphone_ml4(self):
-        """Regression test spanish_metaphone_ml4."""
-        with open(_corpus_file('spanish_metaphone_ml4.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['spanish_metaphone_ml4']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_metasoundex(self):
-        """Regression test metasoundex."""
-        with open(_corpus_file('metasoundex.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['metasoundex']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_metasoundex_es(self):
-        """Regression test metasoundex_es."""
-        with open(_corpus_file('metasoundex_es.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['metasoundex_es']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_soundex_br(self):
-        """Regression test soundex_br."""
-        with open(_corpus_file('soundex_br.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['soundex_br']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-
-    def reg_test_nrl(self):
-        """Regression test nrl."""
-        with open(_corpus_file('nrl.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['nrl']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+        self._do_test('alpha_sis')
 
     def reg_test_bmpm(self):
         """Regression test bmpm."""
-        with open(_corpus_file('bmpm.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['bmpm']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+        self._do_test('bmpm')
 
     def reg_test_bmpm_german(self):
         """Regression test bmpm_german."""
-        with open(_corpus_file('bmpm_german.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['bmpm_german']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+        self._do_test('bmpm_german')
 
     def reg_test_bmpm_french(self):
         """Regression test bmpm_french."""
-        with open(_corpus_file('bmpm_french.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['bmpm_french']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+        self._do_test('bmpm_french')
 
     def reg_test_bmpm_gen_exact(self):
         """Regression test bmpm_gen_exact."""
-        with open(_corpus_file('bmpm_gen_exact.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['bmpm_gen_exact']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+        self._do_test('bmpm_gen_exact')
 
     def reg_test_bmpm_ash_approx(self):
         """Regression test bmpm_ash_approx."""
-        with open(_corpus_file('bmpm_ash_approx.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['bmpm_ash_approx']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+        self._do_test('bmpm_ash_approx')
 
     def reg_test_bmpm_ash_exact(self):
         """Regression test bmpm_ash_exact."""
-        with open(_corpus_file('bmpm_ash_exact.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['bmpm_ash_exact']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+        self._do_test('bmpm_ash_exact')
 
     def reg_test_bmpm_sep_approx(self):
         """Regression test bmpm_sep_approx."""
-        with open(_corpus_file('bmpm_sep_approx.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['bmpm_sep_approx']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+        self._do_test('bmpm_sep_approx')
 
     def reg_test_bmpm_sep_exact(self):
         """Regression test bmpm_sep_exact."""
-        with open(_corpus_file('bmpm_sep_exact.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['bmpm_sep_exact']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+        self._do_test('bmpm_sep_exact')
+
+    def reg_test_caverphone_1(self):
+        """Regression test caverphone_1."""
+        self._do_test('caverphone_1')
+
+    def reg_test_caverphone_2(self):
+        """Regression test caverphone_2."""
+        self._do_test('caverphone_2')
+
+    def reg_test_dm_soundex(self):
+        """Regression test daitch_mokotoff_soundex."""
+        self._do_test('daitch_mokotoff_soundex')
+
+    def reg_test_davidson(self):
+        """Regression test davidson."""
+        self._do_test('davidson')
+
+    def reg_test_dolby(self):
+        """Regression test dolby."""
+        self._do_test('dolby')
+
+    def reg_test_dolby_ml4(self):
+        """Regression test dolby_ml4."""
+        self._do_test('dolby_ml4')
+
+    def reg_test_dolby_vowels(self):
+        """Regression test dolby_vowels."""
+        self._do_test('dolby_vowels')
+
+    def reg_test_double_metaphone(self):
+        """Regression test double_metaphone."""
+        self._do_test('double_metaphone')
+
+    def reg_test_eudex(self):
+        """Regression test eudex."""
+        self._do_test('eudex')
+
+    def reg_test_fonem(self):
+        """Regression test fonem."""
+        self._do_test('fonem')
+
+    def reg_test_fuzzy_soundex(self):
+        """Regression test fuzzy_soundex."""
+        self._do_test('fuzzy_soundex')
+
+    def reg_test_fuzzy_soundex_0pad_ml8(self):
+        """Regression test fuzzy_soundex_0pad_ml8."""
+        self._do_test('fuzzy_soundex_0pad_ml8')
+
+    def reg_test_haase_phonetik(self):
+        """Regression test haase_phonetik."""
+        self._do_test('haase_phonetik')
+
+    def reg_test_haase_phonetik_primary(self):
+        """Regression test haase_phonetik_primary."""
+        self._do_test('haase_phonetik_primary')
+
+    def reg_test_henry_early(self):
+        """Regression test henry_early."""
+        self._do_test('henry_early')
+
+    def reg_test_henry_early_ml8(self):
+        """Regression test henry_early_ml8."""
+        self._do_test('henry_early_ml8')
+
+    def reg_test_koelner_phonetik(self):
+        """Regression test koelner_phonetik."""
+        self._do_test('koelner_phonetik')
+
+    def reg_test_koelner_phonetik_num_to_alpha(self):
+        """Regression test koelner_phonetik_num_to_alpha."""
+        self._do_test('koelner_phonetik_num_to_alpha')
+
+    def reg_test_koelner_phonetik_alpha(self):
+        """Regression test koelner_phonetik_alpha."""
+        self._do_test('koelner_phonetik_alpha')
+
+    def reg_test_lein(self):
+        """Regression test lein."""
+        self._do_test('lein')
+
+    def reg_test_lein_nopad_ml8(self):
+        """Regression test lein_nopad_ml8."""
+        self._do_test('lein_nopad_ml8')
+
+    def reg_test_metasoundex(self):
+        """Regression test metasoundex."""
+        self._do_test('metasoundex')
+
+    def reg_test_metasoundex_es(self):
+        """Regression test metasoundex_es."""
+        self._do_test('metasoundex_es')
+
+    def reg_test_metaphone(self):
+        """Regression test metaphone."""
+        self._do_test('metaphone')
+
+    def reg_test_mra(self):
+        """Regression test mra."""
+        self._do_test('mra')
+
+    def reg_test_norphone(self):
+        """Regression test norphone."""
+        self._do_test('norphone')
+
+    def reg_test_nrl(self):
+        """Regression test nrl."""
+        self._do_test('nrl')
+
+    def reg_test_nysiis(self):
+        """Regression test nysiis."""
+        self._do_test('nysiis')
+
+    def reg_test_nysiis_modified(self):
+        """Regression test nysiis_modified."""
+        self._do_test('nysiis_modified')
+
+    def reg_test_nysiis_ml_inf(self):
+        """Regression test nysiis_ml_inf."""
+        self._do_test('nysiis_ml_inf')
+
+    def reg_test_onca(self):
+        """Regression test onca."""
+        self._do_test('onca')
+
+    def reg_test_onca_nopad_ml8(self):
+        """Regression test onca_nopad_ml8."""
+        self._do_test('onca_nopad_ml8')
+
+    def reg_test_parmar_kumbharana(self):
+        """Regression test parmar_kumbharana."""
+        self._do_test('parmar_kumbharana')
+
+    def reg_test_phonem(self):
+        """Regression test phonem."""
+        self._do_test('phonem')
+
+    def reg_test_phonet_1(self):
+        """Regression test phonet_1."""
+        self._do_test('phonet_1')
+
+    def reg_test_phonet_2(self):
+        """Regression test phonet_2."""
+        self._do_test('phonet_2')
+
+    def reg_test_phonet_1_none(self):
+        """Regression test phonet_1_none."""
+        self._do_test('phonet_1_none')
+
+    def reg_test_phonet_2_none(self):
+        """Regression test phonet_2_none."""
+        self._do_test('phonet_2_none')
+
+    def reg_test_phonetic_spanish(self):
+        """Regression test phonetic_spanish."""
+        self._do_test('phonetic_spanish')
+
+    def reg_test_phonetic_spanish_ml4(self):
+        """Regression test phonetic_spanish_ml4."""
+        self._do_test('phonetic_spanish_ml4')
+
+    def reg_test_phonex(self):
+        """Regression test phonex."""
+        self._do_test('phonex')
+
+    def reg_test_phonex_0pad_ml6(self):
+        """Regression test phonex_0pad_ml6."""
+        self._do_test('phonex_0pad_ml6')
+
+    def reg_test_phonic(self):
+        """Regression test phonic."""
+        self._do_test('phonic')
+
+    def reg_test_phonic_0pad_ml6(self):
+        """Regression test phonic_0pad_ml6."""
+        self._do_test('phonic_0pad_ml6')
+
+    def reg_test_phonic_ext(self):
+        """Regression test phonic_ext."""
+        self._do_test('phonic_ext')
+
+    def reg_test_phonix(self):
+        """Regression test phonix."""
+        self._do_test('phonix')
+
+    def reg_test_phonix_0pad_ml6(self):
+        """Regression test phonix_0pad_ml6."""
+        self._do_test('phonix_0pad_ml6')
+
+    def reg_test_pshp_soundex_first(self):
+        """Regression test pshp_soundex_first."""
+        self._do_test('pshp_soundex_first')
+
+    def reg_test_pshp_soundex_first_german(self):
+        """Regression test pshp_soundex_first_german."""
+        self._do_test('pshp_soundex_first_german')
+
+    def reg_test_pshp_soundex_first_ml8(self):
+        """Regression test pshp_soundex_first_ml8."""
+        self._do_test('pshp_soundex_first_ml8')
+
+    def reg_test_pshp_soundex_last(self):
+        """Regression test pshp_soundex_last."""
+        self._do_test('pshp_soundex_last')
+
+    def reg_test_pshp_soundex_last_german(self):
+        """Regression test pshp_soundex_last_german."""
+        self._do_test('pshp_soundex_last_german')
+
+    def reg_test_pshp_soundex_last_ml8(self):
+        """Regression test pshp_soundex_last_ml8."""
+        self._do_test('pshp_soundex_last_ml8')
+
+    def reg_test_refined_soundex(self):
+        """Regression test refined_soundex."""
+        self._do_test('refined_soundex')
+
+    def reg_test_refined_soundex_vowels(self):
+        """Regression test refined_soundex_vowels."""
+        self._do_test('refined_soundex_vowels')
+
+    def reg_test_refined_soundex_0pad_ml6(self):
+        """Regression test refined_soundex_0pad_ml6."""
+        self._do_test('refined_soundex_0pad_ml6')
+
+    def reg_test_reth_schek_phonetik(self):
+        """Regression test reth_schek_phonetik."""
+        self._do_test('reth_schek_phonetik')
+
+    def reg_test_roger_root(self):
+        """Regression test roger_root."""
+        self._do_test('roger_root')
+
+    def reg_test_roger_root_nopad_ml8(self):
+        """Regression test roger_root_nopad_ml8."""
+        self._do_test('roger_root_nopad_ml8')
+
+    def reg_test_russell_index(self):
+        """Regression test russell_index."""
+        self._do_test('russell_index')
+
+    def reg_test_russell_index_num_to_alpha(self):
+        """Regression test russell_index_num_to_alpha."""
+        self._do_test('russell_index_num_to_alpha')
+
+    def reg_test_russell_index_alpha(self):
+        """Regression test russell_index_alpha."""
+        self._do_test('russell_index_alpha')
+
+    def reg_test_sfinxbis(self):
+        """Regression test sfinxbis."""
+        self._do_test('sfinxbis')
+
+    def reg_test_sfinxbis_ml6(self):
+        """Regression test sfinxbis_ml6."""
+        self._do_test('sfinxbis_ml6')
+
+    def reg_test_sound_d(self):
+        """Regression test sound_d."""
+        self._do_test('sound_d')
+
+    def reg_test_sound_d_ml8(self):
+        """Regression test sound_d_ml8."""
+        self._do_test('sound_d_ml8')
+
+    def reg_test_soundex(self):
+        """Regression test soundex."""
+        self._do_test('soundex')
+
+    def reg_test_soundex_reverse(self):
+        """Regression test soundex_reverse."""
+        self._do_test('soundex_reverse')
+
+    def reg_test_soundex_0pad_ml6(self):
+        """Regression test soundex_0pad_ml6."""
+        self._do_test('soundex_0pad_ml6')
+
+    def reg_test_soundex_special(self):
+        """Regression test soundex_special."""
+        self._do_test('soundex_special')
+
+    def reg_test_soundex_census(self):
+        """Regression test soundex_census."""
+        self._do_test('soundex_census')
+
+    def reg_test_soundex_br(self):
+        """Regression test soundex_br."""
+        self._do_test('soundex_br')
+
+    def reg_test_spanish_metaphone(self):
+        """Regression test spanish_metaphone."""
+        self._do_test('spanish_metaphone')
+
+    def reg_test_spanish_metaphone_modified(self):
+        """Regression test spanish_metaphone_modified."""
+        self._do_test('spanish_metaphone_modified')
+
+    def reg_test_spanish_metaphone_ml4(self):
+        """Regression test spanish_metaphone_ml4."""
+        self._do_test('spanish_metaphone_ml4')
+
+    def reg_test_spfc(self):
+        """Regression test spfc."""
+        self._do_test('spfc')
+
+    def reg_test_statistics_canada(self):
+        """Regression test statistics_canada."""
+        self._do_test('statistics_canada')
+
+    def reg_test_statistics_canada_ml8(self):
+        """Regression test statistics_canada_ml8."""
+        self._do_test('statistics_canada_ml8')
+
+    def reg_test_waahlin(self):
+        """Regression test waahlin."""
+        self._do_test('waahlin')
+
+    def reg_test_waahlin_soundex(self):
+        """Regression test waahlin_soundex."""
+        self._do_test('waahlin_soundex')
 
 
 if __name__ == '__main__':
