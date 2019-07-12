@@ -196,7 +196,7 @@ algorithms = {
 class RegTestPhonetic(unittest.TestCase):
     """Perform phonetic algorithm regression tests."""
 
-    def reg_test_russell_index_phonetic(self):
+    def reg_test_russell_index(self):
         """Regression test russell_index."""
         with open(_corpus_file('russell_index.csv')) as transformed:
             transformed.readline()
@@ -205,7 +205,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
-    def reg_test_russell_index_num_to_alpha_phonetic(self):
+    def reg_test_russell_index_num_to_alpha(self):
         """Regression test russell_index_num_to_alpha."""
         with open(
             _corpus_file('russell_index_num_to_alpha.csv')
@@ -216,7 +216,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_russell_index_alpha_phonetic(self):
+    def reg_test_russell_index_alpha(self):
         """Regression test russell_index_alpha."""
         with open(_corpus_file('russell_index_alpha.csv')) as transformed:
             transformed.readline()
@@ -225,7 +225,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_soundex_phonetic(self):
+    def reg_test_soundex(self):
         """Regression test soundex."""
         with open(_corpus_file('soundex.csv')) as transformed:
             transformed.readline()
@@ -234,7 +234,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_soundex_reverse_phonetic(self):
+    def reg_test_soundex_reverse(self):
         """Regression test soundex_reverse."""
         with open(_corpus_file('soundex_reverse.csv')) as transformed:
             transformed.readline()
@@ -243,7 +243,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_soundex_0pad_ml6_phonetic(self):
+    def reg_test_soundex_0pad_ml6(self):
         """Regression test soundex_0pad_ml6."""
         with open(_corpus_file('soundex_0pad_ml6.csv')) as transformed:
             transformed.readline()
@@ -252,7 +252,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_soundex_special_phonetic(self):
+    def reg_test_soundex_special(self):
         """Regression test soundex_special."""
         with open(_corpus_file('soundex_special.csv')) as transformed:
             transformed.readline()
@@ -261,7 +261,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_soundex_census_phonetic(self):
+    def reg_test_soundex_census(self):
         """Regression test soundex_census."""
         with open(_corpus_file('soundex_census.csv')) as transformed:
             transformed.readline()
@@ -270,7 +270,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_refined_soundex_phonetic(self):
+    def reg_test_refined_soundex(self):
         """Regression test refined_soundex."""
         with open(_corpus_file('refined_soundex.csv')) as transformed:
             transformed.readline()
@@ -279,7 +279,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_refined_soundex_vowels_phonetic(self):
+    def reg_test_refined_soundex_vowels(self):
         """Regression test refined_soundex_vowels."""
         with open(_corpus_file('refined_soundex_vowels.csv')) as transformed:
             transformed.readline()
@@ -288,7 +288,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_refined_soundex_0pad_ml6_phonetic(self):
+    def reg_test_refined_soundex_0pad_ml6(self):
         """Regression test refined_soundex_0pad_ml6."""
         with open(_corpus_file('refined_soundex_0pad_ml6.csv')) as transformed:
             transformed.readline()
@@ -297,7 +297,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_dm_soundex_phonetic(self):
+    def reg_test_dm_soundex(self):
         """Regression test daitch_mokotoff_soundex."""
         with open(_corpus_file('daitch_mokotoff_soundex.csv')) as transformed:
             transformed.readline()
@@ -306,7 +306,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_koelner_phonetik_phonetic(self):
+    def reg_test_koelner_phonetik(self):
         """Regression test koelner_phonetik."""
         with open(_corpus_file('koelner_phonetik.csv')) as transformed:
             transformed.readline()
@@ -315,7 +315,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_koelner_phonetik_num_to_alpha_phonetic(self):
+    def reg_test_koelner_phonetik_num_to_alpha(self):
         """Regression test koelner_phonetik_num_to_alpha."""
         with open(
             _corpus_file('koelner_phonetik_num_to_alpha.csv')
@@ -326,7 +326,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_koelner_phonetik_alpha_phonetic(self):
+    def reg_test_koelner_phonetik_alpha(self):
         """Regression test koelner_phonetik_alpha."""
         with open(_corpus_file('koelner_phonetik_alpha.csv')) as transformed:
             transformed.readline()
@@ -335,7 +335,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_nysiis_phonetic(self):
+    def reg_test_nysiis(self):
         """Regression test nysiis."""
         with open(_corpus_file('nysiis.csv')) as transformed:
             transformed.readline()
@@ -344,7 +344,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_nysiis_modified_phonetic(self):
+    def reg_test_nysiis_modified(self):
         """Regression test nysiis_modified."""
         with open(_corpus_file('nysiis_modified.csv')) as transformed:
             transformed.readline()
@@ -353,7 +353,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_nysiis_ml_inf_phonetic(self):
+    def reg_test_nysiis_ml_inf(self):
         """Regression test nysiis_ml_inf."""
         with open(_corpus_file('nysiis_ml_inf.csv')) as transformed:
             transformed.readline()
@@ -362,7 +362,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_mra_phonetic(self):
+    def reg_test_mra(self):
         """Regression test mra."""
         with open(_corpus_file('mra.csv')) as transformed:
             transformed.readline()
@@ -371,7 +371,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_metaphone_phonetic(self):
+    def reg_test_metaphone(self):
         """Regression test metaphone."""
         with open(_corpus_file('metaphone.csv')) as transformed:
             transformed.readline()
@@ -380,7 +380,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_double_metaphone_phonetic(self):
+    def reg_test_double_metaphone(self):
         """Regression test double_metaphone."""
         with open(_corpus_file('double_metaphone.csv')) as transformed:
             transformed.readline()
@@ -389,7 +389,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_caverphone_1_phonetic(self):
+    def reg_test_caverphone_1(self):
         """Regression test caverphone_1."""
         with open(_corpus_file('caverphone_1.csv')) as transformed:
             transformed.readline()
@@ -398,7 +398,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_caverphone_2_phonetic(self):
+    def reg_test_caverphone_2(self):
         """Regression test caverphone_2."""
         with open(_corpus_file('caverphone_2.csv')) as transformed:
             transformed.readline()
@@ -407,7 +407,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_alpha_sis_phonetic(self):
+    def reg_test_alpha_sis(self):
         """Regression test alpha_sis."""
         with open(_corpus_file('alpha_sis.csv')) as transformed:
             transformed.readline()
@@ -416,7 +416,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_fuzzy_soundex_phonetic(self):
+    def reg_test_fuzzy_soundex(self):
         """Regression test fuzzy_soundex."""
         with open(_corpus_file('fuzzy_soundex.csv')) as transformed:
             transformed.readline()
@@ -425,7 +425,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_fuzzy_soundex_0pad_ml8_phonetic(self):
+    def reg_test_fuzzy_soundex_0pad_ml8(self):
         """Regression test fuzzy_soundex_0pad_ml8."""
         with open(_corpus_file('fuzzy_soundex_0pad_ml8.csv')) as transformed:
             transformed.readline()
@@ -434,7 +434,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_phonex_phonetic(self):
+    def reg_test_phonex(self):
         """Regression test phonex."""
         with open(_corpus_file('phonex.csv')) as transformed:
             transformed.readline()
@@ -443,7 +443,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_phonex_0pad_ml6_phonetic(self):
+    def reg_test_phonex_0pad_ml6(self):
         """Regression test phonex_0pad_ml6."""
         with open(_corpus_file('phonex_0pad_ml6.csv')) as transformed:
             transformed.readline()
@@ -452,7 +452,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_phonem_phonetic(self):
+    def reg_test_phonem(self):
         """Regression test phonem."""
         with codecs.open(
             _corpus_file('phonem.csv'), encoding='UTF-8'
@@ -463,7 +463,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_phonix_phonetic(self):
+    def reg_test_phonix(self):
         """Regression test phonix."""
         with open(_corpus_file('phonix.csv')) as transformed:
             transformed.readline()
@@ -472,7 +472,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_phonix_0pad_ml6_phonetic(self):
+    def reg_test_phonix_0pad_ml6(self):
         """Regression test phonix_0pad_ml6."""
         with open(_corpus_file('phonix_0pad_ml6.csv')) as transformed:
             transformed.readline()
@@ -481,7 +481,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_sfinxbis_phonetic(self):
+    def reg_test_sfinxbis(self):
         """Regression test sfinxbis."""
         with open(_corpus_file('sfinxbis.csv')) as transformed:
             transformed.readline()
@@ -490,7 +490,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_sfinxbis_ml6_phonetic(self):
+    def reg_test_sfinxbis_ml6(self):
         """Regression test sfinxbis_ml6."""
         with open(_corpus_file('sfinxbis_ml6.csv')) as transformed:
             transformed.readline()
@@ -499,7 +499,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_phonet_1_phonetic(self):
+    def reg_test_phonet_1(self):
         """Regression test phonet_1."""
         with codecs.open(
             _corpus_file('phonet_1.csv'), encoding='UTF-8'
@@ -510,7 +510,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_phonet_2_phonetic(self):
+    def reg_test_phonet_2(self):
         """Regression test phonet_2."""
         with codecs.open(
             _corpus_file('phonet_2.csv'), encoding='UTF-8'
@@ -521,7 +521,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_phonet_1_none_phonetic(self):
+    def reg_test_phonet_1_none(self):
         """Regression test phonet_1_none."""
         with open(_corpus_file('phonet_1_none.csv')) as transformed:
             transformed.readline()
@@ -530,7 +530,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_phonet_2_none_phonetic(self):
+    def reg_test_phonet_2_none(self):
         """Regression test phonet_2_none."""
         with open(_corpus_file('phonet_2_none.csv')) as transformed:
             transformed.readline()
@@ -539,7 +539,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_spfc_phonetic(self):
+    def reg_test_spfc(self):
         """Regression test spfc."""
         with open(_corpus_file('spfc.csv')) as transformed:
             transformed.readline()
@@ -548,7 +548,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_statistics_canada_phonetic(self):
+    def reg_test_statistics_canada(self):
         """Regression test statistics_canada."""
         with open(_corpus_file('statistics_canada.csv')) as transformed:
             transformed.readline()
@@ -557,7 +557,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_statistics_canada_ml8_phonetic(self):
+    def reg_test_statistics_canada_ml8(self):
         """Regression test statistics_canada_ml8."""
         with open(_corpus_file('statistics_canada_ml8.csv')) as transformed:
             transformed.readline()
@@ -566,7 +566,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_lein_phonetic(self):
+    def reg_test_lein(self):
         """Regression test lein."""
         with open(_corpus_file('lein.csv')) as transformed:
             transformed.readline()
@@ -575,7 +575,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_lein_nopad_ml8_phonetic(self):
+    def reg_test_lein_nopad_ml8(self):
         """Regression test lein_nopad_ml8."""
         with open(_corpus_file('lein_nopad_ml8.csv')) as transformed:
             transformed.readline()
@@ -584,7 +584,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_roger_root_phonetic(self):
+    def reg_test_roger_root(self):
         """Regression test roger_root."""
         with open(_corpus_file('roger_root.csv')) as transformed:
             transformed.readline()
@@ -593,7 +593,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_roger_root_nopad_ml8_phonetic(self):
+    def reg_test_roger_root_nopad_ml8(self):
         """Regression test roger_root_nopad_ml8."""
         with open(_corpus_file('roger_root_nopad_ml8.csv')) as transformed:
             transformed.readline()
@@ -602,7 +602,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_onca_phonetic(self):
+    def reg_test_onca(self):
         """Regression test onca."""
         with open(_corpus_file('onca.csv')) as transformed:
             transformed.readline()
@@ -611,7 +611,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_onca_nopad_ml8_phonetic(self):
+    def reg_test_onca_nopad_ml8(self):
         """Regression test onca_nopad_ml8."""
         with open(_corpus_file('onca_nopad_ml8.csv')) as transformed:
             transformed.readline()
@@ -620,7 +620,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_eudex_phonetic(self):
+    def reg_test_eudex(self):
         """Regression test eudex."""
         with open(_corpus_file('eudex.csv')) as transformed:
             transformed.readline()
@@ -629,7 +629,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
-    def reg_test_haase_phonetik_phonetic(self):
+    def reg_test_haase_phonetik(self):
         """Regression test haase_phonetik."""
         with open(_corpus_file('haase_phonetik.csv')) as transformed:
             transformed.readline()
@@ -638,7 +638,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_haase_phonetik_primary_phonetic(self):
+    def reg_test_haase_phonetik_primary(self):
         """Regression test haase_phonetik_primary."""
         with open(_corpus_file('haase_phonetik_primary.csv')) as transformed:
             transformed.readline()
@@ -647,7 +647,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_reth_schek_phonetik_phonetic(self):
+    def reg_test_reth_schek_phonetik(self):
         """Regression test reth_schek_phonetik."""
         with open(_corpus_file('reth_schek_phonetik.csv')) as transformed:
             transformed.readline()
@@ -656,7 +656,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_fonem_phonetic(self):
+    def reg_test_fonem(self):
         """Regression test fonem."""
         with open(_corpus_file('fonem.csv')) as transformed:
             transformed.readline()
@@ -665,7 +665,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_parmar_kumbharana_phonetic(self):
+    def reg_test_parmar_kumbharana(self):
         """Regression test parmar_kumbharana."""
         with open(_corpus_file('parmar_kumbharana.csv')) as transformed:
             transformed.readline()
@@ -674,7 +674,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_davidson_phonetic(self):
+    def reg_test_davidson(self):
         """Regression test davidson."""
         with open(_corpus_file('davidson.csv')) as transformed:
             transformed.readline()
@@ -683,7 +683,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_sound_d_phonetic(self):
+    def reg_test_sound_d(self):
         """Regression test sound_d."""
         with open(_corpus_file('sound_d.csv')) as transformed:
             transformed.readline()
@@ -692,7 +692,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_sound_d_ml8_phonetic(self):
+    def reg_test_sound_d_ml8(self):
         """Regression test sound_d_ml8."""
         with open(_corpus_file('sound_d_ml8.csv')) as transformed:
             transformed.readline()
@@ -701,7 +701,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_pshp_soundex_last_phonetic(self):
+    def reg_test_pshp_soundex_last(self):
         """Regression test pshp_soundex_last."""
         with open(_corpus_file('pshp_soundex_last.csv')) as transformed:
             transformed.readline()
@@ -710,7 +710,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_pshp_soundex_last_german_phonetic(self):
+    def reg_test_pshp_soundex_last_german(self):
         """Regression test pshp_soundex_last_german."""
         with open(_corpus_file('pshp_soundex_last_german.csv')) as transformed:
             transformed.readline()
@@ -719,7 +719,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_pshp_soundex_last_ml8_phonetic(self):
+    def reg_test_pshp_soundex_last_ml8(self):
         """Regression test pshp_soundex_last_ml8."""
         with open(_corpus_file('pshp_soundex_last_ml8.csv')) as transformed:
             transformed.readline()
@@ -728,7 +728,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_pshp_soundex_first_phonetic(self):
+    def reg_test_pshp_soundex_first(self):
         """Regression test pshp_soundex_first."""
         with open(_corpus_file('pshp_soundex_first.csv')) as transformed:
             transformed.readline()
@@ -737,7 +737,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_pshp_soundex_first_german_phonetic(self):
+    def reg_test_pshp_soundex_first_german(self):
         """Regression test pshp_soundex_first_german."""
         with open(
             _corpus_file('pshp_soundex_first_german.csv')
@@ -748,7 +748,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_pshp_soundex_first_ml8_phonetic(self):
+    def reg_test_pshp_soundex_first_ml8(self):
         """Regression test pshp_soundex_first_ml8."""
         with open(_corpus_file('pshp_soundex_first_ml8.csv')) as transformed:
             transformed.readline()
@@ -757,7 +757,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_henry_early_phonetic(self):
+    def reg_test_henry_early(self):
         """Regression test henry_early."""
         with open(_corpus_file('henry_early.csv')) as transformed:
             transformed.readline()
@@ -766,7 +766,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_henry_early_ml8_phonetic(self):
+    def reg_test_henry_early_ml8(self):
         """Regression test henry_early_ml8."""
         with open(_corpus_file('henry_early_ml8.csv')) as transformed:
             transformed.readline()
@@ -775,7 +775,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_norphone_phonetic(self):
+    def reg_test_norphone(self):
         """Regression test norphone."""
         with codecs.open(
             _corpus_file('norphone.csv'), encoding='UTF-8'
@@ -786,7 +786,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_dolby_phonetic(self):
+    def reg_test_dolby(self):
         """Regression test dolby."""
         with open(_corpus_file('dolby.csv')) as transformed:
             transformed.readline()
@@ -795,7 +795,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_dolby_ml4_phonetic(self):
+    def reg_test_dolby_ml4(self):
         """Regression test dolby_ml4."""
         with open(_corpus_file('dolby_ml4.csv')) as transformed:
             transformed.readline()
@@ -804,7 +804,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_dolby_vowels_phonetic(self):
+    def reg_test_dolby_vowels(self):
         """Regression test dolby_vowels."""
         with open(_corpus_file('dolby_vowels.csv')) as transformed:
             transformed.readline()
@@ -813,7 +813,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_phonetic_spanish_phonetic(self):
+    def reg_test_phonetic_spanish(self):
         """Regression test phonetic_spanish."""
         with open(_corpus_file('phonetic_spanish.csv')) as transformed:
             transformed.readline()
@@ -822,7 +822,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_phonetic_spanish_ml4_phonetic(self):
+    def reg_test_phonetic_spanish_ml4(self):
         """Regression test phonetic_spanish_ml4."""
         with open(_corpus_file('phonetic_spanish_ml4.csv')) as transformed:
             transformed.readline()
@@ -831,7 +831,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_spanish_metaphone_phonetic(self):
+    def reg_test_spanish_metaphone(self):
         """Regression test spanish_metaphone."""
         with open(_corpus_file('spanish_metaphone.csv')) as transformed:
             transformed.readline()
@@ -840,7 +840,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_spanish_metaphone_modified_phonetic(self):
+    def reg_test_spanish_metaphone_modified(self):
         """Regression test spanish_metaphone_modified."""
         with open(
             _corpus_file('spanish_metaphone_modified.csv')
@@ -851,7 +851,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_spanish_metaphone_ml4_phonetic(self):
+    def reg_test_spanish_metaphone_ml4(self):
         """Regression test spanish_metaphone_ml4."""
         with open(_corpus_file('spanish_metaphone_ml4.csv')) as transformed:
             transformed.readline()
@@ -860,7 +860,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_metasoundex_phonetic(self):
+    def reg_test_metasoundex(self):
         """Regression test metasoundex."""
         with open(_corpus_file('metasoundex.csv')) as transformed:
             transformed.readline()
@@ -869,7 +869,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_metasoundex_es_phonetic(self):
+    def reg_test_metasoundex_es(self):
         """Regression test metasoundex_es."""
         with open(_corpus_file('metasoundex_es.csv')) as transformed:
             transformed.readline()
@@ -878,7 +878,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_soundex_br_phonetic(self):
+    def reg_test_soundex_br(self):
         """Regression test soundex_br."""
         with open(_corpus_file('soundex_br.csv')) as transformed:
             transformed.readline()
@@ -887,7 +887,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_nrl_phonetic(self):
+    def reg_test_nrl(self):
         """Regression test nrl."""
         with open(_corpus_file('nrl.csv')) as transformed:
             transformed.readline()
@@ -896,7 +896,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_bmpm_phonetic(self):
+    def reg_test_bmpm(self):
         """Regression test bmpm."""
         with open(_corpus_file('bmpm.csv')) as transformed:
             transformed.readline()
@@ -905,7 +905,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_bmpm_german_phonetic(self):
+    def reg_test_bmpm_german(self):
         """Regression test bmpm_german."""
         with open(_corpus_file('bmpm_german.csv')) as transformed:
             transformed.readline()
@@ -914,7 +914,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_bmpm_french_phonetic(self):
+    def reg_test_bmpm_french(self):
         """Regression test bmpm_french."""
         with open(_corpus_file('bmpm_french.csv')) as transformed:
             transformed.readline()
@@ -923,7 +923,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_bmpm_gen_exact_phonetic(self):
+    def reg_test_bmpm_gen_exact(self):
         """Regression test bmpm_gen_exact."""
         with open(_corpus_file('bmpm_gen_exact.csv')) as transformed:
             transformed.readline()
@@ -932,7 +932,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_bmpm_ash_approx_phonetic(self):
+    def reg_test_bmpm_ash_approx(self):
         """Regression test bmpm_ash_approx."""
         with open(_corpus_file('bmpm_ash_approx.csv')) as transformed:
             transformed.readline()
@@ -941,7 +941,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_bmpm_ash_exact_phonetic(self):
+    def reg_test_bmpm_ash_exact(self):
         """Regression test bmpm_ash_exact."""
         with open(_corpus_file('bmpm_ash_exact.csv')) as transformed:
             transformed.readline()
@@ -950,7 +950,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_bmpm_sep_approx_phonetic(self):
+    def reg_test_bmpm_sep_approx(self):
         """Regression test bmpm_sep_approx."""
         with open(_corpus_file('bmpm_sep_approx.csv')) as transformed:
             transformed.readline()
@@ -959,7 +959,7 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_bmpm_sep_exact_phonetic(self):
+    def reg_test_bmpm_sep_exact(self):
         """Regression test bmpm_sep_exact."""
         with open(_corpus_file('bmpm_sep_exact.csv')) as transformed:
             transformed.readline()

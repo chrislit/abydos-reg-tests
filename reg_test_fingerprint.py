@@ -82,14 +82,14 @@ algorithms = {
     'qgram_ssj': QGram(start_stop='$#', joiner=' ').fingerprint,
     'skeleton_key': SkeletonKey().fingerprint,
     'string': String().fingerprint,
-    'synoname_toolcode': lambda _: synoname.fingerprint(_),
+    'synoname_toolcode': synoname.fingerprint,
     'synoname_toolcode_2name': lambda _: synoname.fingerprint(_, _),
 }
 
 class RegTestFingerprint(unittest.TestCase):
     """Perform fingerprint regression tests."""
 
-    def reg_test_string_phonetic(self):
+    def reg_test_string(self):
         """Regression test string."""
         with open(_corpus_file('string.csv')) as transformed:
             transformed.readline()
@@ -98,7 +98,7 @@ class RegTestFingerprint(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_qgram_phonetic(self):
+    def reg_test_qgram(self):
         """Regression test qgram."""
         with open(_corpus_file('qgram.csv')) as transformed:
             transformed.readline()
@@ -107,7 +107,7 @@ class RegTestFingerprint(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_qgram_q3_phonetic(self):
+    def reg_test_qgram_q3(self):
         """Regression test qgram_q3."""
         with open(_corpus_file('qgram_q3.csv')) as transformed:
             transformed.readline()
@@ -116,7 +116,7 @@ class RegTestFingerprint(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_qgram_ssj_phonetic(self):
+    def reg_test_qgram_ssj(self):
         """Regression test qgram_ssj."""
         with open(_corpus_file('qgram_ssj.csv')) as transformed:
             transformed.readline()
@@ -125,7 +125,7 @@ class RegTestFingerprint(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_phonetic_phonetic(self):
+    def reg_test_phonetic(self):
         """Regression test phonetic."""
         with open(_corpus_file('phonetic.csv')) as transformed:
             transformed.readline()
@@ -134,7 +134,7 @@ class RegTestFingerprint(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_skeleton_key_phonetic(self):
+    def reg_test_skeleton_key(self):
         """Regression test skeleton_key."""
         with open(_corpus_file('skeleton_key.csv')) as transformed:
             transformed.readline()
@@ -143,7 +143,7 @@ class RegTestFingerprint(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_omission_key_phonetic(self):
+    def reg_test_omission_key(self):
         """Regression test omission_key."""
         with open(_corpus_file('omission_key.csv')) as transformed:
             transformed.readline()
@@ -152,7 +152,7 @@ class RegTestFingerprint(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_occurrence_phonetic(self):
+    def reg_test_occurrence(self):
         """Regression test occurrence."""
         with open(_corpus_file('occurrence.csv')) as transformed:
             transformed.readline()
@@ -161,7 +161,7 @@ class RegTestFingerprint(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
-    def reg_test_occurrence_halved_phonetic(self):
+    def reg_test_occurrence_halved(self):
         """Regression test occurrence_halved."""
         with open(
             _corpus_file('occurrence_halved.csv')
@@ -172,7 +172,7 @@ class RegTestFingerprint(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
-    def reg_test_count_phonetic(self):
+    def reg_test_count(self):
         """Regression test count."""
         with open(_corpus_file('count.csv')) as transformed:
             transformed.readline()
@@ -181,7 +181,7 @@ class RegTestFingerprint(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
-    def reg_test_position_phonetic(self):
+    def reg_test_position(self):
         """Regression test position."""
         with open(_corpus_file('position.csv')) as transformed:
             transformed.readline()
@@ -190,7 +190,7 @@ class RegTestFingerprint(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
-    def reg_test_synoname_toolcode_phonetic(self):
+    def reg_test_synoname_toolcode(self):
         """Regression test synoname_toolcode."""
         with open(_corpus_file('synoname_toolcode.csv')) as transformed:
             transformed.readline()
@@ -199,7 +199,7 @@ class RegTestFingerprint(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], ', '.join(algo(ORIGINALS[i])))
 
-    def reg_test_synoname_toolcode_2name_phonetic(self):
+    def reg_test_synoname_toolcode_2name(self):
         """Regression test synoname_toolcode_2name."""
         with open(_corpus_file('synoname_toolcode_2name.csv')) as transformed:
             transformed.readline()
