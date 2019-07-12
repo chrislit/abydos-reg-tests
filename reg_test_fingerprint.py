@@ -82,54 +82,54 @@ algorithms = {
     'qgram_ssj': QGram(start_stop='$#', joiner=' ').fingerprint,
     'skeleton_key': SkeletonKey().fingerprint,
     'string': String().fingerprint,
-    'synoname_toolcode': lambda _: ', '.join(synoname.fingerprint(_)),
-    'synoname_toolcode_2name': lambda _: ', '.join(synoname.fingerprint(_, _)),
+    'synoname_toolcode': lambda _: synoname.fingerprint(_),
+    'synoname_toolcode_2name': lambda _: synoname.fingerprint(_, _),
 }
 
 class RegTestFingerprint(unittest.TestCase):
     """Perform fingerprint regression tests."""
 
-    def reg_test_str_fingerprint_phonetic(self):
-        """Regression test str_fingerprint."""
-        with open(_corpus_file('str_fingerprint.csv')) as transformed:
+    def reg_test_string_phonetic(self):
+        """Regression test string."""
+        with open(_corpus_file('string.csv')) as transformed:
             transformed.readline()
-            algo = algorithms['str_fingerprint']
+            algo = algorithms['string']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_qgram_fingerprint_phonetic(self):
-        """Regression test qgram_fingerprint."""
-        with open(_corpus_file('qgram_fingerprint.csv')) as transformed:
+    def reg_test_qgram_phonetic(self):
+        """Regression test qgram."""
+        with open(_corpus_file('qgram.csv')) as transformed:
             transformed.readline()
-            algo = algorithms['qgram_fingerprint']
+            algo = algorithms['qgram']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_qgram_fingerprint_3_phonetic(self):
-        """Regression test qgram_fingerprint_3."""
-        with open(_corpus_file('qgram_fingerprint_3.csv')) as transformed:
+    def reg_test_qgram_q3_phonetic(self):
+        """Regression test qgram_q3."""
+        with open(_corpus_file('qgram_q3.csv')) as transformed:
             transformed.readline()
-            algo = algorithms['qgram_fingerprint_3']
+            algo = algorithms['qgram_q3']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_qgram_fingerprint_ssj_phonetic(self):
-        """Regression test qgram_fingerprint_ssj."""
-        with open(_corpus_file('qgram_fingerprint_ssj.csv')) as transformed:
+    def reg_test_qgram_ssj_phonetic(self):
+        """Regression test qgram_ssj."""
+        with open(_corpus_file('qgram_ssj.csv')) as transformed:
             transformed.readline()
-            algo = algorithms['qgram_fingerprint_ssj']
+            algo = algorithms['qgram_ssj']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_phonetic_fingerprint_phonetic(self):
-        """Regression test phonetic_fingerprint."""
-        with open(_corpus_file('phonetic_fingerprint.csv')) as transformed:
+    def reg_test_phonetic_phonetic(self):
+        """Regression test phonetic."""
+        with open(_corpus_file('phonetic.csv')) as transformed:
             transformed.readline()
-            algo = algorithms['phonetic_fingerprint']
+            algo = algorithms['phonetic']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
@@ -152,40 +152,40 @@ class RegTestFingerprint(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_occurrence_fingerprint_phonetic(self):
-        """Regression test occurrence_fingerprint."""
-        with open(_corpus_file('occurrence_fingerprint.csv')) as transformed:
+    def reg_test_occurrence_phonetic(self):
+        """Regression test occurrence."""
+        with open(_corpus_file('occurrence.csv')) as transformed:
             transformed.readline()
-            algo = algorithms['occurrence_fingerprint']
+            algo = algorithms['occurrence']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
-    def reg_test_occurrence_halved_fingerprint_phonetic(self):
-        """Regression test occurrence_halved_fingerprint."""
+    def reg_test_occurrence_halved_phonetic(self):
+        """Regression test occurrence_halved."""
         with open(
-            _corpus_file('occurrence_halved_fingerprint.csv')
+            _corpus_file('occurrence_halved.csv')
         ) as transformed:
             transformed.readline()
-            algo = algorithms['occurrence_halved_fingerprint']
+            algo = algorithms['occurrence_halved']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
-    def reg_test_count_fingerprint_phonetic(self):
-        """Regression test count_fingerprint."""
-        with open(_corpus_file('count_fingerprint.csv')) as transformed:
+    def reg_test_count_phonetic(self):
+        """Regression test count."""
+        with open(_corpus_file('count.csv')) as transformed:
             transformed.readline()
-            algo = algorithms['count_fingerprint']
+            algo = algorithms['count']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
 
-    def reg_test_position_fingerprint_phonetic(self):
-        """Regression test position_fingerprint."""
-        with open(_corpus_file('position_fingerprint.csv')) as transformed:
+    def reg_test_position_phonetic(self):
+        """Regression test position."""
+        with open(_corpus_file('position.csv')) as transformed:
             transformed.readline()
-            algo = algorithms['position_fingerprint']
+            algo = algorithms['position']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))

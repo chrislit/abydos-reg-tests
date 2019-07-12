@@ -234,11 +234,11 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
-    def reg_test_reverse_soundex_phonetic(self):
-        """Regression test reverse_soundex."""
-        with open(_corpus_file('reverse_soundex.csv')) as transformed:
+    def reg_test_soundex_reverse_phonetic(self):
+        """Regression test soundex_reverse."""
+        with open(_corpus_file('soundex_reverse.csv')) as transformed:
             transformed.readline()
-            algo = algorithms['reverse_soundex']
+            algo = algorithms['soundex_reverse']
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
                     self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
