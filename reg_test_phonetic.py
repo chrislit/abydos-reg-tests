@@ -31,8 +31,6 @@ from __future__ import (
 import codecs
 import unittest
 
-from six import text_type
-
 from abydos.phonetic import (
     Ainsworth,
     AlphaSIS,
@@ -56,6 +54,7 @@ from abydos.phonetic import (
     NYSIIS,
     Norphone,
     ONCA,
+    PHONIC,
     PSHPSoundexFirst,
     PSHPSoundexLast,
     ParmarKumbharana,
@@ -63,7 +62,6 @@ from abydos.phonetic import (
     Phonet,
     PhoneticSpanish,
     Phonex,
-    PHONIC,
     Phonix,
     RefinedSoundex,
     RethSchek,
@@ -78,6 +76,8 @@ from abydos.phonetic import (
     StatisticsCanada,
     Waahlin,
 )
+
+from six import text_type
 
 from . import ORIGINALS, _corpus_file, _one_in
 
