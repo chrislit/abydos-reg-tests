@@ -310,9 +310,9 @@ from abydos.distance import (
     YuleY,
 )
 
-from abydos.distance import QGram as QGram_d
 from abydos.distance import Eudex as Eudex_d
 from abydos.distance import MRA as MRA_d
+from abydos.distance import QGram as QGram_d
 
 from abydos.fingerprint import (
     BWTF,
@@ -397,7 +397,6 @@ def _run_script():
     synoname = SynonameToolcode()
 
     algorithms = {
-        """
         'ainsworth': Ainsworth().encode,
         'alpha_sis': lambda _: ', '.join(alpha_sis.encode(_)),
         'bmpm': BeiderMorse().encode,
@@ -532,7 +531,9 @@ def _run_script():
         'synoname_toolcode_2name': lambda _: ', '.join(
             synoname.fingerprint(_, _)
         ),
-        """
+    }
+
+    dist_algorithms = {
         'aline_sim_score': ALINE().sim_score,
         'aline_sim': ALINE().sim,
         'ample_sim': AMPLE().sim,
@@ -888,6 +889,7 @@ def _run_script():
 
     with open(os.path.join(corpora_dir, 'timings.csv'), 'w') as timings:
         timings.write('algorithm_name,time\n')
+
         for algo in algorithms:
             start = time()
             sys.stdout.write(algo)
@@ -896,6 +898,23 @@ def _run_script():
                 output.write(algo + '\n')
                 for name in names:
                     output.write(str(algorithms[algo](name)) + '\n')
+                dur = '{:0.2f}'.format(time() - start)
+                timings.write(algo + ',' + dur + '\n')
+                sys.stdout.write(
+                    ' ' * (38 - len(algo) - len(dur)) + dur + '\n'
+                )
+
+        for algo in dist_algorithms:
+            start = time()
+            sys.stdout.write(algo)
+            sys.stdout.flush()
+            with open(os.path.join(corpora_dir, algo + '.csv'), 'w') as output:
+                output.write(algo + '\n')
+                for i in range(len(names) - 1):
+                    output.write(
+                        str(dist_algorithms[algo](names[i], names[i + 1]))
+                        + '\n'
+                    )
                 dur = '{:0.2f}'.format(time() - start)
                 timings.write(algo + ',' + dur + '\n')
                 sys.stdout.write(

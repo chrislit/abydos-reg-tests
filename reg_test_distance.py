@@ -291,9 +291,9 @@ from abydos.distance import (
     YuleY,
 )
 
-from abydos.distance import QGram as QGram_d
 from abydos.distance import Eudex as Eudex_d
 from abydos.distance import MRA as MRA_d
+from abydos.distance import QGram as QGram_d
 
 from . import ORIGINALS, _corpus_file, _one_in
 
@@ -380,8 +380,8 @@ algorithms = {
     'editex_dist': Editex().dist,
     'euclidean_dist_abs': Euclidean().dist_abs,
     'euclidean_dist': Euclidean().dist,
-    'eudex_dist_abs': Eudex().dist_abs,
-    'eudex_dist': Eudex().dist,
+    'eudex_dist_abs': Eudex_d().dist_abs,
+    'eudex_dist': Eudex_d().dist,
     'eyraud_sim_score': Eyraud().sim_score,
     'eyraud_sim': Eyraud().sim,
     'fagermcgowan_sim_score': FagerMcGowan().sim_score,
@@ -484,8 +484,8 @@ algorithms = {
     'lorentzian_dist': Lorentzian().dist,
     'masi_sim': MASI().sim,
     'mlipns_sim': MLIPNS().sim,
-    'mra_dist_abs': MRA().dist_abs,
-    'mra_sim': MRA().sim,
+    'mra_dist_abs': MRA_d().dist_abs,
+    'mra_sim': MRA_d().sim,
     'mscontingency_sim': MSContingency().sim,
     'maarel_sim': Maarel().sim,
     'manhattan_dist_abs': Manhattan().dist_abs,
@@ -537,8 +537,8 @@ algorithms = {
     'positionalqgramjaccard_sim': PositionalQGramJaccard().sim,
     'positionalqgramoverlap_sim': PositionalQGramOverlap().sim,
     'prefix_sim': Prefix().sim,
-    'qgram_dist_abs': QGram().dist_abs,
-    'qgram_dist': QGram().dist,
+    'qgram_dist_abs': QGram_d().dist_abs,
+    'qgram_dist': QGram_d().dist,
     'quantitativecosine_sim': QuantitativeCosine().sim,
     'quantitativedice_sim': QuantitativeDice().sim,
     'quantitativejaccard_sim': QuantitativeJaccard().sim,
@@ -649,9 +649,11 @@ class RegTestDistance(unittest.TestCase):
         with open(_corpus_file(algo_name + '.csv')) as transformed:
             transformed.readline()
             algo = algorithms[algo_name]
-            for i, trans in enumerate(transformed):
+            for i, trans in enumerate(transformed)[:-1]:
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
+                    self.assertEqual(
+                        trans[:-1], str(algo(ORIGINALS[i], ORIGINALS[i + 1]))
+                    )
 
     def reg_test_aline_sim_score(self):
         """Regression test aline_sim_score."""
