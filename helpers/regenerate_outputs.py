@@ -45,7 +45,9 @@ from __future__ import (
     unicode_literals,
 )
 
+import bz2
 import os
+import struct
 import sys
 from time import time
 
@@ -890,6 +892,7 @@ def _run_script():
     with open(os.path.join(corpora_dir, 'timings.csv'), 'w') as timings:
         timings.write('algorithm_name,time\n')
 
+        """
         for algo in algorithms:
             start = time()
             sys.stdout.write(algo)
@@ -903,23 +906,30 @@ def _run_script():
                 sys.stdout.write(
                     ' ' * (38 - len(algo) - len(dur)) + dur + '\n'
                 )
+        """
 
         for algo in dist_algorithms:
             start = time()
             sys.stdout.write(algo)
             sys.stdout.flush()
-            with open(os.path.join(corpora_dir, algo + '.csv'), 'w') as output:
-                output.write(algo + '\n')
+            with bz2.open(
+                os.path.join(corpora_dir, algo + '.dat.bz2'), 'wb', compresslevel=9
+            ) as output:
                 for i in range(len(names) - 1):
                     output.write(
-                        str(dist_algorithms[algo](names[i], names[i + 1]))
-                        + '\n'
+                        bytearray(
+                            struct.pack(
+                                '<f',
+                                dist_algorithms[algo](names[i], names[i + 1]),
+                            )
+                        )
                     )
                 dur = '{:0.2f}'.format(time() - start)
                 timings.write(algo + ',' + dur + '\n')
                 sys.stdout.write(
                     ' ' * (38 - len(algo) - len(dur)) + dur + '\n'
                 )
+            break
 
     sys.stdout.write('Total:\t{:0.2f}\n'.format(time() - overall_start))
 
