@@ -929,7 +929,6 @@ def _run_script():
                 sys.stdout.write(
                     ' ' * (38 - len(algo) - len(dur)) + dur + '\n'
                 )
-            break
 
     sys.stdout.write('Total:\t{:0.2f}\n'.format(time() - overall_start))
 
