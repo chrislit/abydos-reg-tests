@@ -653,14 +653,11 @@ class RegTestDistance(unittest.TestCase):
             data = file.read()
             for i in range(0, len(data)//4):
                 if _one_in(1000):
-                    try:
-                        val = struct.unpack('<f', data[i*4 : i*4 + 4])[0]
-                        self.assertAlmostEqual(
-                            val,
-                            algo(ORIGINALS[i], ORIGINALS[i + 1]),
-                        )
-                    except AssertionError:
-                        print(i, ORIGINALS[i], ORIGINALS[i + 1], val)
+                    val = struct.unpack('<f', data[i*4 : i*4 + 4])[0]
+                    self.assertAlmostEqual(
+                        val,
+                        algo(ORIGINALS[i], ORIGINALS[i + 1]),
+                    )
 
     def reg_test_aline_sim_score(self):
         """Regression test aline_sim_score."""
