@@ -651,12 +651,11 @@ class RegTestDistance(unittest.TestCase):
         with bz2.open(_corpus_file(algo_name + '.dat.bz2'), 'rb') as file:
             algo = algorithms[algo_name]
             data = file.read()
-            for i in range(0, len(data)//4):
+            for i in range(0, len(data) // 4):
                 if _one_in(1000):
-                    val = struct.unpack('<f', data[i*4 : i*4 + 4])[0]
+                    val = struct.unpack('<f', data[i * 4 : i * 4 + 4])[0]
                     self.assertAlmostEqual(
-                        val,
-                        algo(ORIGINALS[i], ORIGINALS[i + 1]),
+                        val, algo(ORIGINALS[i], ORIGINALS[i + 1])
                     )
 
     def reg_test_aline_sim_score(self):
