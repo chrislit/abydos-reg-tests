@@ -1781,6 +1781,14 @@ class RegTestDistance(unittest.TestCase):
         """Regression test sorgenfrei_sim."""
         self._do_test('sorgenfrei_sim')
 
+    def reg_test_ssk_sim_score(self):
+        """Regression test ssk_sim_score."""
+        self._do_test('ssk_sim_score')
+
+    def reg_test_ssk_sim(self):
+        """Regression test ssk_sim."""
+        self._do_test('ssk_sim')
+
     def reg_test_steffensen_sim(self):
         """Regression test steffensen_sim."""
         self._do_test('steffensen_sim')
