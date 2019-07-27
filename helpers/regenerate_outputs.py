@@ -897,12 +897,14 @@ def _run_script():
 
         for algo in algorithms:
             start = time()
-            sys.stdout.write(algo)
-            sys.stdout.flush()
-            with open(os.path.join(corpora_dir, algo + '.csv'), 'w') as output:
-                output.write(algo + '\n')
-                for name in names:
-                    output.write(str(algorithms[algo](name)) + '\n')
+            fn = os.path.join(corpora_dir, algo + '.csv')
+            if not os.path.isfile(fn):
+                sys.stdout.write(algo)
+                sys.stdout.flush()
+                with open(fn, 'w') as output:
+                    output.write(algo + '\n')
+                    for name in names:
+                        output.write(str(algorithms[algo](name)) + '\n')
                 dur = '{:0.2f}'.format(time() - start)
                 timings.write(algo + ',' + dur + '\n')
                 sys.stdout.write(
@@ -911,22 +913,22 @@ def _run_script():
 
         for algo in dist_algorithms:
             start = time()
-            sys.stdout.write(algo)
-            sys.stdout.flush()
-            with bz2.open(
-                os.path.join(corpora_dir, algo + '.dat.bz2'),
-                'wb',
-                compresslevel=9,
-            ) as output:
-                for i in range(len(names) - 1):
-                    output.write(
-                        bytearray(
-                            struct.pack(
-                                '<f',
-                                dist_algorithms[algo](names[i], names[i + 1]),
+            fn = os.path.join(corpora_dir, algo + '.dat.bz2')
+            if not os.path.isfile(fn):
+                sys.stdout.write(algo)
+                sys.stdout.flush()
+                with bz2.open(fn, 'wb', compresslevel=9) as output:
+                    for i in range(len(names) - 1):
+                        output.write(
+                            bytearray(
+                                struct.pack(
+                                    '<f',
+                                    dist_algorithms[algo](
+                                        names[i], names[i + 1]
+                                    ),
+                                )
                             )
                         )
-                    )
                 dur = '{:0.2f}'.format(time() - start)
                 timings.write(algo + ',' + dur + '\n')
                 sys.stdout.write(
