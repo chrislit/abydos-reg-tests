@@ -667,7 +667,6 @@ class RegTestDistance(unittest.TestCase):
                     )[0]
                     self.assertEqual(val, calc)
 
-
     def reg_test_aline_sim_score(self):
         """Regression test aline_sim_score."""
         self._do_test('aline_sim_score')
