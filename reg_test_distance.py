@@ -208,6 +208,7 @@ from abydos.distance import (
     PearsonPhi,
     Peirce,
     PhoneticDistance,
+    PhoneticEditDistance,
     PositionalQGramDice,
     PositionalQGramJaccard,
     PositionalQGramOverlap,
@@ -536,6 +537,8 @@ algorithms = {
     'peirce_sim': Peirce().sim,
     'phoneticdistance_dist_abs': PhoneticDistance().dist_abs,
     'phoneticdistance_dist': PhoneticDistance().dist,
+    'phoneticeditdistance_dist_abs': PhoneticEditDistance().dist_abs,
+    'phoneticeditdistance_dist': PhoneticEditDistance().dist,
     'positionalqgramdice_sim': PositionalQGramDice().sim,
     'positionalqgramjaccard_sim': PositionalQGramJaccard().sim,
     'positionalqgramoverlap_sim': PositionalQGramOverlap().sim,
@@ -1602,6 +1605,14 @@ class RegTestDistance(unittest.TestCase):
     def reg_test_phoneticdistance_dist(self):
         """Regression test phoneticdistance_dist."""
         self._do_test('phoneticdistance_dist')
+
+    def reg_test_phoneticeditdistance_dist_abs(self):
+        """Regression test phoneticeditdistance_dist_abs."""
+        self._do_test('phoneticeditdistance_dist_abs')
+
+    def reg_test_phoneticeditdistance_dist(self):
+        """Regression test phoneticeditdistance_dist."""
+        self._do_test('phoneticeditdistance_dist')
 
     def reg_test_positionalqgramdice_sim(self):
         """Regression test positionalqgramdice_sim."""
