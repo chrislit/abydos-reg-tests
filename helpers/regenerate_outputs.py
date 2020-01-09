@@ -306,7 +306,7 @@ from abydos.distance import (
 )
 
 from abydos.distance import Eudex as Eudex_d
-from abydos.distance import MRA as MRA_d
+from abydos.distance import MRA as MRA_d  # noqa: N811
 from abydos.distance import QGram as QGram_d
 
 from abydos.fingerprint import (
