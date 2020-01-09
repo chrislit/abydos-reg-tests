@@ -68,8 +68,6 @@ from abydos.phonetic import (
     Waahlin,
 )
 
-from six import text_type
-
 from . import ORIGINALS, _corpus_file, _one_in
 
 alpha_sis = AlphaSIS()
@@ -197,7 +195,7 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms[algo_name]
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1], text_type(algo(ORIGINALS[i])))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_ainsworth(self):
         """Regression test ainsworth."""

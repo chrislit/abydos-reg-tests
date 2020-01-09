@@ -290,8 +290,6 @@ from abydos.distance import Eudex as Eudex_d
 from abydos.distance import MRA as MRA_d
 from abydos.distance import QGram as QGram_d
 
-from six import PY2
-
 from . import ORIGINALS, _corpus_file, _one_in
 
 
@@ -647,11 +645,6 @@ class RegTestDistance(unittest.TestCase):
     """Perform distance measure regression tests."""
 
     def _do_test(self, algo_name):
-        # Python 2.7 doesn't support bz2.open, and Python 2 support is being
-        # removed so soon that there's not much value in making these tests
-        # work correctly for Python 2. So they just return.
-        if PY2:
-            return
         with bz2.open(_corpus_file(algo_name + '.dat.bz2'), 'rb') as file:
             algo = algorithms[algo_name]
             data = file.read()
