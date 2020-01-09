@@ -38,13 +38,6 @@ The final value in the column is not a transformed string but the time,
 in seconds, required to complete processing the names list.
 """
 
-from __future__ import (
-    absolute_import,
-    division,
-    print_function,
-    unicode_literals,
-)
-
 import bz2
 import os
 import struct
