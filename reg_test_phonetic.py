@@ -112,9 +112,6 @@ algorithms = {
     'henry_early': HenryEarly().encode,
     'henry_early_ml8': HenryEarly(max_length=8).encode,
     'koelner_phonetik': koelner.encode,
-    'koelner_phonetik_num_to_alpha': (
-        lambda _: koelner._to_alpha(koelner.encode(_))  # noqa: SF01
-    ),
     'koelner_phonetik_alpha': koelner.encode_alpha,
     'lein': LEIN().encode,
     'lein_nopad_ml8': LEIN(max_length=8, zero_pad=False).encode,
@@ -159,9 +156,6 @@ algorithms = {
     'roger_root': RogerRoot().encode,
     'roger_root_nopad_ml8': RogerRoot(max_length=8, zero_pad=False).encode,
     'russell_index': russell.encode,
-    'russell_index_num_to_alpha': (
-        lambda _: russell._to_alpha(russell.encode(_))  # noqa: SF01
-    ),
     'russell_index_alpha': russell.encode_alpha,
     'sfinxbis': lambda _: ', '.join(sfinxbis.encode(_)),
     'sfinxbis_ml6': lambda _: ', '.join(sfinxbis_6.encode(_)),
@@ -304,10 +298,6 @@ class RegTestPhonetic(unittest.TestCase):
     def reg_test_koelner_phonetik(self):
         """Regression test koelner_phonetik."""
         self._do_test('koelner_phonetik')
-
-    def reg_test_koelner_phonetik_num_to_alpha(self):
-        """Regression test koelner_phonetik_num_to_alpha."""
-        self._do_test('koelner_phonetik_num_to_alpha')
 
     def reg_test_koelner_phonetik_alpha(self):
         """Regression test koelner_phonetik_alpha."""
@@ -476,10 +466,6 @@ class RegTestPhonetic(unittest.TestCase):
     def reg_test_russell_index(self):
         """Regression test russell_index."""
         self._do_test('russell_index')
-
-    def reg_test_russell_index_num_to_alpha(self):
-        """Regression test russell_index_num_to_alpha."""
-        self._do_test('russell_index_num_to_alpha')
 
     def reg_test_russell_index_alpha(self):
         """Regression test russell_index_alpha."""
