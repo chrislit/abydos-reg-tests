@@ -87,7 +87,7 @@ class RegTestFingerprint(unittest.TestCase):
             algo = algorithms[algo_name]
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1], str(algo(ORIGINALS[i])))
+                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
 
     def reg_test_bwtf(self):
         """Regression test bwtf."""
@@ -195,21 +195,11 @@ class RegTestFingerprint(unittest.TestCase):
 
     def reg_test_synoname_toolcode(self):
         """Regression test synoname_toolcode."""
-        with open(_corpus_file('synoname_toolcode.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['synoname_toolcode']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], ', '.join(algo(ORIGINALS[i])))
+        self._do_test('synoname_toolcode')
 
     def reg_test_synoname_toolcode_2name(self):
         """Regression test synoname_toolcode_2name."""
-        with open(_corpus_file('synoname_toolcode_2name.csv')) as transformed:
-            transformed.readline()
-            algo = algorithms['synoname_toolcode_2name']
-            for i, trans in enumerate(transformed):
-                if _one_in(1000):
-                    self.assertEqual(trans[:-1], ', '.join(algo(ORIGINALS[i])))
+        self._do_test('synoname_toolcode_2name')
 
 
 if __name__ == '__main__':
