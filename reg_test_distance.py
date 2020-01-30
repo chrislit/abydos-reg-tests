@@ -653,12 +653,19 @@ class RegTestDistance(unittest.TestCase):
                     val = struct.unpack('<f', data[i * 4 : i * 4 + 4])[0]
                     # cast the calculated measure to a 32-bit float
                     # (since the values were stored to disk as 32-bit floats)
-                    calc = struct.unpack(
-                        '<f',
-                        struct.pack(
-                            '<f', algo(ORIGINALS[i], ORIGINALS[i + 1])
-                        ),
-                    )[0]
+                    try:
+                        calc = struct.unpack(
+                            '<f',
+                            struct.pack(
+                                '<f', algo(ORIGINALS[i], ORIGINALS[i + 1])
+                            ),
+                        )[0]
+                    except Exception as inst:
+                        self.fail(
+                            'Exception "{}" thrown by {} for: {} & {}'.format(
+                                inst, algo_name, ORIGINALS[i], ORIGINALS[i + 1]
+                            )
+                        )
                     self.assertEqual(val, calc)
 
     def reg_test_aline_sim_score(self):

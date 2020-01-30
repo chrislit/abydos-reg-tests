@@ -177,7 +177,14 @@ class RegTestPhonetic(unittest.TestCase):
             algo = algorithms[algo_name]
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
-                    self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+                    try:
+                        self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
+                    except Exception as inst:
+                        self.fail(
+                            'Exception "{}" thrown by {} for: {}'.format(
+                                inst, algo_name, ORIGINALS[i]
+                            )
+                        )
 
     def reg_test_ainsworth(self):
         """Regression test ainsworth."""
