@@ -231,8 +231,8 @@ goodmankruskallambda_sim,7.71
 goodmankruskallambdar_sim,8.67
 goodmankruskaltaua_sim,7.99
 goodmankruskaltaub_sim,7.97
-gotoh_sim_score,94.60
-gotoh_sim,295.28
+gotoh_sim_score,29.49
+gotoh_sim,90.02
 gowerlegendre_sim,7.61
 guth_sim_score,0.75
 guth_sim,1.05
@@ -420,8 +420,8 @@ tullosss_sim,7.06
 tullosst_sim,21.48
 tullossu_sim,7.03
 tversky_sim,7.04
-typo_dist_abs,62.61
-typo_dist,62.38
+typo_dist_abs,30.85
+typo_dist,31.17
 unigramsubtuple_sim_score,7.85
 unigramsubtuple_sim,22.17
 unknowna_sim,7.60
