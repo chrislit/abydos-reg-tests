@@ -885,9 +885,7 @@ def _run_script():
                     output.write(str(algorithms[algo](name)) + '\n')
             dur = '{:0.2f}'.format(time() - start)
             timings_dict[algo] = dur
-            sys.stdout.write(
-                ' ' * (38 - len(algo) - len(dur)) + dur + '\n'
-            )
+            sys.stdout.write(' ' * (38 - len(algo) - len(dur)) + dur + '\n')
 
     for algo in dist_algorithms:
         start = time()
@@ -901,17 +899,13 @@ def _run_script():
                         bytearray(
                             struct.pack(
                                 '<f',
-                                dist_algorithms[algo](
-                                    names[i], names[i + 1]
-                                ),
+                                dist_algorithms[algo](names[i], names[i + 1]),
                             )
                         )
                     )
             dur = '{:0.2f}'.format(time() - start)
             timings_dict[algo] = dur
-            sys.stdout.write(
-                ' ' * (38 - len(algo) - len(dur)) + dur + '\n'
-            )
+            sys.stdout.write(' ' * (38 - len(algo) - len(dur)) + dur + '\n')
 
     with open(os.path.join(corpora_dir, 'timings.csv'), 'w') as timings:
         timings.write('algorithm_name,time\n')
