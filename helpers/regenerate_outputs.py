@@ -866,48 +866,57 @@ def _run_script():
         names = names_file.readlines()
         names = [name.strip() for name in names]
 
-    with open(os.path.join(corpora_dir, 'timings.csv'), 'w') as timings:
-        timings.write('algorithm_name,time\n')
+    timings_dict = {}
+    with open(os.path.join(corpora_dir, 'timings.csv'), 'r') as timings:
+        next(timings)
+        for algo_dur in timings:
+            algo, dur = algo_dur.strip().split(',')
+            timings_dict[algo] = dur
 
-        for algo in algorithms:
-            start = time()
-            fn = os.path.join(corpora_dir, algo + '.csv')
-            if not os.path.isfile(fn):
-                sys.stdout.write(algo)
-                sys.stdout.flush()
-                with open(fn, 'w') as output:
-                    output.write(algo + '\n')
-                    for name in names:
-                        output.write(str(algorithms[algo](name)) + '\n')
-                dur = '{:0.2f}'.format(time() - start)
-                timings.write(algo + ',' + dur + '\n')
-                sys.stdout.write(
-                    ' ' * (38 - len(algo) - len(dur)) + dur + '\n'
-                )
+    for algo in algorithms:
+        start = time()
+        fn = os.path.join(corpora_dir, algo + '.csv')
+        if not os.path.isfile(fn):
+            sys.stdout.write(algo)
+            sys.stdout.flush()
+            with open(fn, 'w') as output:
+                output.write(algo + '\n')
+                for name in names:
+                    output.write(str(algorithms[algo](name)) + '\n')
+            dur = '{:0.2f}'.format(time() - start)
+            timings_dict[algo] = dur
+            sys.stdout.write(
+                ' ' * (38 - len(algo) - len(dur)) + dur + '\n'
+            )
 
-        for algo in dist_algorithms:
-            start = time()
-            fn = os.path.join(corpora_dir, algo + '.dat.bz2')
-            if not os.path.isfile(fn):
-                sys.stdout.write(algo)
-                sys.stdout.flush()
-                with bz2.open(fn, 'wb', compresslevel=9) as output:
-                    for i in range(len(names) - 1):
-                        output.write(
-                            bytearray(
-                                struct.pack(
-                                    '<f',
-                                    dist_algorithms[algo](
-                                        names[i], names[i + 1]
-                                    ),
-                                )
+    for algo in dist_algorithms:
+        start = time()
+        fn = os.path.join(corpora_dir, algo + '.dat.bz2')
+        if not os.path.isfile(fn):
+            sys.stdout.write(algo)
+            sys.stdout.flush()
+            with bz2.open(fn, 'wb', compresslevel=9) as output:
+                for i in range(len(names) - 1):
+                    output.write(
+                        bytearray(
+                            struct.pack(
+                                '<f',
+                                dist_algorithms[algo](
+                                    names[i], names[i + 1]
+                                ),
                             )
                         )
-                dur = '{:0.2f}'.format(time() - start)
-                timings.write(algo + ',' + dur + '\n')
-                sys.stdout.write(
-                    ' ' * (38 - len(algo) - len(dur)) + dur + '\n'
-                )
+                    )
+            dur = '{:0.2f}'.format(time() - start)
+            timings_dict[algo] = dur
+            sys.stdout.write(
+                ' ' * (38 - len(algo) - len(dur)) + dur + '\n'
+            )
+
+    with open(os.path.join(corpora_dir, 'timings.csv'), 'w') as timings:
+        timings.write('algorithm_name,time\n')
+        for algo in timings_dict:
+            timings.write(f'{algo},{timings_dict[algo]}\n')
 
     sys.stdout.write('Total:\t{:0.2f}\n'.format(time() - overall_start))
 
