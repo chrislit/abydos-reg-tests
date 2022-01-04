@@ -883,7 +883,7 @@ def _run_script():
                 output.write(algo + '\n')
                 for name in names:
                     output.write(str(algorithms[algo](name)) + '\n')
-            dur = '{:0.2f}'.format(time() - start)
+            dur = f'{time() - start:0.2f}'
             timings_dict[algo] = dur
             sys.stdout.write(' ' * (38 - len(algo) - len(dur)) + dur + '\n')
 
@@ -903,7 +903,7 @@ def _run_script():
                             )
                         )
                     )
-            dur = '{:0.2f}'.format(time() - start)
+            dur = f'{time() - start:0.2f}'
             timings_dict[algo] = dur
             sys.stdout.write(' ' * (38 - len(algo) - len(dur)) + dur + '\n')
 
@@ -912,7 +912,7 @@ def _run_script():
         for algo in timings_dict:
             timings.write(f'{algo},{timings_dict[algo]}\n')
 
-    sys.stdout.write('Total:\t{:0.2f}\n'.format(time() - overall_start))
+    sys.stdout.write(f'Total:\t{time() - overall_start:0.2f}\n')
 
 
 if __name__ == '__main__':

@@ -662,9 +662,7 @@ class RegTestDistance(unittest.TestCase):
                         )[0]
                     except Exception as inst:
                         self.fail(
-                            'Exception "{}" thrown by {} for: {} & {}'.format(
-                                inst, algo_name, ORIGINALS[i], ORIGINALS[i + 1]
-                            )
+                            f'Exception "{inst}" thrown by {algo_name} for: {ORIGINALS[i]} & {ORIGINALS[i + 1]}'
                         )
                     self.assertEqual(val, calc)
 

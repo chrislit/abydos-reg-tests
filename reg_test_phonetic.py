@@ -158,7 +158,7 @@ algorithms = {
     'spanish_metaphone': SpanishMetaphone().encode,
     'spanish_metaphone_modified': SpanishMetaphone(modified=True).encode,
     'spanish_metaphone_ml4': SpanishMetaphone(max_length=4).encode,
-    'spfc': lambda _: spfc.encode('{0} {0}'.format(_)),
+    'spfc': lambda _: spfc.encode(f'{_} {_}'),
     'statistics_canada': StatisticsCanada().encode,
     'statistics_canada_ml8': StatisticsCanada(max_length=8).encode,
     'waahlin': Waahlin().encode,
@@ -181,9 +181,7 @@ class RegTestPhonetic(unittest.TestCase):
                         self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
                     except Exception as inst:
                         self.fail(
-                            'Exception "{}" thrown by {} for: {}'.format(
-                                inst, algo_name, ORIGINALS[i]
-                            )
+                            f'Exception "{inst}" thrown by {algo_name} for: {ORIGINALS[i]}'
                         )
 
     def reg_test_ainsworth(self):

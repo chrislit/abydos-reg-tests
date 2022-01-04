@@ -91,9 +91,7 @@ class RegTestFingerprint(unittest.TestCase):
                         self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
                     except Exception as inst:
                         self.fail(
-                            'Exception "{}" thrown by {} for: {}'.format(
-                                inst, algo_name, ORIGINALS[i]
-                            )
+                            f'Exception "{inst}" thrown by {algo_name} for: {ORIGINALS[i]}'
                         )
 
     def reg_test_bwtf(self):
