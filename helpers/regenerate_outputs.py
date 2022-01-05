@@ -882,7 +882,7 @@ def _run_script():
             with open(fn, 'w') as output:
                 output.write(f'{algo}\n')
                 for name in names:
-                    output.write(f'{str(algorithms[algo](name))}\n')
+                    output.write(f'{algorithms[algo](name)}\n')
             dur = f'{time() - start:0.2f}'
             timings_dict[algo] = dur
             sys.stdout.write(f'{" " * (38 - len(algo) - len(dur)) + dur}\n')
