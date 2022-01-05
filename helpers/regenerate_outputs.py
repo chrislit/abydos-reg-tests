@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright 2018-2020 by Christopher C. Little.
+# Copyright 2018-2022 by Christopher C. Little.
 # This file is part of Abydos.
 #
 # BSD 2-Clause License
