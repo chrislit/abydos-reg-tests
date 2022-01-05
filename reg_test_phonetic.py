@@ -171,7 +171,7 @@ class RegTestPhonetic(unittest.TestCase):
 
     def _do_test(self, algo_name):
         with codecs.open(
-            _corpus_file(f"{algo_name}.csv"), encoding='UTF-8'
+            _corpus_file(f'{algo_name}.csv'), encoding='UTF-8'
         ) as transformed:
             transformed.readline()
             algo = algorithms[algo_name]
@@ -179,9 +179,10 @@ class RegTestPhonetic(unittest.TestCase):
                 if _one_in(1000):
                     try:
                         self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-                    except Exception as inst:
+                    except Exception as inst:  # noqa: B902
                         self.fail(
-                            f'Exception "{inst}" thrown by {algo_name} for: {ORIGINALS[i]}'
+                            f'Exception "{inst}" thrown by {algo_name} '
+                            f'for: {ORIGINALS[i]}'
                         )
 
     def reg_test_ainsworth(self):

@@ -82,16 +82,17 @@ class RegTestFingerprint(unittest.TestCase):
     """Perform fingerprint regression tests."""
 
     def _do_test(self, algo_name):
-        with open(_corpus_file(f"{algo_name}.csv")) as transformed:
+        with open(_corpus_file(f'{algo_name}.csv')) as transformed:
             transformed.readline()
             algo = algorithms[algo_name]
             for i, trans in enumerate(transformed):
                 if _one_in(1000):
                     try:
                         self.assertEqual(trans[:-1], algo(ORIGINALS[i]))
-                    except Exception as inst:
+                    except Exception as inst:  # noqa: B902
                         self.fail(
-                            f'Exception "{inst}" thrown by {algo_name} for: {ORIGINALS[i]}'
+                            f'Exception "{inst}" thrown by {algo_name} for: '
+                            f'{ORIGINALS[i]}'
                         )
 
     def reg_test_bwtf(self):

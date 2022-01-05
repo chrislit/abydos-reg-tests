@@ -875,21 +875,21 @@ def _run_script():
 
     for algo in algorithms:
         start = time()
-        fn = os.path.join(corpora_dir, f"{algo}.csv")
+        fn = os.path.join(corpora_dir, f'{algo}.csv')
         if not os.path.isfile(fn):
             sys.stdout.write(algo)
             sys.stdout.flush()
             with open(fn, 'w') as output:
-                output.write(f"{algo}\n")
+                output.write(f'{algo}\n')
                 for name in names:
-                    output.write(f"{str(algorithms[algo](name))}\n")
+                    output.write(f'{str(algorithms[algo](name))}\n')
             dur = f'{time() - start:0.2f}'
             timings_dict[algo] = dur
-            sys.stdout.write(f"{' ' * (38 - len(algo) - len(dur)) + dur}\n")
+            sys.stdout.write(f'{" " * (38 - len(algo) - len(dur)) + dur}\n')
 
     for algo in dist_algorithms:
         start = time()
-        fn = os.path.join(corpora_dir, f"{algo}.dat.bz2")
+        fn = os.path.join(corpora_dir, f'{algo}.dat.bz2')
         if not os.path.isfile(fn):
             sys.stdout.write(algo)
             sys.stdout.flush()
@@ -905,7 +905,7 @@ def _run_script():
                     )
             dur = f'{time() - start:0.2f}'
             timings_dict[algo] = dur
-            sys.stdout.write(f"{' ' * (38 - len(algo) - len(dur)) + dur}\n")
+            sys.stdout.write(f'{" " * (38 - len(algo) - len(dur)) + dur}\n')
 
     with open(os.path.join(corpora_dir, 'timings.csv'), 'w') as timings:
         timings.write('algorithm_name,time\n')

@@ -645,7 +645,7 @@ class RegTestDistance(unittest.TestCase):
     """Perform distance measure regression tests."""
 
     def _do_test(self, algo_name):
-        with bz2.open(_corpus_file(f"{algo_name}.dat.bz2"), 'rb') as file:
+        with bz2.open(_corpus_file(f'{algo_name}.dat.bz2'), 'rb') as file:
             algo = algorithms[algo_name]
             data = file.read()
             for i in range(0, len(data) // 4):
@@ -660,9 +660,10 @@ class RegTestDistance(unittest.TestCase):
                                 '<f', algo(ORIGINALS[i], ORIGINALS[i + 1])
                             ),
                         )[0]
-                    except Exception as inst:
+                    except Exception as inst:  # noqa: B902
                         self.fail(
-                            f'Exception "{inst}" thrown by {algo_name} for: {ORIGINALS[i]} & {ORIGINALS[i + 1]}'
+                            f'Exception "{inst}" thrown by {algo_name} for: '
+                            f'{ORIGINALS[i]} & {ORIGINALS[i + 1]}'
                         )
                     self.assertEqual(val, calc)
 
