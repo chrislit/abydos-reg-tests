@@ -171,7 +171,7 @@ class RegTestPhonetic(unittest.TestCase):
 
     def _do_test(self, algo_name):
         with codecs.open(
-            _corpus_file(algo_name + '.csv'), encoding='UTF-8'
+            _corpus_file(f"{algo_name}.csv"), encoding='UTF-8'
         ) as transformed:
             transformed.readline()
             algo = algorithms[algo_name]

@@ -645,7 +645,7 @@ class RegTestDistance(unittest.TestCase):
     """Perform distance measure regression tests."""
 
     def _do_test(self, algo_name):
-        with bz2.open(_corpus_file(algo_name + '.dat.bz2'), 'rb') as file:
+        with bz2.open(_corpus_file(f"{algo_name}.dat.bz2"), 'rb') as file:
             algo = algorithms[algo_name]
             data = file.read()
             for i in range(0, len(data) // 4):

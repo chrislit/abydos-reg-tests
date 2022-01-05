@@ -82,7 +82,7 @@ class RegTestFingerprint(unittest.TestCase):
     """Perform fingerprint regression tests."""
 
     def _do_test(self, algo_name):
-        with open(_corpus_file(algo_name + '.csv')) as transformed:
+        with open(_corpus_file(f"{algo_name}.csv")) as transformed:
             transformed.readline()
             algo = algorithms[algo_name]
             for i, trans in enumerate(transformed):
