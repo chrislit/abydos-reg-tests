@@ -308,7 +308,6 @@ from abydos.distance import (
 from abydos.distance import Eudex as Eudex_d
 from abydos.distance import MRA as MRA_d  # noqa: N811
 from abydos.distance import QGram as QGram_d
-from abydos.tokenizer import QGrams
 
 from abydos.fingerprint import (
     BWTF,
@@ -375,6 +374,8 @@ from abydos.phonetic import (
     StatisticsCanada,
     Waahlin,
 )
+
+from abydos.tokenizer import QGrams
 
 
 def _run_script():
