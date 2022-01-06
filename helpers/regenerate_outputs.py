@@ -308,6 +308,7 @@ from abydos.distance import (
 from abydos.distance import Eudex as Eudex_d
 from abydos.distance import MRA as MRA_d  # noqa: N811
 from abydos.distance import QGram as QGram_d
+from abydos.tokenizer import QGrams
 
 from abydos.fingerprint import (
     BWTF,
@@ -715,7 +716,7 @@ def _run_script():
         'minhash_sim': MinHash().sim,
         'minkowski_dist_abs': Minkowski().dist_abs,
         'minkowski_dist': Minkowski().dist,
-        'mongeelkan_sim': MongeElkan().sim,
+        'mongeelkan_sim': MongeElkan(tokenizer=QGrams()).sim,
         'mountford_sim': Mountford().sim,
         'mutualinformation_sim_score': MutualInformation().sim_score,
         'mutualinformation_sim': MutualInformation().sim,
